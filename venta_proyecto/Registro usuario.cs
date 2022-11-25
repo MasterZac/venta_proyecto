@@ -117,9 +117,9 @@ namespace venta_proyecto
                 }
                 
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
             finally
             {
