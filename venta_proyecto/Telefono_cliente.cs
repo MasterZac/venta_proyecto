@@ -40,7 +40,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select cliente.Nombre From telefono_cliente, cliente Where telefono_cliente.ID_cliente = Cliente.ID Group by cliente.Nombre; ";
+                string query = "Select Nombre From cliente Group by Nombre; ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -64,7 +64,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select telefono_cliente.ID_cliente From telefono_cliente, cliente Where telefono_cliente.ID_cliente = cliente.ID And Nombre  = ('"+ CmbNombreClienteTelefono.Text+"'); ";
+                string query = "Select ID From cliente Where Nombre  = ('"+ CmbNombreClienteTelefono.Text+"'); ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -128,9 +128,7 @@ namespace venta_proyecto
         {
             ConsultaComboNombreCliente();
             cargar.DgvTelefono_cliente(Dgv);
-            BtnAgregar.Enabled = false;
-            BtnActualizar.Enabled = false;
-            BtnEliminar.Enabled = false;
+            
         }
 
         public void Limpiar()
@@ -140,25 +138,18 @@ namespace venta_proyecto
             MkdTelefono.Clear();
             CmbNombreClienteTelefono.Focus();
         }
-        bool validar = false;
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (Dgv.SelectedRows.Count > 0)
                 {
-                    validar = true;
+                    
                     TxtID_cliente.Text = Dgv.SelectedCells[0].Value.ToString();
                     CmbNombreClienteTelefono.Text = Dgv.SelectedCells[1].Value.ToString();
                     MkdTelefono.Text = Dgv.SelectedCells[2].Value.ToString();
-                    BtnAgregar.Enabled = false;
-                    BtnActualizar.Enabled = true;
-                    BtnEliminar.Enabled = true;
                 }
-                else
-                {
-                    validar = false;
-                }
+               
             }
             catch (Exception ex)
             {
@@ -168,27 +159,104 @@ namespace venta_proyecto
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            bool aux = false;
+            
+            if (TxtID_cliente.Text == "" || MkdTelefono.Text == "")
             {
-                Conectar();
-                string query = "Select Telefono From telefono_cliente Where ID_cliente = ('"+ TxtID_cliente.Text +"') And Telefono = ('"+ MkdTelefono.Text +"'); ";
-                cmd = new MySqlCommand(query, cnn);
-                cmd.CommandType = CommandType.Text;
-                rd = cmd.ExecuteReader();
-                if (rd.Read())
+                
+                MessageBox.Show("HAY CAMPOS VACIOS");
+            }
+            else
+            {
+               
+                try
                 {
-                    MessageBox.Show("Ya existe ese numero de telefono");
-                    MkdTelefono.Clear();
-                    MkdTelefono.Focus();
+                    Conectar();
+                    string query = "Select Telefono From telefono_cliente Where Telefono = ('" + MkdTelefono.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        MessageBox.Show("Ya existe ese numero de telefono");
+                        MkdTelefono.Clear();
+                        MkdTelefono.Focus();
+                        aux = true;
+                    }
+                    else
+                    {
+                        aux = false;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    cmd = new MySqlCommand("AddTelefono_cliente", cnn);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (aux == false)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("AddTelefono_cliente", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID_cliente.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                        _telefono.Value = MkdTelefono.Text;
+                        cmd.Parameters.Add(_telefono);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvTelefono_cliente(Dgv);
+                        MessageBox.Show("Numero de telefono Agregado");
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
+
+            }
+
+            
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+           
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            
+            if (TxtID_cliente.Text == "" || MkdTelefono.Text == "")
+            {
+                MessageBox.Show("HAY CAMPOS VACIOS");
+            }
+            else
+            {
+                try
+                {
+                    Conectar();
+                    cmd = new MySqlCommand("DeleteTelefono_cliente", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    MySqlParameter _id = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
-                    _id.Value = TxtID_cliente.Text;
-                    cmd.Parameters.Add(_id);
+                    MySqlParameter _id_cliente = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
+                    _id_cliente.Value = TxtID_cliente.Text;
+                    cmd.Parameters.Add(_id_cliente);
 
                     MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
                     _telefono.Value = MkdTelefono.Text;
@@ -196,63 +264,29 @@ namespace venta_proyecto
 
                     cmd.ExecuteNonQuery();
                     cargar.DgvTelefono_cliente(Dgv);
-                    MessageBox.Show("Numero de telefono Agregado");
                     Limpiar();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
-            }
-        }
-
-        private void BtnLimpiar_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-            BtnEliminar.Enabled = false;
-            BtnActualizar.Enabled = false;
-        }
-
-        private void BtnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Conectar();
-                cmd = new MySqlCommand("DeleteTelefono_cliente", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                _telefono.Value = MkdTelefono.Text;
-                cmd.Parameters.Add(_telefono);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvTelefono_cliente(Dgv);
-                Limpiar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
             }
         }
 
         private void TxtID_TextChanged(object sender, EventArgs e)
         {
-            if(validar == false)
-                ValidarCampos();
+            //if(validar == false)
+              //  ValidarCampos();
         }
 
         private void MkdTelefono_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if (validar == false)
-                ValidarCampos();
+            //if (validar == false)
+              //  ValidarCampos();
         }
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
@@ -262,31 +296,38 @@ namespace venta_proyecto
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            try
+            if (TxtID_cliente.Text == "" || MkdTelefono.Text == "")
             {
-                Conectar();
-                cmd = new MySqlCommand("UpdateTelefono_cliente", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _id_cliente = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
-                _id_cliente.Value = TxtID_cliente.Text;
-                cmd.Parameters.Add(_id_cliente);
-
-                MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                _telefono.Value = MkdTelefono.Text;
-                cmd.Parameters.Add(_telefono);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvTelefono_cliente(Dgv);
-                Limpiar();
+                MessageBox.Show("HAY CAMPOS VACIOS");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                try
+                {
+                    Conectar();
+                    cmd = new MySqlCommand("UpdateTelefono_cliente", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    MySqlParameter _id_cliente = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
+                    _id_cliente.Value = TxtID_cliente.Text;
+                    cmd.Parameters.Add(_id_cliente);
+
+                    MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                    _telefono.Value = MkdTelefono.Text;
+                    cmd.Parameters.Add(_telefono);
+
+                    cmd.ExecuteNonQuery();
+                    cargar.DgvTelefono_cliente(Dgv);
+                    Limpiar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
             }
         }
 
@@ -294,8 +335,7 @@ namespace venta_proyecto
         {
             MkdTelefono.Clear();
             MkdTelefono.Focus();
-            BtnEliminar.Enabled = false;
-            BtnActualizar.Enabled = false;
+            
         }
 
         private void CmbNombreClienteTelefono_SelectedIndexChanged(object sender, EventArgs e)
