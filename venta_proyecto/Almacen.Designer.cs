@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,8 +48,6 @@
             this.BtnActualizar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.Dgv = new System.Windows.Forms.DataGridView();
             this.BtnLimpiarTxtBuscar = new System.Windows.Forms.Button();
             this.Txtbuscar = new System.Windows.Forms.TextBox();
@@ -63,9 +61,12 @@
             this.lblstatus1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -272,55 +273,32 @@
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(51, 179);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(163, 16);
-            this.linkLabel2.TabIndex = 48;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "DETALLE PRODUCTO";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(51, 370);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(160, 16);
-            this.linkLabel1.TabIndex = 49;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "LISTADO PRODUCTO";
-            // 
             // Dgv
             // 
             this.Dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.Dgv.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.GridColor = System.Drawing.Color.Black;
             this.Dgv.Location = new System.Drawing.Point(54, 437);
             this.Dgv.MultiSelect = false;
             this.Dgv.Name = "Dgv";
-            this.Dgv.Size = new System.Drawing.Size(724, 188);
+            this.Dgv.Size = new System.Drawing.Size(769, 188);
             this.Dgv.TabIndex = 50;
             this.Dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_CellClick);
             // 
             // BtnLimpiarTxtBuscar
             // 
-            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(709, 403);
+            this.BtnLimpiarTxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(721, 32);
             this.BtnLimpiarTxtBuscar.Name = "BtnLimpiarTxtBuscar";
             this.BtnLimpiarTxtBuscar.Size = new System.Drawing.Size(70, 28);
             this.BtnLimpiarTxtBuscar.TabIndex = 78;
@@ -331,7 +309,7 @@
             // Txtbuscar
             // 
             this.Txtbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txtbuscar.Location = new System.Drawing.Point(520, 405);
+            this.Txtbuscar.Location = new System.Drawing.Point(526, 34);
             this.Txtbuscar.Multiline = true;
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
@@ -412,6 +390,7 @@
             this.statusStrip1.Size = new System.Drawing.Size(929, 22);
             this.statusStrip1.TabIndex = 82;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // toolStripStatusLabel2
             // 
@@ -448,22 +427,42 @@
             this.lblstatus2.Size = new System.Drawing.Size(118, 17);
             this.lblstatus2.Text = "toolStripStatusLabel1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(27, 154);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(864, 213);
+            this.groupBox1.TabIndex = 83;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "DETALLE PRODUCTO";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox2.Controls.Add(this.BtnLimpiarTxtBuscar);
+            this.groupBox2.Controls.Add(this.Txtbuscar);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(32, 373);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(859, 273);
+            this.groupBox2.TabIndex = 84;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "LISTADO PRODUCTOS";
+            // 
             // Almacen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 637);
+            this.ClientSize = new System.Drawing.Size(929, 658);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.LabelProveedor);
             this.Controls.Add(this.LabelCategoria);
-            this.Controls.Add(this.BtnLimpiarTxtBuscar);
-            this.Controls.Add(this.Txtbuscar);
             this.Controls.Add(this.CboBuscarPor);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.Dgv);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.BtnActualizar);
@@ -481,6 +480,8 @@
             this.Controls.Add(this.TxtSku);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Almacen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -491,6 +492,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,9 +519,6 @@
         private System.Windows.Forms.Button BtnActualizar;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnLimpiar;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.DataGridView Dgv;
         private System.Windows.Forms.Button BtnLimpiarTxtBuscar;
         private System.Windows.Forms.TextBox Txtbuscar;
         private System.Windows.Forms.ComboBox CboBuscarPor;
@@ -532,5 +532,8 @@
         private System.Windows.Forms.ToolStripStatusLabel lblstatus1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
+        private System.Windows.Forms.DataGridView Dgv;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

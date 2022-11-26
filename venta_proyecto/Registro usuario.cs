@@ -141,8 +141,9 @@ namespace venta_proyecto
                 rd = cmd.ExecuteReader();
                 if (rd.Read())
                 {
-                    TxtContraseña.Text = rd[3].ToString();
-                    CmbTipoUsuario.Text = rd[2].ToString();
+                   
+                    TxtContraseña.Text = rd[2].ToString();
+                    CmbTipoUsuario.Text = rd[1].ToString();
                 }
                 else
                 {

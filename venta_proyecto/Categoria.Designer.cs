@@ -309,6 +309,7 @@
             this.TxtID_categoria.ReadOnly = true;
             this.TxtID_categoria.Size = new System.Drawing.Size(158, 22);
             this.TxtID_categoria.TabIndex = 36;
+            this.TxtID_categoria.Text = "Automatico";
             this.TxtID_categoria.TextChanged += new System.EventHandler(this.TxtID_categoria_TextChanged);
             // 
             // label2

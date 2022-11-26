@@ -78,7 +78,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select ID from proveedor Where Nombre = ('" + CmbProveedor.Text + "'); ";
+                string query = "Select ID from proveedor Where Nombre Like ('" + CmbProveedor.Text + "%'); ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -192,8 +192,8 @@ namespace venta_proyecto
             TxtPrecio.Clear();
             CmbCategoria.Text = " ";
             CmbProveedor.Text = " ";
-            LabelCategoria.Text = "Categoria";
-            LabelProveedor.Text = "Proveedor";
+            LabelCategoria.Text = "Clave_C";
+            LabelProveedor.Text = "Clave_P";
             TxtSku.Focus();
             TxtSku.ReadOnly = false;
             BtnActualizar.Enabled = false;
@@ -339,27 +339,31 @@ namespace venta_proyecto
         {
             try
             {
-                if (Dgv.SelectedRows.Count > 0)
+                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
                 {
-                    validar = true;
-                    TxtSku.Text = Dgv.SelectedCells[0].Value.ToString();
-                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                    TxtStock.Text = Dgv.SelectedCells[2].Value.ToString();
-                    TxtPrecio.Text = Dgv.SelectedCells[3].Value.ToString();
-                    LabelCategoria.Text = Dgv.SelectedCells[4].Value.ToString();
-                    LabelProveedor.Text = Dgv.SelectedCells[5].Value.ToString();
-                    BtnActualizar.Enabled = true;
-                    BtnEliminar.Enabled = true;
-                    TxtSku.ReadOnly = true;
-                    ConsultaNombreProveedor();
-                    ConsultaNombreCategoria();
-                    
-                    
-                    
+                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UN PRODUCTO!");
                 }
                 else
                 {
-                    validar = false;
+                    if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == false)
+                    {
+                        validar = true;
+                        TxtSku.Text = Dgv.SelectedCells[0].Value.ToString();
+                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                        TxtStock.Text = Dgv.SelectedCells[2].Value.ToString();
+                        TxtPrecio.Text = Dgv.SelectedCells[3].Value.ToString();
+                        LabelCategoria.Text = Dgv.SelectedCells[4].Value.ToString();
+                        LabelProveedor.Text = Dgv.SelectedCells[5].Value.ToString();
+                        BtnActualizar.Enabled = true;
+                        BtnEliminar.Enabled = true;
+                        TxtSku.ReadOnly = true;
+                        ConsultaNombreProveedor();
+                        ConsultaNombreCategoria();
+                    }
+                    else
+                    {
+                        validar = false;
+                    }
                 }
             }catch (Exception ex)
             {
@@ -369,29 +373,25 @@ namespace venta_proyecto
 
         private void CmbID_categoria_KeyUp(object sender, KeyEventArgs e)
         {
-            
+           
         }
 
         private void CmbID_proveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (validar == false)
-            {
                 ValidarCampos();
-            }
         }
 
         private void CmbID_proveedor_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ConsultaIdProveedor();
-            BtnActualizar.Focus();
         }
 
         private void CmbID_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (validar == false)
-            {
                 ValidarCampos();
-            }
         }
 
         public void ConsultaNombreCategoria()
@@ -463,7 +463,6 @@ namespace venta_proyecto
         private void CmbID_categoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ConsultaIdCategoria();
-            CmbProveedor.Focus();
         }
 
         private void CmbID_categoria_DropDownClosed(object sender, EventArgs e)
@@ -517,6 +516,11 @@ namespace venta_proyecto
         {
             Txtbuscar.Clear();
             Txtbuscar.Focus();
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
@@ -41,9 +40,10 @@
             this.Txtbuscar = new System.Windows.Forms.TextBox();
             this.CboBuscarPor = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnNuevoNumero = new System.Windows.Forms.Button();
+            this.CmbNombreClienteTelefono = new System.Windows.Forms.ComboBox();
+            this.TxtID_cliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,15 +56,6 @@
             this.label1.Size = new System.Drawing.Size(75, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID_Cliente";
-            // 
-            // TxtID
-            // 
-            this.TxtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtID.Location = new System.Drawing.Point(26, 53);
-            this.TxtID.Name = "TxtID";
-            this.TxtID.Size = new System.Drawing.Size(140, 24);
-            this.TxtID.TabIndex = 1;
-            this.TxtID.TextChanged += new System.EventHandler(this.TxtID_TextChanged);
             // 
             // label2
             // 
@@ -186,15 +177,6 @@
             this.label9.TabIndex = 75;
             this.label9.Text = "Consular por:";
             // 
-            // TxtNombre
-            // 
-            this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombre.Location = new System.Drawing.Point(26, 102);
-            this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.ReadOnly = true;
-            this.TxtNombre.Size = new System.Drawing.Size(140, 22);
-            this.TxtNombre.TabIndex = 80;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -215,13 +197,32 @@
             this.BtnNuevoNumero.UseVisualStyleBackColor = true;
             this.BtnNuevoNumero.Click += new System.EventHandler(this.BtnNuevoNumero_Click);
             // 
+            // CmbNombreClienteTelefono
+            // 
+            this.CmbNombreClienteTelefono.FormattingEnabled = true;
+            this.CmbNombreClienteTelefono.Location = new System.Drawing.Point(26, 103);
+            this.CmbNombreClienteTelefono.Name = "CmbNombreClienteTelefono";
+            this.CmbNombreClienteTelefono.Size = new System.Drawing.Size(140, 21);
+            this.CmbNombreClienteTelefono.TabIndex = 83;
+            this.CmbNombreClienteTelefono.SelectedIndexChanged += new System.EventHandler(this.CmbNombreClienteTelefono_SelectedIndexChanged);
+            // 
+            // TxtID_cliente
+            // 
+            this.TxtID_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtID_cliente.Location = new System.Drawing.Point(26, 49);
+            this.TxtID_cliente.Name = "TxtID_cliente";
+            this.TxtID_cliente.ReadOnly = true;
+            this.TxtID_cliente.Size = new System.Drawing.Size(140, 22);
+            this.TxtID_cliente.TabIndex = 84;
+            // 
             // Telefono_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 378);
+            this.Controls.Add(this.TxtID_cliente);
+            this.Controls.Add(this.CmbNombreClienteTelefono);
             this.Controls.Add(this.BtnNuevoNumero);
-            this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.BtnLimpiarTxtBuscar);
             this.Controls.Add(this.Txtbuscar);
@@ -234,7 +235,6 @@
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.TxtID);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Telefono_cliente";
@@ -250,7 +250,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnEliminar;
@@ -262,8 +261,9 @@
         private System.Windows.Forms.TextBox Txtbuscar;
         private System.Windows.Forms.ComboBox CboBuscarPor;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnNuevoNumero;
+        private System.Windows.Forms.ComboBox CmbNombreClienteTelefono;
+        private System.Windows.Forms.TextBox TxtID_cliente;
     }
 }

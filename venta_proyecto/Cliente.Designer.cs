@@ -47,8 +47,6 @@
             this.TxtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.BtnLimpiarTxtBuscar = new System.Windows.Forms.Button();
             this.Txtbuscar = new System.Windows.Forms.TextBox();
             this.CboBuscarPor = new System.Windows.Forms.ComboBox();
@@ -66,6 +64,8 @@
             this.lblstatus1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -79,7 +79,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1061, 87);
+            this.panel1.Size = new System.Drawing.Size(1077, 87);
             this.panel1.TabIndex = 0;
             // 
             // BtnSalir
@@ -110,13 +110,17 @@
             // 
             // Dgv
             // 
+            this.Dgv.AllowUserToAddRows = false;
+            this.Dgv.AllowUserToDeleteRows = false;
+            this.Dgv.AllowUserToResizeColumns = false;
+            this.Dgv.AllowUserToResizeRows = false;
             this.Dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Location = new System.Drawing.Point(350, 273);
             this.Dgv.MultiSelect = false;
             this.Dgv.Name = "Dgv";
             this.Dgv.ReadOnly = true;
-            this.Dgv.Size = new System.Drawing.Size(699, 311);
+            this.Dgv.Size = new System.Drawing.Size(699, 232);
             this.Dgv.TabIndex = 64;
             this.Dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_CellClick);
             // 
@@ -264,32 +268,8 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Location = new System.Drawing.Point(324, 197);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(10, 528);
+            this.panel2.Size = new System.Drawing.Size(10, 515);
             this.panel2.TabIndex = 49;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(347, 201);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(122, 16);
-            this.linkLabel1.TabIndex = 48;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Lista de Clientes";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(13, 197);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(117, 16);
-            this.linkLabel2.TabIndex = 47;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Detalle Clientes";
             // 
             // BtnLimpiarTxtBuscar
             // 
@@ -383,7 +363,7 @@
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(366, 508);
+            this.linkLabel3.Location = new System.Drawing.Point(377, 558);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(190, 16);
             this.linkLabel3.TabIndex = 79;
@@ -392,7 +372,7 @@
             // 
             // BtnTelefono
             // 
-            this.BtnTelefono.Location = new System.Drawing.Point(369, 540);
+            this.BtnTelefono.Location = new System.Drawing.Point(380, 590);
             this.BtnTelefono.Name = "BtnTelefono";
             this.BtnTelefono.Size = new System.Drawing.Size(144, 60);
             this.BtnTelefono.TabIndex = 80;
@@ -430,7 +410,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 87);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusStrip1.Size = new System.Drawing.Size(1061, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1077, 22);
             this.statusStrip1.TabIndex = 83;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -469,18 +449,38 @@
             this.lblstatus2.Size = new System.Drawing.Size(118, 17);
             this.lblstatus2.Text = "toolStripStatusLabel1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(340, 182);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(721, 342);
+            this.groupBox1.TabIndex = 84;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "LISTA DE CLIENTES";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 182);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(306, 516);
+            this.groupBox2.TabIndex = 85;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "DETALLE CLIENTE";
+            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 710);
+            this.ClientSize = new System.Drawing.Size(1077, 716);
+            this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TxtComuna);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.BtnTelefono);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.BtnLimpiar);
-            this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.BtnLimpiarTxtBuscar);
@@ -503,9 +503,9 @@
             this.Controls.Add(this.TxtID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Cliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -541,8 +541,6 @@
         private System.Windows.Forms.TextBox TxtID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Button BtnLimpiarTxtBuscar;
         private System.Windows.Forms.TextBox Txtbuscar;
         private System.Windows.Forms.ComboBox CboBuscarPor;
@@ -561,5 +559,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblstatus1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

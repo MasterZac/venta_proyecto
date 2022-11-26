@@ -41,15 +41,12 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT * FROM proveedor Where (" + CboBuscarPor.Text + ") Like ('" + Txtbuscar.Text + "%')";
                 cmd.ExecuteNonQuery();
-
                 dt = new DataTable();
                 da = new MySqlDataAdapter(cmd);
-
                 da.Fill(dt);
                 Dgv.DataSource = dt;
 
@@ -73,6 +70,8 @@ namespace venta_proyecto
             MkdTelefono.Clear();
             TxtPaginaWeb.Clear();
             TxtID.Focus();
+            BtnActualizar.Enabled = false;
+            BtnEliminar.Enabled = false;
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
@@ -88,6 +87,9 @@ namespace venta_proyecto
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
             lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvProveedor(Dgv);
+            BtnAgregar.Enabled = false;
+            BtnActualizar.Enabled = false;
+            BtnEliminar.Enabled = false;
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -222,21 +224,34 @@ namespace venta_proyecto
             BtnAgregar.Enabled = vr;
         }
 
+        bool validar = false;
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (Dgv.SelectedRows.Count > 0)
+
+                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
                 {
-                    TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
-                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                    TxtRFC.Text = Dgv.SelectedCells[2].Value.ToString();
-                    MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
-                    TxtPaginaWeb.Text = Dgv.SelectedCells[4].Value.ToString();
-
-                    BtnAgregar.Enabled = false;
-                    TxtID.ReadOnly = true;
-
+                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UN PROVEEDOR!");
+                }
+                else
+                {
+                    if (Dgv.SelectedRows.Count > 0)
+                    {
+                        validar = true;
+                        TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
+                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                        TxtRFC.Text = Dgv.SelectedCells[2].Value.ToString();
+                        MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
+                        TxtPaginaWeb.Text = Dgv.SelectedCells[4].Value.ToString();
+                        BtnActualizar.Enabled = true;
+                        BtnEliminar.Enabled = true;
+                        TxtID.ReadOnly = true;
+                    }
+                    else
+                    {
+                        validar = false;
+                    }
                 }
 
 
@@ -250,27 +265,42 @@ namespace venta_proyecto
 
         private void TxtID_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+            {
+                ValidarCampos();
+            }
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+            {
+                ValidarCampos();
+            }
         }
 
         private void TxtRFC_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+            {
+                ValidarCampos();
+            }
         }
 
         private void MkdTelefono_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+            {
+                ValidarCampos();
+            }
         }
 
         private void TxtPaginaWeb_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+            {
+                ValidarCampos();
+            }
         }
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)

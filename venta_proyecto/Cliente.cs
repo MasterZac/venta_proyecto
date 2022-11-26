@@ -203,57 +203,78 @@ namespace venta_proyecto
 
         private void TxtID_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void TxtCorreo_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void MkdCP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void TxtCiudad_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void TxtCalle_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
         private void TxtNumero_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if (validar == false)
+                ValidarCampos();
         }
 
+        bool validar = false;
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (Dgv.SelectedRows.Count > 0)
+
+                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
                 {
-                    TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
-                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                    TxtCorreo.Text = Dgv.SelectedCells[2].Value.ToString();
-                    MkdCP.Text = Dgv.SelectedCells[3].Value.ToString();
-                    TxtCiudad.Text = Dgv.SelectedCells[4].Value.ToString();
-                    TxtComuna.Text = Dgv.SelectedCells[5].Value.ToString();
-                    TxtCalle.Text = Dgv.SelectedCells[6].Value.ToString();
-                    TxtNumero.Text = Dgv.SelectedCells[7].Value.ToString();
-                    BtnAgregar.Enabled = false;
-                    TxtID.ReadOnly = true;
-                    BtnActualizar.Enabled = true;
-                    BtnEliminar.Enabled = true;
+                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UN CLIENTE!");
+                }
+                else
+                {
+                    if (Dgv.SelectedRows.Count > 0)
+                    {
+                        validar = true;
+                        TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
+                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                        TxtCorreo.Text = Dgv.SelectedCells[2].Value.ToString();
+                        MkdCP.Text = Dgv.SelectedCells[3].Value.ToString();
+                        TxtCiudad.Text = Dgv.SelectedCells[4].Value.ToString();
+                        TxtComuna.Text = Dgv.SelectedCells[5].Value.ToString();
+                        TxtCalle.Text = Dgv.SelectedCells[6].Value.ToString();
+                        TxtNumero.Text = Dgv.SelectedCells[7].Value.ToString();
+                        BtnAgregar.Enabled = false;
+                        TxtID.ReadOnly = true;
+                        BtnActualizar.Enabled = true;
+                        BtnEliminar.Enabled = true;
+                    }
+                    else
+                    {
+                        validar = false;
+                    }
                 }
             }
             catch (Exception ex)

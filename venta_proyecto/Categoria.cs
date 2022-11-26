@@ -54,6 +54,8 @@ namespace venta_proyecto
             TxtNombre.Clear();
             TxtDescripcion.Clear();
             TxtID_categoria.Focus();
+            BtnActualizar.Enabled = false;
+            BtnEliminar.Enabled = false;
         }
 
         public void ValidarCampos()
@@ -189,20 +191,32 @@ namespace venta_proyecto
             }
         }
 
+        bool validar = false;
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (Dgv.SelectedRows.Count > 0)
+                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
                 {
-                    TxtID_categoria.Text = Dgv.SelectedCells[0].Value.ToString();
-                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                    TxtDescripcion.Text = Dgv.SelectedCells[2].Value.ToString();
-                    BtnAgregar.Enabled = false;
-                    BtnActualizar.Enabled = true;
-                    BtnEliminar.Enabled = true;
+                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UNA CATEGORIA!");
                 }
-
+                else
+                {
+                    if (Dgv.SelectedRows.Count > 0)
+                    {
+                        validar = true;
+                        TxtID_categoria.Text = Dgv.SelectedCells[0].Value.ToString();
+                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                        TxtDescripcion.Text = Dgv.SelectedCells[2].Value.ToString();
+                        BtnActualizar.Enabled = true;
+                        BtnEliminar.Enabled = true;
+                    }
+                    else
+                    {
+                        validar = false;
+                    }
+                }
+                
 
             }
             catch (Exception ex)
@@ -223,17 +237,19 @@ namespace venta_proyecto
 
         private void TxtID_categoria_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if(validar == false)
+                ValidarCampos();
         }
 
         private void TxtDescripcion_TextChanged(object sender, EventArgs e)
         {
-            ValidarCampos();
+            if(validar == false)
+                ValidarCampos();
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnCerrarPrograma = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.BtnVentas = new System.Windows.Forms.Button();
-            this.BtnCerrarPrograma = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +62,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(913, 105);
             this.panel1.TabIndex = 1;
+            // 
+            // BtnCerrarPrograma
+            // 
+            this.BtnCerrarPrograma.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnCerrarPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCerrarPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCerrarPrograma.ForeColor = System.Drawing.Color.White;
+            this.BtnCerrarPrograma.Location = new System.Drawing.Point(803, 12);
+            this.BtnCerrarPrograma.Name = "BtnCerrarPrograma";
+            this.BtnCerrarPrograma.Size = new System.Drawing.Size(98, 68);
+            this.BtnCerrarPrograma.TabIndex = 3;
+            this.BtnCerrarPrograma.Text = "Salir";
+            this.BtnCerrarPrograma.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnCerrarPrograma.UseVisualStyleBackColor = true;
+            this.BtnCerrarPrograma.Click += new System.EventHandler(this.BtnCerrarPrograma_Click);
             // 
             // label2
             // 
@@ -147,7 +162,7 @@
             this.BtnProductos.Name = "BtnProductos";
             this.BtnProductos.Size = new System.Drawing.Size(142, 130);
             this.BtnProductos.TabIndex = 5;
-            this.BtnProductos.Text = "Productos";
+            this.BtnProductos.Text = "Almacen";
             this.BtnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnProductos.UseVisualStyleBackColor = true;
             this.BtnProductos.Click += new System.EventHandler(this.BtnProductos_Click);
@@ -228,21 +243,6 @@
             this.BtnVentas.Text = "Ventas";
             this.BtnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnVentas.UseVisualStyleBackColor = true;
-            // 
-            // BtnCerrarPrograma
-            // 
-            this.BtnCerrarPrograma.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnCerrarPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCerrarPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCerrarPrograma.ForeColor = System.Drawing.Color.White;
-            this.BtnCerrarPrograma.Location = new System.Drawing.Point(803, 12);
-            this.BtnCerrarPrograma.Name = "BtnCerrarPrograma";
-            this.BtnCerrarPrograma.Size = new System.Drawing.Size(98, 68);
-            this.BtnCerrarPrograma.TabIndex = 3;
-            this.BtnCerrarPrograma.Text = "Salir";
-            this.BtnCerrarPrograma.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnCerrarPrograma.UseVisualStyleBackColor = true;
-            this.BtnCerrarPrograma.Click += new System.EventHandler(this.BtnCerrarPrograma_Click);
             // 
             // Menu
             // 
