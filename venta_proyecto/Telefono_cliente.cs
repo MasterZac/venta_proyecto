@@ -117,13 +117,6 @@ namespace venta_proyecto
 
         }
 
-        public void ValidarCampos()
-        {
-            var vr = !string.IsNullOrEmpty(CmbNombreClienteTelefono.Text) && 
-                !string.IsNullOrEmpty(MkdTelefono.Text);
-            BtnAgregar.Enabled = vr;
-        }
-
         private void Telefono_cliente_Load(object sender, EventArgs e)
         {
             ConsultaComboNombreCliente();
@@ -133,7 +126,7 @@ namespace venta_proyecto
 
         public void Limpiar()
         {
-            TxtID_cliente.Clear();
+            TxtID_cliente.Text = "Automatico";
             CmbNombreClienteTelefono.Text = "";
             MkdTelefono.Clear();
             CmbNombreClienteTelefono.Focus();
@@ -148,6 +141,7 @@ namespace venta_proyecto
                     TxtID_cliente.Text = Dgv.SelectedCells[0].Value.ToString();
                     CmbNombreClienteTelefono.Text = Dgv.SelectedCells[1].Value.ToString();
                     MkdTelefono.Text = Dgv.SelectedCells[2].Value.ToString();
+                    Dgv.ClearSelection();
                 }
                
             }
@@ -279,14 +273,12 @@ namespace venta_proyecto
 
         private void TxtID_TextChanged(object sender, EventArgs e)
         {
-            //if(validar == false)
-              //  ValidarCampos();
+           
         }
 
         private void MkdTelefono_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            //if (validar == false)
-              //  ValidarCampos();
+           
         }
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)

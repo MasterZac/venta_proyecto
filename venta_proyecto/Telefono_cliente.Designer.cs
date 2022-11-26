@@ -214,6 +214,7 @@
             this.TxtID_cliente.ReadOnly = true;
             this.TxtID_cliente.Size = new System.Drawing.Size(140, 22);
             this.TxtID_cliente.TabIndex = 84;
+            this.TxtID_cliente.Text = "Automatico";
             // 
             // Telefono_cliente
             // 
