@@ -16,9 +16,11 @@ namespace venta_proyecto
         MySqlConnection cnn = new MySqlConnection();
         MySqlCommand cmd = new MySqlCommand();
         Cargar_Dgv cargar = new Cargar_Dgv();
+        MySqlDataReader rd;
         MySqlDataAdapter da;
         DataTable dt;
         public string NombreUsuario { get; set; }
+
         public Proveedor()
         {
             InitializeComponent();
@@ -70,8 +72,8 @@ namespace venta_proyecto
             MkdTelefono.Clear();
             TxtPaginaWeb.Clear();
             TxtID.Focus();
-            BtnActualizar.Enabled = false;
-            BtnEliminar.Enabled = false;
+            TxtID.ReadOnly = false;
+           
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
@@ -87,125 +89,240 @@ namespace venta_proyecto
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
             lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvProveedor(Dgv);
-            BtnAgregar.Enabled = false;
-            BtnActualizar.Enabled = false;
-            BtnEliminar.Enabled = false;
+           
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            bool existe = false;
+
+            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtRFC.Text == "" || MkdTelefono.Text == "" || TxtPaginaWeb.Text == "")
             {
-                Conectar();
-                cmd = new MySqlCommand("AddProveedor", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                _id.Value = TxtID.Text;
-                cmd.Parameters.Add(_id);
-
-                MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                _nombre.Value = TxtNombre.Text;
-                cmd.Parameters.Add(_nombre);
-
-                MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                _rfc.Value = TxtRFC.Text;
-                cmd.Parameters.Add(_rfc);
-
-                MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                _telefono.Value = MkdTelefono.Text;
-                cmd.Parameters.Add(_telefono);
-
-                MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                _web.Value = TxtPaginaWeb.Text;
-                cmd.Parameters.Add(_web);
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Producto Agregado");
-                cargar.DgvProveedor(Dgv);
-                Limpiar();
-
-
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE AGREGAR");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                try
+                {
+                    Conectar();
+                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "') And Nombre = ('"+ TxtNombre.Text +"') And RFC = ('"+ TxtRFC.Text +"')";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                        MessageBox.Show("YA HAY UN PROVEEDOR EXISTENTE");
+                    }
+                    else
+                    {
+                        existe = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (existe == false)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("AddProveedor", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
+
+                        MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
+                        _rfc.Value = TxtRFC.Text;
+                        cmd.Parameters.Add(_rfc);
+
+                        MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                        _telefono.Value = MkdTelefono.Text;
+                        cmd.Parameters.Add(_telefono);
+
+                        MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
+                        _web.Value = TxtPaginaWeb.Text;
+                        cmd.Parameters.Add(_web);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProveedor(Dgv);
+                        MessageBox.Show("SE HA AGREGADO EL PROVEEDOR: " + TxtNombre.Text);
+                        Limpiar();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            bool existe = false;
+             
+            if (TxtID.Text == "")
             {
-                Conectar();
-
-                cmd = new MySqlCommand("DeleteProveedor", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                _id.Value = TxtID.Text;
-                cmd.Parameters.Add(_id);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvProveedor(Dgv);
-                Limpiar();
+                MessageBox.Show("AGREGUE LA CLAVE DEL PRODUCTO PARA PODER ELIMINAR");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    Conectar();
+                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("NO EXISTE ESE PRODUCTO");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (existe == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("DeleteProveedor", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProveedor(Dgv);
+                        MessageBox.Show("SE HA ELIMINADO EL PROVEEDOR: " + TxtNombre.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
             }
-            finally
-            {
-                Desconectar();
-            }
+            
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            try
+            bool cambios = true;
+
+            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtRFC.Text == "" || MkdTelefono.Text == "" || TxtPaginaWeb.Text == "")
             {
-                Conectar();
-                cmd = new MySqlCommand("UpdateProveedor", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                _id.Value = TxtID.Text;
-                cmd.Parameters.Add(_id);
-
-                MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 50);
-                _nombre.Value = TxtNombre.Text;
-                cmd.Parameters.Add(_nombre);
-
-                MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                _rfc.Value = TxtRFC.Text;
-                cmd.Parameters.Add(_rfc);
-
-                MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                _telefono.Value = MkdTelefono.Text;
-                cmd.Parameters.Add(_telefono);
-
-                MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                _web.Value = TxtPaginaWeb.Text;
-                cmd.Parameters.Add(_web);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvProveedor(Dgv);
-                Limpiar();
-
-
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    Conectar();
+                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "') " +
+                        "And Nombre = ('" + TxtNombre.Text + "') And RFC = ('" + TxtRFC.Text + "') " +
+                        "And Telefono = ('" + MkdTelefono.Text+"') And Pagina_web = ('"+TxtPaginaWeb.Text+"'); ";
+
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        cambios = false;
+                        MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
+                    }
+                    else
+                    {
+                        cambios = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (cambios == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("UpdateProveedor", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 50);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
+
+                        MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
+                        _rfc.Value = TxtRFC.Text;
+                        cmd.Parameters.Add(_rfc);
+
+                        MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                        _telefono.Value = MkdTelefono.Text;
+                        cmd.Parameters.Add(_telefono);
+
+                        MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
+                        _web.Value = TxtPaginaWeb.Text;
+                        cmd.Parameters.Add(_web);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProveedor(Dgv);
+                        MessageBox.Show("SE HAN ACTUALIZADO LOS DATOS DEL PROVEEDOR: " + TxtNombre.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
             }
-            finally
-            {
-                Desconectar();
-            }
+
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -214,47 +331,20 @@ namespace venta_proyecto
             TxtID.ReadOnly = false;
         }
 
-        public void ValidarCampos()
-        {
-            var vr = !string.IsNullOrEmpty(TxtID.Text) &&
-                !string.IsNullOrEmpty(TxtNombre.Text) &&
-                !string.IsNullOrEmpty(TxtRFC.Text) &&
-                !string.IsNullOrEmpty(MkdTelefono.Text) &&
-                !string.IsNullOrEmpty(TxtPaginaWeb.Text);
-            BtnAgregar.Enabled = vr;
-        }
-
-        bool validar = false;
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-
-                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
+                if (Dgv.SelectedRows.Count > 0)
                 {
-                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UN PROVEEDOR!");
+                    TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
+                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                    TxtRFC.Text = Dgv.SelectedCells[2].Value.ToString();
+                    MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
+                    TxtPaginaWeb.Text = Dgv.SelectedCells[4].Value.ToString();
+                    TxtID.ReadOnly = true;
+                    Dgv.ClearSelection();
                 }
-                else
-                {
-                    if (Dgv.SelectedRows.Count > 0)
-                    {
-                        validar = true;
-                        TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
-                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                        TxtRFC.Text = Dgv.SelectedCells[2].Value.ToString();
-                        MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
-                        TxtPaginaWeb.Text = Dgv.SelectedCells[4].Value.ToString();
-                        BtnActualizar.Enabled = true;
-                        BtnEliminar.Enabled = true;
-                        TxtID.ReadOnly = true;
-                    }
-                    else
-                    {
-                        validar = false;
-                    }
-                }
-
-
             }
             catch (Exception ex)
             {
@@ -265,42 +355,27 @@ namespace venta_proyecto
 
         private void TxtID_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+           
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+        
         }
 
         private void TxtRFC_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+        
         }
 
         private void MkdTelefono_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+            
         }
 
         private void TxtPaginaWeb_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+           
         }
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)

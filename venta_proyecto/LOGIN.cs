@@ -71,5 +71,22 @@ namespace venta_proyecto
             this.Hide();
             x.Show();
         }
+
+        private void ChekBoxVer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChekBoxVer.Checked == false)
+            {
+                TxtContraseña.PasswordChar = '*';
+            }
+            else
+            {
+               if (TxtContraseña.Text != "")
+               {
+                    TxtContraseña.PasswordChar = '\0';
+               }
+
+            }
+            
+        }
     }
 }

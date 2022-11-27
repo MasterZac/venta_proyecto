@@ -35,6 +35,7 @@
             this.BtnAcceder = new System.Windows.Forms.Button();
             this.LinkRegistrar = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
+            this.ChekBoxVer = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,8 +69,9 @@
             // TxtContraseña
             // 
             this.TxtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseña.Location = new System.Drawing.Point(116, 91);
+            this.TxtContraseña.Location = new System.Drawing.Point(116, 87);
             this.TxtContraseña.Name = "TxtContraseña";
+            this.TxtContraseña.PasswordChar = '*';
             this.TxtContraseña.Size = new System.Drawing.Size(158, 24);
             this.TxtContraseña.TabIndex = 3;
             // 
@@ -108,11 +110,23 @@
             this.label3.Text = "INICIO DE SESION";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ChekBoxVer
+            // 
+            this.ChekBoxVer.AutoSize = true;
+            this.ChekBoxVer.Location = new System.Drawing.Point(288, 95);
+            this.ChekBoxVer.Name = "ChekBoxVer";
+            this.ChekBoxVer.Size = new System.Drawing.Size(42, 17);
+            this.ChekBoxVer.TabIndex = 10;
+            this.ChekBoxVer.Text = "Ver";
+            this.ChekBoxVer.UseVisualStyleBackColor = true;
+            this.ChekBoxVer.CheckedChanged += new System.EventHandler(this.ChekBoxVer_CheckedChanged);
+            // 
             // LOGIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 229);
+            this.Controls.Add(this.ChekBoxVer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.LinkRegistrar);
             this.Controls.Add(this.BtnAcceder);
@@ -138,5 +152,6 @@
         private System.Windows.Forms.Button BtnAcceder;
         private System.Windows.Forms.LinkLabel LinkRegistrar;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox ChekBoxVer;
     }
 }

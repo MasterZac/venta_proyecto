@@ -32,7 +32,6 @@ namespace venta_proyecto
         {
             lblstatus1.Text = string.Format(NombreUsuario);
             lblstatus2.Text = DateTime.Now.ToString("f");
-            
             cargar.DgvCategoria(Dgv);
            
         }
@@ -89,7 +88,7 @@ namespace venta_proyecto
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            bool aux = false;
+            bool existe = false;
 
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "" || TxtDescripcion.Text == "")
             {
@@ -107,13 +106,13 @@ namespace venta_proyecto
                     rd = cmd.ExecuteReader();
                     if (rd.Read())
                     {
-                        aux = true;
+                        existe = true;
                         MessageBox.Show("YA EXISTE ESA CATEGORIA");
                         Limpiar();
                     }
                     else
                     {
-                        aux = false;
+                        existe = false;
                     }
                     
                 }
@@ -126,7 +125,7 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (aux == false)
+                if (existe == false)
                 {
                     try
                     {
@@ -135,16 +134,16 @@ namespace venta_proyecto
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                        _nombre.Value = TxtNombre.Text;
+                        _nombre.Value = TxtNombre.Text.ToUpper().Trim();
                         cmd.Parameters.Add(_nombre);
 
                         MySqlParameter _Descripcion = new MySqlParameter("_descripcion", MySqlDbType.Text);
-                        _Descripcion.Value = TxtDescripcion.Text;
+                        _Descripcion.Value = TxtDescripcion.Text.Trim();
                         cmd.Parameters.Add(_Descripcion);
 
                         cmd.ExecuteNonQuery();
                         cargar.DgvCategoria(Dgv);
-                        MessageBox.Show("SE HA AGREGADO UNA NUEVA CATEGORIA");
+                        MessageBox.Show("SE HA AGREGADO LA CATEGORIA: " + TxtNombre.Text);
                         Limpiar();
 
                     }
@@ -162,43 +161,76 @@ namespace venta_proyecto
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
+            bool existe = false;
+
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "")
             {
-                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ELIMINAR LA CATEGORIA");
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ELIMINAR");
             }
             else
             {
                 try
                 {
                     Conectar();
-                    cmd = new MySqlCommand("DeleteCategoria", cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    MySqlParameter _id = new MySqlParameter("_Id", MySqlDbType.Int64);
-                    _id.Value = TxtID_categoria.Text;
-                    cmd.Parameters.Add(_id);
-
-                    cmd.ExecuteNonQuery();
-                    cargar.DgvCategoria(Dgv);
-                    MessageBox.Show("Categoria eliminada");
-                    Limpiar();
-
-
+                    string query = "Select * From categoria Where ID = (" + TxtID_categoria.Text + "); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("NO EXISTE ESE PRODUCTO");
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-
                 }
                 finally
                 {
                     Desconectar();
+                }
+
+                if (existe == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("DeleteCategoria", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_Id", MySqlDbType.Int64);
+                        _id.Value = TxtID_categoria.Text;
+                        cmd.Parameters.Add(_id);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvCategoria(Dgv);
+                        MessageBox.Show("SE HA ELIMINADO LA CATEGORIA: " + TxtNombre.Text);
+                        Limpiar();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
                 }
             }
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
+            bool cambios = true;
+
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "" || TxtDescripcion.Text == "")
             {
                 MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
@@ -208,26 +240,21 @@ namespace venta_proyecto
                 try
                 {
                     Conectar();
-                    cmd = new MySqlCommand("UpdateCategoria", cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.Int32);
-                    _id.Value = TxtID_categoria.Text;
-                    cmd.Parameters.Add(_id);
-
-                    MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                    _nombre.Value = TxtNombre.Text;
-                    cmd.Parameters.Add(_nombre);
-
-                    MySqlParameter _Descripcion = new MySqlParameter("_descripcion", MySqlDbType.Text);
-                    _Descripcion.Value = TxtDescripcion.Text;
-                    cmd.Parameters.Add(_Descripcion);
-
-                    cmd.ExecuteNonQuery();
-                    cargar.DgvCategoria(Dgv);
-                    MessageBox.Show("SE HA ACTUALIZADO LA CATEGORIA");
-                    Limpiar();
-
+                    string query = "Select * From categoria Where Nombre = ('" + TxtNombre.Text + "') " +
+                        "And Descripcion = ('"+ TxtDescripcion.Text +"'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        cambios = false;
+                        MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
+                    }
+                    else
+                    {
+                        cambios = true;
+                      
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -236,6 +263,42 @@ namespace venta_proyecto
                 finally
                 {
                     Desconectar();
+                }
+
+                if (cambios == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("UpdateCategoria", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.Int32);
+                        _id.Value = TxtID_categoria.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
+
+                        MySqlParameter _Descripcion = new MySqlParameter("_descripcion", MySqlDbType.Text);
+                        _Descripcion.Value = TxtDescripcion.Text;
+                        cmd.Parameters.Add(_Descripcion);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvCategoria(Dgv);
+                        MessageBox.Show("SE HAN ACTUALIZADO LOS DATOS DE LA CATEGORIA: " + TxtNombre.Text);
+                        Limpiar();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
                 }
             }
         }

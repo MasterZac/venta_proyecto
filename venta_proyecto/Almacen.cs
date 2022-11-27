@@ -42,9 +42,6 @@ namespace venta_proyecto
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
             lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvProductos(Dgv);
-            BtnAgregar.Enabled = false;
-            BtnActualizar.Enabled = false;
-            BtnEliminar.Enabled = false;
             ConsultaComboProveedor();
             ConsultaComboCategoria();
         }
@@ -192,12 +189,10 @@ namespace venta_proyecto
             TxtPrecio.Clear();
             CmbCategoria.Text = " ";
             CmbProveedor.Text = " ";
-            LabelCategoria.Text = "Clave_C";
-            LabelProveedor.Text = "Clave_P";
+            LabelCategoria.Text = "ID";
+            LabelProveedor.Text = "ID";
             TxtSku.Focus();
             TxtSku.ReadOnly = false;
-            BtnActualizar.Enabled = false;
-            BtnEliminar.Enabled = false;
         }
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
@@ -207,123 +202,242 @@ namespace venta_proyecto
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            bool existe = false;
+
+            if (TxtSku.Text == "" || TxtNombre.Text == "" || TxtStock.Text == "" || TxtPrecio.Text == "" || CmbCategoria.Text == "" || CmbProveedor.Text == "")
             {
-                Conectar();
-                cmd = new MySqlCommand("AddProducto", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar, 5);
-                _sku.Value = TxtSku.Text;
-                cmd.Parameters.Add(_sku);
-
-                MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                _nombre.Value = TxtNombre.Text;
-                cmd.Parameters.Add(_nombre);
-
-                MySqlParameter _stock = new MySqlParameter("_stock", MySqlDbType.Int32);
-                _stock.Value = TxtStock.Text;
-                cmd.Parameters.Add(_stock);
-
-                MySqlParameter _precio = new MySqlParameter("_precio", MySqlDbType.Double);
-                _precio.Value = TxtPrecio.Text;
-                cmd.Parameters.Add(_precio);
-
-                MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
-                _id_categoria.Value = int.Parse(LabelCategoria.Text);
-                cmd.Parameters.Add(_id_categoria);
-
-                MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar);
-                _id_proveedor.Value = LabelProveedor.Text;
-                cmd.Parameters.Add(_id_proveedor);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvProductos(Dgv);
-                MessageBox.Show("Producto Agregado");
-                Limpiar();
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE AGREGAR");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                try
+                {
+                    Conectar();
+                    string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "') And Nombre = ('" + TxtNombre.Text +"')";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                        MessageBox.Show("PRODUCTO YA EXISTENTE");
+                    }
+                    else
+                    {
+                        existe = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (existe == false)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("AddProducto", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar, 5);
+                        _sku.Value = TxtSku.Text;
+                        cmd.Parameters.Add(_sku);
+
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
+
+                        MySqlParameter _stock = new MySqlParameter("_stock", MySqlDbType.Int32);
+                        _stock.Value = TxtStock.Text;
+                        cmd.Parameters.Add(_stock);
+
+                        MySqlParameter _precio = new MySqlParameter("_precio", MySqlDbType.Double);
+                        _precio.Value = TxtPrecio.Text;
+                        cmd.Parameters.Add(_precio);
+
+                        MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
+                        _id_categoria.Value = int.Parse(LabelCategoria.Text);
+                        cmd.Parameters.Add(_id_categoria);
+
+                        MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar);
+                        _id_proveedor.Value = LabelProveedor.Text;
+                        cmd.Parameters.Add(_id_proveedor);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProductos(Dgv);
+                        MessageBox.Show("SE HA AGREGADO EL PRODUCTO: " + TxtNombre.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Conectar();
-                cmd = new MySqlCommand("DeleteProducto", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+            bool existe = false;
 
-                MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar);
-                _sku.Value = TxtSku.Text;
-                cmd.Parameters.Add(_sku);
+            if (TxtSku.Text == "") // Si la caja de texto de la clave PK esta vacia
+            {
+                MessageBox.Show("INGRESA LA CLAVE PARA PODER ELIMINAR"); //imprimo que no se puede eliminar
+            }
+            else
+            {
+                try
+                {
+                    Conectar();
+                    string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read()) //Si la clave PK que ingrese a la caja de texto del SKU existe
+                    {
+                        existe = true; //Que elimine el producto
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("NO EXISTE ESE PRODUCTO"); //Imprimo un mensaje que no existe
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
 
-                cmd.ExecuteNonQuery();
-                cargar.DgvProductos(Dgv);
-                MessageBox.Show("Producto Eliminado");
-                Limpiar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                if ( existe == true) //Si existe el producto que haga el proceso para eliminar
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("DeleteProducto", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar, 5);
+                        _sku.Value = TxtSku.Text;
+                        cmd.Parameters.Add(_sku);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProductos(Dgv);
+                        MessageBox.Show("SE HA ELIMINADO EL PRODUCTO: " + TxtNombre.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
+
+               
             }
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            try
+            bool cambios = true;
+
+            if (TxtSku.Text == "" || TxtNombre.Text == "" || TxtStock.Text == "" || TxtPrecio.Text == "" || CmbCategoria.Text == "" || CmbProveedor.Text == "")
             {
-                Conectar();
-                cmd = new MySqlCommand("UpdateProducto", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar, 5);
-                _sku.Value = TxtSku.Text;
-                cmd.Parameters.Add(_sku);
-
-                MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                _nombre.Value = TxtNombre.Text;
-                cmd.Parameters.Add(_nombre);
-
-                MySqlParameter _stock = new MySqlParameter("_stock", MySqlDbType.Int32);
-                _stock.Value = TxtStock.Text;
-                cmd.Parameters.Add(_stock);
-
-                MySqlParameter _precio = new MySqlParameter("_precio", MySqlDbType.Double);
-                _precio.Value = TxtPrecio.Text;
-                cmd.Parameters.Add(_precio);
-
-                MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
-                _id_categoria.Value = int.Parse(LabelCategoria.Text);
-                cmd.Parameters.Add(_id_categoria);
-
-                MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar, 5);
-                _id_proveedor.Value = LabelProveedor.Text;
-                cmd.Parameters.Add(_id_proveedor);
-
-                cmd.ExecuteNonQuery();
-                cargar.DgvProductos(Dgv);
-                MessageBox.Show("Producto Actualizado");
-                Limpiar();
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ELIMINAR");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
-            }
+                try
+                {
+                    Conectar();
+                    string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "') " +
+                        "And Nombre = ('" + TxtNombre.Text + "') And Stock = (" + TxtStock.Text + ") " +
+                        "And Precio = (" + TxtPrecio.Text + ") And ID_categoria = (" + LabelCategoria.Text + ") " +
+                        "And ID_proveedor  = ('" + LabelProveedor.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        cambios = false;
+                        MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
+                    }
+                    else
+                    {
+                        cambios = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (cambios == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("UpdateProducto", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _sku = new MySqlParameter("_sku", MySqlDbType.VarChar, 5);
+                        _sku.Value = TxtSku.Text;
+                        cmd.Parameters.Add(_sku);
+
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
+
+                        MySqlParameter _stock = new MySqlParameter("_stock", MySqlDbType.Int32);
+                        _stock.Value = TxtStock.Text;
+                        cmd.Parameters.Add(_stock);
+
+                        MySqlParameter _precio = new MySqlParameter("_precio", MySqlDbType.Double);
+                        _precio.Value = TxtPrecio.Text;
+                        cmd.Parameters.Add(_precio);
+
+                        MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
+                        _id_categoria.Value = int.Parse(LabelCategoria.Text);
+                        cmd.Parameters.Add(_id_categoria);
+
+                        MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar, 5);
+                        _id_proveedor.Value = LabelProveedor.Text;
+                        cmd.Parameters.Add(_id_proveedor);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvProductos(Dgv);
+                        MessageBox.Show("SE HAN ACTUALIZADO LOS DATOS DEL PRODUCTO: " + TxtNombre.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
+            }            
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -332,40 +446,27 @@ namespace venta_proyecto
 
             
         }
-
-        bool validar = false;
         
         private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == true)
+                if (Dgv.SelectedRows.Count > 0)
                 {
-                    MessageBox.Show("¡REFRESQUE LOS CAMPOS PARA PODER SELECCIONAR UN PRODUCTO!");
+                    TxtSku.Text = Dgv.SelectedCells[0].Value.ToString();
+                    TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
+                    TxtStock.Text = Dgv.SelectedCells[2].Value.ToString();
+                    TxtPrecio.Text = Dgv.SelectedCells[3].Value.ToString();
+                    LabelCategoria.Text = Dgv.SelectedCells[4].Value.ToString();
+                    LabelProveedor.Text = Dgv.SelectedCells[5].Value.ToString();
+                    Dgv.ClearSelection();
+                    TxtSku.ReadOnly = true;
+                    ConsultaNombreProveedor();
+                    ConsultaNombreCategoria();
                 }
-                else
-                {
-                    if (Dgv.SelectedRows.Count > 0 && BtnAgregar.Enabled == false)
-                    {
-                        validar = true;
-                        TxtSku.Text = Dgv.SelectedCells[0].Value.ToString();
-                        TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
-                        TxtStock.Text = Dgv.SelectedCells[2].Value.ToString();
-                        TxtPrecio.Text = Dgv.SelectedCells[3].Value.ToString();
-                        LabelCategoria.Text = Dgv.SelectedCells[4].Value.ToString();
-                        LabelProveedor.Text = Dgv.SelectedCells[5].Value.ToString();
-                        BtnActualizar.Enabled = true;
-                        BtnEliminar.Enabled = true;
-                        TxtSku.ReadOnly = true;
-                        ConsultaNombreProveedor();
-                        ConsultaNombreCategoria();
-                    }
-                    else
-                    {
-                        validar = false;
-                    }
-                }
-            }catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -378,8 +479,7 @@ namespace venta_proyecto
 
         private void CmbID_proveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-                ValidarCampos();
+            
         }
 
         private void CmbID_proveedor_SelectionChangeCommitted(object sender, EventArgs e)
@@ -390,8 +490,7 @@ namespace venta_proyecto
         private void CmbID_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (validar == false)
-                ValidarCampos();
+            
         }
 
         public void ConsultaNombreCategoria()
@@ -444,17 +543,6 @@ namespace venta_proyecto
             }
         }
 
-        public void ValidarCampos()
-        {
-            var vr = !string.IsNullOrEmpty(TxtSku.Text) &&
-                !string.IsNullOrEmpty(TxtNombre.Text) &&
-                !string.IsNullOrEmpty(TxtStock.Text) &&
-                !string.IsNullOrEmpty(TxtPrecio.Text) &&
-                !string.IsNullOrEmpty(CmbCategoria.Text) &&
-                !string.IsNullOrEmpty(CmbProveedor.Text);
-            BtnAgregar.Enabled = vr;
-        }
-
         private void LabelCategoria_TabIndexChanged(object sender, EventArgs e)
         {
             
@@ -482,34 +570,22 @@ namespace venta_proyecto
 
         private void TxtSku_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+            
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+          
         }
 
         private void TxtStock_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+         
         }
 
         private void TxtPrecio_TextChanged(object sender, EventArgs e)
         {
-            if (validar == false)
-            {
-                ValidarCampos();
-            }
+            
         }
 
         private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
@@ -519,6 +595,16 @@ namespace venta_proyecto
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
         {
 
         }

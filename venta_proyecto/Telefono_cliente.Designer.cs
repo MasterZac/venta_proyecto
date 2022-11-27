@@ -31,8 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.BtnEliminar = new System.Windows.Forms.Button();
-            this.BtnActualizar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.Dgv = new System.Windows.Forms.DataGridView();
             this.MkdTelefono = new System.Windows.Forms.MaskedTextBox();
@@ -44,6 +42,7 @@
             this.BtnNuevoNumero = new System.Windows.Forms.Button();
             this.CmbNombreClienteTelefono = new System.Windows.Forms.ComboBox();
             this.TxtID_cliente = new System.Windows.Forms.TextBox();
+            this.BtnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,32 +77,10 @@
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
-            // BtnEliminar
-            // 
-            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(26, 267);
-            this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(140, 30);
-            this.BtnEliminar.TabIndex = 5;
-            this.BtnEliminar.Text = "Eliminar";
-            this.BtnEliminar.UseVisualStyleBackColor = true;
-            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
-            // 
-            // BtnActualizar
-            // 
-            this.BtnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnActualizar.Location = new System.Drawing.Point(26, 231);
-            this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(140, 30);
-            this.BtnActualizar.TabIndex = 6;
-            this.BtnActualizar.Text = "Actualizar";
-            this.BtnActualizar.UseVisualStyleBackColor = true;
-            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
-            // 
             // BtnLimpiar
             // 
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.Location = new System.Drawing.Point(26, 305);
+            this.BtnLimpiar.Location = new System.Drawing.Point(26, 267);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(140, 30);
             this.BtnLimpiar.TabIndex = 7;
@@ -216,6 +193,17 @@
             this.TxtID_cliente.TabIndex = 84;
             this.TxtID_cliente.Text = "Automatico";
             // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.Location = new System.Drawing.Point(26, 231);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(140, 30);
+            this.BtnEliminar.TabIndex = 5;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = true;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
             // Telefono_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,7 +220,6 @@
             this.Controls.Add(this.MkdTelefono);
             this.Controls.Add(this.Dgv);
             this.Controls.Add(this.BtnLimpiar);
-            this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.label2);
@@ -253,8 +240,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.Button BtnEliminar;
-        private System.Windows.Forms.Button BtnActualizar;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.DataGridView Dgv;
         private System.Windows.Forms.MaskedTextBox MkdTelefono;
@@ -266,5 +251,6 @@
         private System.Windows.Forms.Button BtnNuevoNumero;
         private System.Windows.Forms.ComboBox CmbNombreClienteTelefono;
         private System.Windows.Forms.TextBox TxtID_cliente;
+        private System.Windows.Forms.Button BtnEliminar;
     }
 }
