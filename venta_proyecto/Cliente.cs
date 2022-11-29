@@ -99,7 +99,7 @@ namespace venta_proyecto
         {
             bool existe = false;
 
-            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtCorreo.Text == "" || MkdCP.Text == "" || TxtCiudad.Text == "" || TxtCiudad.Text == "" || TxtNumero.Text == "")
+            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtCorreo.Text == "" || MkdCP.Text == "" || TxtCiudad.Text == "" || TxtComuna.Text == "" || TxtCalle.Text == "" || TxtNumero.Text == "")
             {
                 MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE AGREGAR");
             }
@@ -338,7 +338,7 @@ namespace venta_proyecto
         {
             bool cambios = true;
 
-            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtCorreo.Text == "" || MkdCP.Text == "" || TxtCiudad.Text == "" || TxtCiudad.Text == "" || TxtNumero.Text == "")
+            if (TxtID.Text == "" || TxtNombre.Text == "" || TxtCorreo.Text == "" || MkdCP.Text == "" || TxtCiudad.Text == "" || TxtComuna.Text == "" || TxtCalle.Text == "" || TxtNumero.Text == "")
             {
                 MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE AGREGAR");
             }

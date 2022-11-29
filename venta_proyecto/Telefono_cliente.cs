@@ -91,7 +91,11 @@ namespace venta_proyecto
 
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT telefono_cliente.ID_cliente, cliente.Nombre, telefono_cliente.Telefono FROM telefono_cliente, cliente Where telefono_cliente.ID_cliente = cliente.ID AND (" + CboBuscarPor.Text + ") Like ('" + Txtbuscar.Text + "%')";
+                cmd.CommandText = "SELECT telefono_cliente.ID_cliente, " +
+                    "cliente.Nombre, telefono_cliente.Telefono FROM telefono_cliente, " +
+                    "cliente Where telefono_cliente.ID_cliente = cliente.ID " +
+                    "AND (" + CboBuscarPor.Text + ") " +
+                    "Like ('" + Txtbuscar.Text + "%')";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();

@@ -102,6 +102,7 @@ namespace venta_proyecto
             }
             else
             {
+
                 try
                 {
                     Conectar();
@@ -128,7 +129,35 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (existe == false)
+                bool existe_telefono = false;
+                try
+                {
+                    Conectar();
+                    string query = "Select Telefono From proveedor Where Telefono = ('" + MkdTelefono.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe_telefono = true;
+                        MessageBox.Show("TELEFONO YA EXISTENTE");
+                    }
+                    else
+                    {
+                        existe_telefono = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+
+                if (existe == false && existe_telefono == false)
                 {
                     try
                     {
@@ -137,15 +166,15 @@ namespace venta_proyecto
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text;
+                        _id.Value = TxtID.Text.Trim();
                         cmd.Parameters.Add(_id);
 
                         MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                        _nombre.Value = TxtNombre.Text;
+                        _nombre.Value = TxtNombre.Text.Trim();
                         cmd.Parameters.Add(_nombre);
 
                         MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                        _rfc.Value = TxtRFC.Text;
+                        _rfc.Value = TxtRFC.Text.ToUpper().Trim();
                         cmd.Parameters.Add(_rfc);
 
                         MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
@@ -153,7 +182,7 @@ namespace venta_proyecto
                         cmd.Parameters.Add(_telefono);
 
                         MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                        _web.Value = TxtPaginaWeb.Text;
+                        _web.Value = TxtPaginaWeb.Text.Trim();
                         cmd.Parameters.Add(_web);
 
                         cmd.ExecuteNonQuery();
@@ -218,8 +247,9 @@ namespace venta_proyecto
                         Conectar();
                         cmd = new MySqlCommand("DeleteProveedor", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
+
                         MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text;
+                        _id.Value = TxtID.Text.Trim();
                         cmd.Parameters.Add(_id);
 
                         cmd.ExecuteNonQuery();
@@ -243,6 +273,7 @@ namespace venta_proyecto
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             bool cambios = true;
+            bool existe = false;
 
             if (TxtID.Text == "" || TxtNombre.Text == "" || TxtRFC.Text == "" || MkdTelefono.Text == "" || TxtPaginaWeb.Text == "")
             {
@@ -264,10 +295,13 @@ namespace venta_proyecto
                     {
                         cambios = false;
                         MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
+                        existe = true;
+                      
                     }
                     else
                     {
                         cambios = true;
+                        existe = false;
                     }
                 }
                 catch (Exception ex)
@@ -279,7 +313,7 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (cambios == true)
+                if (cambios == true && existe == true)
                 {
                     try
                     {
@@ -288,15 +322,15 @@ namespace venta_proyecto
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text;
+                        _id.Value = TxtID.Text.Trim();
                         cmd.Parameters.Add(_id);
 
                         MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 50);
-                        _nombre.Value = TxtNombre.Text;
+                        _nombre.Value = TxtNombre.Text.Trim();
                         cmd.Parameters.Add(_nombre);
 
                         MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                        _rfc.Value = TxtRFC.Text;
+                        _rfc.Value = TxtRFC.Text.ToUpper().Trim();
                         cmd.Parameters.Add(_rfc);
 
                         MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
@@ -304,7 +338,7 @@ namespace venta_proyecto
                         cmd.Parameters.Add(_telefono);
 
                         MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                        _web.Value = TxtPaginaWeb.Text;
+                        _web.Value = TxtPaginaWeb.Text.Trim();
                         cmd.Parameters.Add(_web);
 
                         cmd.ExecuteNonQuery();
@@ -381,6 +415,18 @@ namespace venta_proyecto
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
             Consultas();
+        }
+
+        private void BtnNuevoTelefono_Click(object sender, EventArgs e)
+        {
+            MkdTelefono.Clear();
+            MkdTelefono.Focus();
+        }
+
+        private void BtnNuevoRFC_Click(object sender, EventArgs e)
+        {
+            TxtRFC.Clear();
+            TxtRFC.Focus();
         }
     }
 }

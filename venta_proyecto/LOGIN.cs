@@ -43,7 +43,6 @@ namespace venta_proyecto
                 rd = cmd.ExecuteReader();
                 if (rd.Read())
                 {
-                    
                     Menu x = new Menu();
                     x.NombreUsuario = TxtUsuario.Text;
                     this.Hide();
@@ -87,6 +86,11 @@ namespace venta_proyecto
 
             }
             
+        }
+
+        private void LOGIN_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

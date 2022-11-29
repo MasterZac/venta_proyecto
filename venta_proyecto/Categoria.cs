@@ -163,9 +163,9 @@ namespace venta_proyecto
         {
             bool existe = false;
 
-            if (TxtID_categoria.Text == "" || TxtNombre.Text == "")
+            if (TxtID_categoria.Text == "")
             {
-                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ELIMINAR");
+                MessageBox.Show("INGRESE LA CLAVE DE LA CATEGORIA PARA PODER ELIMINAR");
             }
             else
             {
