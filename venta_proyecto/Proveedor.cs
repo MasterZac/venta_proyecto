@@ -113,7 +113,7 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe = true;
-                        MessageBox.Show("YA HAY UN PROVEEDOR EXISTENTE");
+                        MessageBox.Show("PROVEEDOR YA EXISTENTE");
                     }
                     else
                     {
@@ -156,8 +156,36 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
+                bool existe_RFC = false;
 
-                if (existe == false && existe_telefono == false)
+                try
+                {
+                    Conectar();
+                    string query = "Select RFC From proveedor Where RFC = ('" + TxtRFC.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe_RFC = true;
+                        MessageBox.Show("RFC YA EXISTENTE");
+                    }
+                    else
+                    {
+                        existe_RFC = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+
+                if (existe == false && existe_telefono == false && existe_RFC == false)
                 {
                     try
                     {
@@ -414,7 +442,7 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Consultas();
+            
         }
 
         private void BtnNuevoTelefono_Click(object sender, EventArgs e)
@@ -427,6 +455,50 @@ namespace venta_proyecto
         {
             TxtRFC.Clear();
             TxtRFC.Focus();
+        }
+
+        private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo numeros, sin espacio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo letras ", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtRFC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32) && (e.KeyChar <= 47) || (e.KeyChar >= 58) && (e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo numeros y letras", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
+            }
         }
     }
 }

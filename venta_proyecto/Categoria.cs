@@ -107,7 +107,7 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe = true;
-                        MessageBox.Show("YA EXISTE ESA CATEGORIA");
+                        MessageBox.Show("CATEGORIA YA EXISTENTE");
                         Limpiar();
                     }
                     else
@@ -163,16 +163,16 @@ namespace venta_proyecto
         {
             bool existe = false;
 
-            if (TxtID_categoria.Text == "")
+            if (TxtID_categoria.Text == "" || TxtNombre.Text == "")
             {
-                MessageBox.Show("INGRESE LA CLAVE DE LA CATEGORIA PARA PODER ELIMINAR");
+                MessageBox.Show("INGRESE EL NOMBRE DE LA  CATEGORIA PARA PODER ELIMINAR");
             }
             else
             {
                 try
                 {
                     Conectar();
-                    string query = "Select * From categoria Where ID = (" + TxtID_categoria.Text + "); ";
+                    string query = "Select ID From categoria Where Nombre = ('" + TxtNombre.Text + "'); ";
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
@@ -183,7 +183,7 @@ namespace venta_proyecto
                     else
                     {
                         existe = false;
-                        MessageBox.Show("NO EXISTE ESE PRODUCTO");
+                        MessageBox.Show("NO EXISTE ESA CATEGORIA");
                     }
                 }
                 catch (Exception ex)
@@ -203,16 +203,14 @@ namespace venta_proyecto
                         cmd = new MySqlCommand("DeleteCategoria", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        MySqlParameter _id = new MySqlParameter("_Id", MySqlDbType.Int64);
-                        _id.Value = TxtID_categoria.Text;
-                        cmd.Parameters.Add(_id);
+                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 70);
+                        _nombre.Value = TxtNombre.Text;
+                        cmd.Parameters.Add(_nombre);
 
                         cmd.ExecuteNonQuery();
                         cargar.DgvCategoria(Dgv);
                         MessageBox.Show("SE HA ELIMINADO LA CATEGORIA: " + TxtNombre.Text);
                         Limpiar();
-
-
                     }
                     catch (Exception ex)
                     {
@@ -330,7 +328,7 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Consultas();
+           
         }
 
         private void TxtID_categoria_TextChanged(object sender, EventArgs e)
@@ -360,6 +358,30 @@ namespace venta_proyecto
         {
             Txtbuscar.Clear();
             Txtbuscar.Focus();
+        }
+
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( (e.KeyChar >= 32) && (e.KeyChar <= 64) || (e.KeyChar >= 91) && (e.KeyChar <= 96) || (e.KeyChar >= 123) && (e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo letras", "aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscar.Text == "")
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
+            }
         }
     }
 }

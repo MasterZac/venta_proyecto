@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -141,12 +141,13 @@
             // 
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.Location = new System.Drawing.Point(161, 292);
-            this.TxtNombre.MaxLength = 50;
+            this.TxtNombre.MaxLength = 100;
             this.TxtNombre.Multiline = true;
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(134, 37);
             this.TxtNombre.TabIndex = 4;
             this.TxtNombre.TextChanged += new System.EventHandler(this.TxtNombre_TextChanged);
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // label4
             // 
@@ -166,6 +167,7 @@
             this.TxtStock.Size = new System.Drawing.Size(100, 22);
             this.TxtStock.TabIndex = 6;
             this.TxtStock.TextChanged += new System.EventHandler(this.TxtStock_TextChanged);
+            this.TxtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtStock_KeyPress);
             // 
             // label5
             // 
@@ -255,14 +257,14 @@
             this.Dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.Dgv.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.GridColor = System.Drawing.Color.Black;
             this.Dgv.Location = new System.Drawing.Point(43, 443);
@@ -287,11 +289,14 @@
             // Txtbuscar
             // 
             this.Txtbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txtbuscar.Location = new System.Drawing.Point(526, 34);
+            this.Txtbuscar.Location = new System.Drawing.Point(516, 29);
+            this.Txtbuscar.MaxLength = 100;
             this.Txtbuscar.Multiline = true;
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
             this.Txtbuscar.TabIndex = 77;
+            this.Txtbuscar.TextChanged += new System.EventHandler(this.Txtbuscar_TextChanged);
+            this.Txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbuscar_KeyPress);
             this.Txtbuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtbuscar_KeyUp);
             // 
             // CboBuscarPor
@@ -448,6 +453,7 @@
             this.TxtPrecio.Size = new System.Drawing.Size(100, 22);
             this.TxtPrecio.TabIndex = 8;
             this.TxtPrecio.TextChanged += new System.EventHandler(this.TxtPrecio_TextChanged);
+            this.TxtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecio_KeyPress);
             // 
             // groupBox1
             // 

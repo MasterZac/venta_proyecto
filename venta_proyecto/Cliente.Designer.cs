@@ -138,6 +138,7 @@
             // 
             this.TxtCalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCalle.Location = new System.Drawing.Point(16, 587);
+            this.TxtCalle.MaxLength = 160;
             this.TxtCalle.Multiline = true;
             this.TxtCalle.Name = "TxtCalle";
             this.TxtCalle.Size = new System.Drawing.Size(161, 44);
@@ -148,6 +149,7 @@
             // 
             this.TxtCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCiudad.Location = new System.Drawing.Point(16, 446);
+            this.TxtCiudad.MaxLength = 100;
             this.TxtCiudad.Multiline = true;
             this.TxtCiudad.Name = "TxtCiudad";
             this.TxtCiudad.Size = new System.Drawing.Size(161, 47);
@@ -209,6 +211,7 @@
             // 
             this.TxtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCorreo.Location = new System.Drawing.Point(16, 343);
+            this.TxtCorreo.MaxLength = 100;
             this.TxtCorreo.Name = "TxtCorreo";
             this.TxtCorreo.Size = new System.Drawing.Size(161, 22);
             this.TxtCorreo.TabIndex = 55;
@@ -228,6 +231,7 @@
             // 
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.Location = new System.Drawing.Point(16, 288);
+            this.TxtNombre.MaxLength = 60;
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(161, 22);
             this.TxtNombre.TabIndex = 53;
@@ -247,6 +251,7 @@
             // 
             this.TxtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtID.Location = new System.Drawing.Point(16, 240);
+            this.TxtID.MaxLength = 5;
             this.TxtID.Name = "TxtID";
             this.TxtID.Size = new System.Drawing.Size(161, 22);
             this.TxtID.TabIndex = 51;
@@ -268,7 +273,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Location = new System.Drawing.Point(324, 197);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(10, 515);
+            this.panel2.Size = new System.Drawing.Size(10, 497);
             this.panel2.TabIndex = 49;
             // 
             // BtnLimpiarTxtBuscar
@@ -288,6 +293,7 @@
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
             this.Txtbuscar.TabIndex = 73;
+            this.Txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbuscar_KeyPress);
             this.Txtbuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtbuscar_KeyUp);
             // 
             // CboBuscarPor
@@ -394,6 +400,7 @@
             // 
             this.TxtComuna.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtComuna.Location = new System.Drawing.Point(17, 524);
+            this.TxtComuna.MaxLength = 130;
             this.TxtComuna.Multiline = true;
             this.TxtComuna.Name = "TxtComuna";
             this.TxtComuna.Size = new System.Drawing.Size(160, 41);
@@ -468,12 +475,13 @@
             this.groupBox2.TabIndex = 85;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DETALLE CLIENTE";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 716);
+            this.ClientSize = new System.Drawing.Size(1077, 707);
             this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TxtComuna);

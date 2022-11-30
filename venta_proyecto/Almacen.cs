@@ -197,7 +197,8 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Consultas();
+            
+            
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -358,7 +359,7 @@ namespace venta_proyecto
 
             if (TxtSku.Text == "" || TxtNombre.Text == "" || TxtStock.Text == "" || TxtPrecio.Text == "" || CmbCategoria.Text == "" || CmbProveedor.Text == "")
             {
-                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ELIMINAR");
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
             }
             else
             {
@@ -606,6 +607,56 @@ namespace venta_proyecto
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void TxtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32) && (e.KeyChar <= 47) || (e.KeyChar >= 58) && (e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo valores numericos!", "aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33) && (e.KeyChar <= 47) || (e.KeyChar >= 58) && (e.KeyChar <= 64) || (e.KeyChar >= 91) && (e.KeyChar <= 96) || (e.KeyChar >= 123) && (e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo letras", "aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32) && (e.KeyChar <= 47) || (e.KeyChar >= 58) && (e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo valores numericos!", "aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
+            }
+        }
+
+        private void Txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+           
 
         }
     }

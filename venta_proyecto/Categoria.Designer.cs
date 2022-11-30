@@ -118,6 +118,7 @@
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
             this.Txtbuscar.TabIndex = 52;
+            this.Txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbuscar_KeyPress);
             this.Txtbuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtbuscar_KeyUp);
             // 
             // CboBuscar
@@ -268,7 +269,7 @@
             // 
             this.TxtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDescripcion.Location = new System.Drawing.Point(15, 298);
-            this.TxtDescripcion.MaxLength = 100;
+            this.TxtDescripcion.MaxLength = 150;
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(158, 56);
@@ -279,11 +280,12 @@
             // 
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.Location = new System.Drawing.Point(15, 254);
-            this.TxtNombre.MaxLength = 40;
+            this.TxtNombre.MaxLength = 45;
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(158, 22);
             this.TxtNombre.TabIndex = 39;
             this.TxtNombre.TextChanged += new System.EventHandler(this.TxtNombre_TextChanged);
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // label5
             // 
