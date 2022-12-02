@@ -66,9 +66,7 @@ namespace venta_proyecto
 
         private void LinkRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Registro_usuario x = new Registro_usuario();
-            this.Hide();
-            x.Show();
+            
         }
 
         private void ChekBoxVer_CheckedChanged(object sender, EventArgs e)

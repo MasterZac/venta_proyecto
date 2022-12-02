@@ -44,7 +44,7 @@ namespace venta_proyecto
 
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM cliente Where (" + CboBuscarPor.Text + ") Like ('" + Txtbuscar.Text + "%')";
+                cmd.CommandText = "SELECT * FROM cliente Where (" + CboBuscarPor.Text + ") Like ('%" + Txtbuscar.Text + "%')";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();
@@ -108,8 +108,7 @@ namespace venta_proyecto
                 try
                 {
                     Conectar();
-                    string query = "Select * From cliente Where ID = ('"+ TxtID.Text +"') " +
-                        "And Nombre = ('"+TxtNombre.Text+"') And Email = ('"+TxtCorreo.Text+"')";
+                    string query = "Select * From cliente Where ID = ('" + TxtID.Text + "'); ";
                     
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
@@ -161,6 +160,10 @@ namespace venta_proyecto
                         MySqlParameter _ciudad = new MySqlParameter("_ciudad", MySqlDbType.VarChar, 100);
                         _ciudad.Value = TxtCiudad.Text;
                         cmd.Parameters.Add(_ciudad);
+
+                        MySqlParameter _comuna = new MySqlParameter("_comuna", MySqlDbType.VarChar, 100);
+                        _comuna.Value = TxtComuna.Text;
+                        cmd.Parameters.Add(_comuna);
 
                         MySqlParameter _calle = new MySqlParameter("_calle", MySqlDbType.VarChar, 100);
                         _calle.Value = TxtCalle.Text;
@@ -337,13 +340,40 @@ namespace venta_proyecto
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             bool cambios = true;
+            bool existe = false;
 
             if (TxtID.Text == "" || TxtNombre.Text == "" || TxtCorreo.Text == "" || MkdCP.Text == "" || TxtCiudad.Text == "" || TxtComuna.Text == "" || TxtCalle.Text == "" || TxtNumero.Text == "")
             {
-                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE AGREGAR");
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
             }
             else
             {
+                try
+                {
+                    Conectar();
+                    string query = "Select * From cliente Where ID = ('" + TxtID.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("CLIENTE NO EXISTENTE");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
                 try
                 {
                     Conectar();
@@ -351,6 +381,7 @@ namespace venta_proyecto
                         "And Nombre = ('" + TxtNombre.Text + "') And Email = ('" + TxtCorreo.Text + "') " +
                         "And CP = ('" + MkdCP.Text + "') And Ciudad = ('" + TxtCiudad.Text + "') " +
                         "And Calle = ('" + TxtCalle.Text + "') And Numero = (" + TxtNumero.Text + "); ";
+
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
@@ -373,7 +404,7 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (cambios == true)
+                if (cambios == true && existe == true)
                 {
                     try
                     {
@@ -447,6 +478,42 @@ namespace venta_proyecto
             {
                 Consultas();
             }
+        }
+
+        private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo numeros, sin espacio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 33 && e.KeyChar <= 64) || (e.KeyChar >= 91 && e.KeyChar <= 96) || (e.KeyChar >= 123 && e.KeyChar <= 255))
+            {
+                MessageBox.Show("Solo letras ", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ( (e.KeyChar >= 32) && (e.KeyChar <= 45) || (e.KeyChar == 47) || (e.KeyChar >= 58) && (e.KeyChar <= 63) || (e.KeyChar >= 91) && (e.KeyChar <= 96) || (e.KeyChar > 123) && (e.KeyChar <= 255))
+            {
+                MessageBox.Show("Caracter no permitido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
+        {
+            Txtbuscar.Clear();
+            cargar.DgvCliente(Dgv);
         }
     }
 }

@@ -357,7 +357,7 @@ namespace venta_proyecto
         private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
         {
             Txtbuscar.Clear();
-            Txtbuscar.Focus();
+            cargar.DgvCategoria(Dgv);
         }
 
         private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)

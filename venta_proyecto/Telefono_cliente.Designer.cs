@@ -84,7 +84,7 @@
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(140, 30);
             this.BtnLimpiar.TabIndex = 7;
-            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.Text = "Refresh";
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
@@ -118,8 +118,9 @@
             this.BtnLimpiarTxtBuscar.Name = "BtnLimpiarTxtBuscar";
             this.BtnLimpiarTxtBuscar.Size = new System.Drawing.Size(70, 28);
             this.BtnLimpiarTxtBuscar.TabIndex = 78;
-            this.BtnLimpiarTxtBuscar.Text = "Limpiar";
+            this.BtnLimpiarTxtBuscar.Text = "Refresh";
             this.BtnLimpiarTxtBuscar.UseVisualStyleBackColor = true;
+            this.BtnLimpiarTxtBuscar.Click += new System.EventHandler(this.BtnLimpiarTxtBuscar_Click);
             // 
             // Txtbuscar
             // 
@@ -129,6 +130,7 @@
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
             this.Txtbuscar.TabIndex = 77;
+            this.Txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbuscar_KeyPress);
             this.Txtbuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtbuscar_KeyUp);
             // 
             // CboBuscarPor

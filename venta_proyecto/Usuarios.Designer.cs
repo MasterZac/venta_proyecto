@@ -36,7 +36,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.CmbTipoUsuario = new System.Windows.Forms.ComboBox();
             this.BtnNuevo = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.LinkTerminar = new System.Windows.Forms.LinkLabel();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
@@ -125,16 +124,6 @@
             this.BtnNuevo.UseVisualStyleBackColor = true;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(125, 21);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(119, 13);
-            this.linkLabel1.TabIndex = 12;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "INGRESA LOS DATOS";
-            // 
             // LinkTerminar
             // 
             this.LinkTerminar.AutoSize = true;
@@ -175,7 +164,6 @@
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.LinkTerminar);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.BtnNuevo);
             this.Controls.Add(this.CmbTipoUsuario);
             this.Controls.Add(this.label4);
@@ -187,7 +175,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Registro_usuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registro_usuario";
+            this.Text = "Usuarios";
             this.Load += new System.EventHandler(this.Registro_usuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -204,7 +192,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CmbTipoUsuario;
         private System.Windows.Forms.Button BtnNuevo;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel LinkTerminar;
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnBuscar;

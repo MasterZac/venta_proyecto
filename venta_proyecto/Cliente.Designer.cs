@@ -216,6 +216,7 @@
             this.TxtCorreo.Size = new System.Drawing.Size(161, 22);
             this.TxtCorreo.TabIndex = 55;
             this.TxtCorreo.TextChanged += new System.EventHandler(this.TxtCorreo_TextChanged);
+            this.TxtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCorreo_KeyPress);
             // 
             // label4
             // 
@@ -236,6 +237,7 @@
             this.TxtNombre.Size = new System.Drawing.Size(161, 22);
             this.TxtNombre.TabIndex = 53;
             this.TxtNombre.TextChanged += new System.EventHandler(this.TxtNombre_TextChanged);
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // label3
             // 
@@ -256,6 +258,7 @@
             this.TxtID.Size = new System.Drawing.Size(161, 22);
             this.TxtID.TabIndex = 51;
             this.TxtID.TextChanged += new System.EventHandler(this.TxtID_TextChanged);
+            this.TxtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtID_KeyPress);
             // 
             // label2
             // 
@@ -282,8 +285,9 @@
             this.BtnLimpiarTxtBuscar.Name = "BtnLimpiarTxtBuscar";
             this.BtnLimpiarTxtBuscar.Size = new System.Drawing.Size(70, 28);
             this.BtnLimpiarTxtBuscar.TabIndex = 74;
-            this.BtnLimpiarTxtBuscar.Text = "Limpiar";
+            this.BtnLimpiarTxtBuscar.Text = "Refresh";
             this.BtnLimpiarTxtBuscar.UseVisualStyleBackColor = true;
+            this.BtnLimpiarTxtBuscar.Click += new System.EventHandler(this.BtnLimpiarTxtBuscar_Click);
             // 
             // Txtbuscar
             // 

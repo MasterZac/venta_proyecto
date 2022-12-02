@@ -500,5 +500,11 @@ namespace venta_proyecto
                 Consultas();
             }
         }
+
+        private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
+        {
+            Txtbuscar.Clear();
+            cargar.DgvProveedor(Dgv);
+        }
     }
 }

@@ -112,6 +112,7 @@
             this.BtnLimpiarTxtBuscar.TabIndex = 70;
             this.BtnLimpiarTxtBuscar.Text = "Refresh";
             this.BtnLimpiarTxtBuscar.UseVisualStyleBackColor = true;
+            this.BtnLimpiarTxtBuscar.Click += new System.EventHandler(this.BtnLimpiarTxtBuscar_Click);
             // 
             // Txtbuscar
             // 

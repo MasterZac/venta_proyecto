@@ -338,5 +338,25 @@ namespace venta_proyecto
         {
             ConsultaIdCliente();
         }
+
+        private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32) && (e.KeyChar <= 255) && CboBuscarPor.Text == "")
+            {
+                MessageBox.Show("Eliga por qué tipo de dato quiere consultar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
+            }
+        }
+
+        private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
+        {
+            Txtbuscar.Clear();
+            cargar.DgvTelefono_cliente(Dgv);
+        }
     }
 }

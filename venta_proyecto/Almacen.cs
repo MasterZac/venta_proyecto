@@ -262,10 +262,10 @@ namespace venta_proyecto
                         cmd.Parameters.Add(_precio);
 
                         MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
-                        _id_categoria.Value = int.Parse(LabelCategoria.Text);
+                        _id_categoria.Value = Convert.ToInt32(LabelCategoria.Text);
                         cmd.Parameters.Add(_id_categoria);
 
-                        MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar);
+                        MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar, 5);
                         _id_proveedor.Value = LabelProveedor.Text;
                         cmd.Parameters.Add(_id_proveedor);
 
@@ -292,25 +292,27 @@ namespace venta_proyecto
 
             if (TxtSku.Text == "") // Si la caja de texto de la clave PK esta vacia
             {
-                MessageBox.Show("INGRESA LA CLAVE PARA PODER ELIMINAR"); //imprimo que no se puede eliminar
+                MessageBox.Show("INGRESA LA CLAVE PARA DEL PRODUCTO PARA REALIZAR LA ELIMINACION"); //imprimo que no se puede eliminar
             }
             else
             {
                 try
                 {
                     Conectar();
-                    string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "'); ";
+                    //Antes de agregar consulto si ya existe ese producto
+                    string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "'); "; 
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
-                    if (rd.Read()) //Si la clave PK que ingrese a la caja de texto del SKU existe
+                    if (rd.Read()) 
                     {
-                        existe = true; //Que elimine el producto
+                        existe = true;//Si me regrese el valor la consuta siginfica que si existe
                     }
                     else
                     {
                         existe = false;
-                        MessageBox.Show("NO EXISTE ESE PRODUCTO"); //Imprimo un mensaje que no existe
+                        MessageBox.Show("NO EXISTE ESE PRODUCTO"); 
+                        //Si no Imprimo un mensaje que no existe el producto que quiere eliminar
                     }
                 }
                 catch (Exception ex)
@@ -592,7 +594,7 @@ namespace venta_proyecto
         private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
         {
             Txtbuscar.Clear();
-            Txtbuscar.Focus();
+            cargar.DgvProductos(Dgv);
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
