@@ -40,7 +40,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select Tipo_usuario From users Where Usuario = ('" + lblstatus1.Text + "'); ";
+                string query = "Select Rol_usuario From users Where Usuario = ('" + lblstatus1.Text + "'); ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -109,6 +109,7 @@ namespace venta_proyecto
                 BtnProductos.Enabled = false;
                 BtnClientes.Enabled = false;
                 BtnProveedores.Enabled = false;
+                BtnUsuarios.Enabled = false;
             }
 
         }
@@ -116,6 +117,14 @@ namespace venta_proyecto
         private void BtnCerrarPrograma_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void BtnUsuarios_Click(object sender, EventArgs e)
+        {
+            Registro_usuario x = new Registro_usuario();
+            x.NombreUsuario = lblstatus1.Text;
+            this.Hide();
+            x.Show();
         }
     }
 }

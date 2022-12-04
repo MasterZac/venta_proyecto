@@ -15,8 +15,13 @@ namespace venta_proyecto
     {
         MySqlConnection cnn = new MySqlConnection();
         MySqlCommand cmd = new MySqlCommand();
+        Cargar_Dgv cargar = new Cargar_Dgv();
+        MySqlDataAdapter da;
+        DataTable dt;
         MySqlDataReader rd;
         
+        public string NombreUsuario { get; set; }
+
         public Registro_usuario()
         {
             InitializeComponent();
@@ -35,42 +40,28 @@ namespace venta_proyecto
 
         public void Limpiar()
         {
+            TxtID.Clear();
             TxtNombreUsuario.Clear();
             TxtContraseña.Clear();
             CmbTipoUsuario.Text = " ";
             TxtNombreUsuario.Focus();
+            TxtID.ReadOnly = false;
         }
 
-        public void ValidarCampos()
-        {
-            var vr = !string.IsNullOrEmpty(TxtNombreUsuario.Text) &&
-                !string.IsNullOrEmpty(TxtContraseña.Text) &&
-                !string.IsNullOrEmpty(CmbTipoUsuario.Text);
-            BtnRegistrar.Enabled = vr;
-        }
-
-        private void BtnRegistrar_Click(object sender, EventArgs e)
+        public void Consultas()
         {
             try
             {
                 Conectar();
-                cmd = new MySqlCommand("AddUser", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
 
-                MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 50);
-                _usuario.Value = TxtNombreUsuario.Text;
-                cmd.Parameters.Add(_usuario);
-
-                MySqlParameter _tipo = new MySqlParameter("_tipo", MySqlDbType.VarChar, 15);
-                _tipo.Value = CmbTipoUsuario.Text;
-                cmd.Parameters.Add(_tipo);
-
-                MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 20);
-                _contraseña.Value = TxtContraseña.Text;
-                cmd.Parameters.Add(_contraseña);
-
+                cmd = cnn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM users Where (" + CboBuscarPor.Text + ") Like ('%" + Txtbuscar.Text + "%')";
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Usuario registrado");
+                dt = new DataTable();
+                da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+                Dgv.DataSource = dt;
 
             }
             catch (Exception ex)
@@ -80,105 +71,351 @@ namespace venta_proyecto
             finally
             {
                 Desconectar();
+
             }
+        }
+
+        
+
+        private void BtnRegistrar_Click(object sender, EventArgs e)
+        {
+            bool existe = false;
+
+            if ( TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
+            {
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE REGISTRAR");
+            }
+            else
+            {
+                try
+                {
+                    Conectar();
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                        MessageBox.Show("USUARIO YA EXISTENTE");
+                    }
+                    else
+                    {
+                        existe = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (existe == false)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("AddUser", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+                        
+                        MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 80);
+                        _usuario.Value = TxtNombreUsuario.Text;
+                        cmd.Parameters.Add(_usuario);
+
+                        MySqlParameter _rol = new MySqlParameter("_rol", MySqlDbType.VarChar, 15);
+                        _rol.Value = CmbTipoUsuario.Text;
+                        cmd.Parameters.Add(_rol);
+
+                        MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 20);
+                        _contraseña.Value = TxtContraseña.Text;
+                        cmd.Parameters.Add(_contraseña);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvUsuarios(Dgv);
+                        MessageBox.Show("Usuario registrado");
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
+            }
+            
+            
         }
 
         private void LinkTerminar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LOGIN z = new LOGIN();
-            this.Hide();
-            z.Show();
+            
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            CmbTipoUsuario.Text = "";
-            TxtNombreUsuario.Clear();
-            TxtContraseña.Clear();
-            CmbTipoUsuario.Focus();
+            Limpiar();
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Conectar();
-                cmd = new MySqlCommand("DeleteUser", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
+            bool existe = true;
 
-                MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 50);
-                _usuario.Value = TxtNombreUsuario.Text;
-                cmd.Parameters.Add(_usuario);
-                rd = cmd.ExecuteReader();
-                if (rd.Read())
+            if ( TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
+            {
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE REGISTRAR");
+            }
+            else
+            {
+
+                try
                 {
-                    TxtContraseña.Text = rd[3].ToString();
-                    CmbTipoUsuario.Text = rd[2].ToString();
+                    Conectar();
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("USUARIO NO EXISTENTE");
+                    }
+
+                    
                 }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (existe == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("DeleteUser", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 50);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvUsuarios(Dgv);
+                        MessageBox.Show("SE ELIMINO EL USUARIO: " + TxtNombreUsuario.Text);
+                        Limpiar();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
             }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void Registro_usuario_Load(object sender, EventArgs e)
+        {
+            lblstatus1.Text = string.Format("{0}", NombreUsuario);
+            lblstatus2.Text = DateTime.Now.ToString("f");
+            cargar.DgvUsuarios(Dgv);
+        }
+
+        private void CmbTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtNombreUsuario_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtContraseña_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             try
             {
-                Conectar();
-                cmd = new MySqlCommand("SelectUser", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 50);
-                _usuario.Value = TxtNombreUsuario.Text;
-                cmd.Parameters.Add(_usuario);
-                rd = cmd.ExecuteReader();
-                if (rd.Read())
+                if (Dgv.SelectedRows.Count > 0)
                 {
-                   
-                    TxtContraseña.Text = rd[2].ToString();
-                    CmbTipoUsuario.Text = rd[1].ToString();
+                    TxtID.Text = Dgv.SelectedCells[0].Value.ToString();
+                    CmbTipoUsuario.Text = Dgv.SelectedCells[2].Value.ToString();
+                    TxtNombreUsuario.Text = Dgv.SelectedCells[1].Value.ToString();
+                    TxtContraseña.Text = Dgv.SelectedCells[3].Value.ToString();
+                    TxtID.ReadOnly = true;
+                    Dgv.ClearSelection();
                 }
-                else
-                {
-                    MessageBox.Show("!No se ha encontrado el usuario!");
-                }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
+        }
+
+        private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
             {
-                Desconectar();
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
             }
         }
 
-        private void Registro_usuario_Load(object sender, EventArgs e)
+        private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
         {
+            Txtbuscar.Clear();
+            cargar.DgvUsuarios(Dgv);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool existe = true;
+            bool cambios = true;
+
+            if (TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
+            {
+                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
+            }
+            else
+            {
+                try
+                {
+                    Conectar();
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "') And Usuario = ('"+TxtNombreUsuario.Text+"') And Rol_usuario = ('"+CmbTipoUsuario.Text+"') And Contraseña = ('"+TxtContraseña.Text+"'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        cambios = false;
+                        MessageBox.Show("NO REALIZO NINGUN CAMBIO");
+                    }
+                    else
+                    {
+                        cambios = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                try
+                {
+                    Conectar();
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "');";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("USUARIO NO EXISTENTE");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                if (cambios == true && existe == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("UpdateUser", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                        _id.Value = TxtID.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 80);
+                        _usuario.Value = TxtNombreUsuario.Text;
+                        cmd.Parameters.Add(_usuario);
+
+                        MySqlParameter _rol = new MySqlParameter("_rol", MySqlDbType.VarChar, 15);
+                        _rol.Value = CmbTipoUsuario.Text;
+                        cmd.Parameters.Add(_rol);
+
+                        MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 20);
+                        _contraseña.Value = TxtContraseña.Text;
+                        cmd.Parameters.Add(_contraseña);
+
+                        cmd.ExecuteNonQuery();
+                        cargar.DgvUsuarios(Dgv);
+                        MessageBox.Show("SE ACTUALIZARON LOS DATOS DEL USUARIO: " + TxtNombreUsuario.Text);
+                        Limpiar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+                }
+            }
+
+
 
         }
 
-        private void CmbTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        private void BtnSalir_Click(object sender, EventArgs e)
         {
-            ValidarCampos();
-        }
-
-        private void TxtNombreUsuario_TextChanged(object sender, EventArgs e)
-        {
-            ValidarCampos();
-        }
-
-        private void TxtContraseña_TextChanged(object sender, EventArgs e)
-        {
-            ValidarCampos();
+            Menu x = new Menu();
+            x.NombreUsuario = lblstatus1.Text;
+            this.Hide();
+            x.Show();
         }
     }
 }

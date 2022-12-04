@@ -88,7 +88,7 @@ namespace venta_proyecto
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            bool existe = false;
+            bool existe = true;
 
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "" || TxtDescripcion.Text == "")
             {
@@ -161,7 +161,7 @@ namespace venta_proyecto
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            bool existe = false;
+            bool existe = true;
 
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "")
             {
@@ -228,6 +228,7 @@ namespace venta_proyecto
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             bool cambios = true;
+            bool existe = true;
 
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "" || TxtDescripcion.Text == "")
             {
@@ -235,6 +236,32 @@ namespace venta_proyecto
             }
             else
             {
+                try
+                {
+                    Conectar();
+                    string query = "Select * From categoria Where ID = (" + TxtID_categoria.Text + "); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("CATEGORIA NO EXISTENTE");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
                 try
                 {
                     Conectar();
@@ -263,7 +290,7 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (cambios == true)
+                if (cambios == true && existe == true)
                 {
                     try
                     {

@@ -37,18 +37,21 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select Usuario, Constraseña From users Where Usuario = ('" + TxtUsuario.Text + "') And Constraseña = ('" + TxtContraseña.Text + "'); ";
+                //Creo una consulta para saber si existe
+                string query = "Select Usuario, Contraseña From users Where Usuario = ('" + TxtUsuario.Text + "') And Contraseña = ('" + TxtContraseña.Text + "'); ";
+
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
-                if (rd.Read())
+                if (rd.Read())// Si existe el usuario
                 {
+                    // que mande al menu
                     Menu x = new Menu();
                     x.NombreUsuario = TxtUsuario.Text;
                     this.Hide();
                     x.Show();
                 }
-                else
+                else // si no existe que me mande un mensaje que esta incorrecto
                 {
                     MessageBox.Show(" ! USUARIO Y/O CONTRASEÑA INCORRECTA");
                     TxtUsuario.Focus();
@@ -89,6 +92,11 @@ namespace venta_proyecto
         private void LOGIN_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkExit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

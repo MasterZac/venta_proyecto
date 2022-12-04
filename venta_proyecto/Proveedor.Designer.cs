@@ -62,6 +62,8 @@
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.BtnNuevoTelefono = new System.Windows.Forms.Button();
             this.BtnNuevoRFC = new System.Windows.Forms.Button();
+            this.TxtDireccion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -186,9 +188,9 @@
             // 
             // BtnLimpiar
             // 
-            this.BtnLimpiar.Location = new System.Drawing.Point(16, 566);
+            this.BtnLimpiar.Location = new System.Drawing.Point(223, 391);
             this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(188, 29);
+            this.BtnLimpiar.Size = new System.Drawing.Size(83, 35);
             this.BtnLimpiar.TabIndex = 65;
             this.BtnLimpiar.Text = "Refresh";
             this.BtnLimpiar.UseVisualStyleBackColor = true;
@@ -196,9 +198,9 @@
             // 
             // BtnActualizar
             // 
-            this.BtnActualizar.Location = new System.Drawing.Point(16, 531);
+            this.BtnActualizar.Location = new System.Drawing.Point(223, 340);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(188, 29);
+            this.BtnActualizar.Size = new System.Drawing.Size(83, 37);
             this.BtnActualizar.TabIndex = 64;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = true;
@@ -206,9 +208,9 @@
             // 
             // BtnEliminar
             // 
-            this.BtnEliminar.Location = new System.Drawing.Point(16, 490);
+            this.BtnEliminar.Location = new System.Drawing.Point(223, 297);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(188, 35);
+            this.BtnEliminar.Size = new System.Drawing.Size(83, 35);
             this.BtnEliminar.TabIndex = 63;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
@@ -216,9 +218,9 @@
             // 
             // BtnAgregar
             // 
-            this.BtnAgregar.Location = new System.Drawing.Point(16, 449);
+            this.BtnAgregar.Location = new System.Drawing.Point(223, 245);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(188, 35);
+            this.BtnAgregar.Size = new System.Drawing.Size(83, 35);
             this.BtnAgregar.TabIndex = 62;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
@@ -227,11 +229,11 @@
             // TxtPaginaWeb
             // 
             this.TxtPaginaWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPaginaWeb.Location = new System.Drawing.Point(16, 400);
+            this.TxtPaginaWeb.Location = new System.Drawing.Point(16, 504);
             this.TxtPaginaWeb.MaxLength = 40;
             this.TxtPaginaWeb.Multiline = true;
             this.TxtPaginaWeb.Name = "TxtPaginaWeb";
-            this.TxtPaginaWeb.Size = new System.Drawing.Size(188, 33);
+            this.TxtPaginaWeb.Size = new System.Drawing.Size(188, 55);
             this.TxtPaginaWeb.TabIndex = 61;
             this.TxtPaginaWeb.TextChanged += new System.EventHandler(this.TxtPaginaWeb_TextChanged);
             // 
@@ -272,7 +274,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 381);
+            this.label6.Location = new System.Drawing.Point(13, 485);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 16);
             this.label6.TabIndex = 57;
@@ -331,10 +333,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(279, 145);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Location = new System.Drawing.Point(312, 145);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 434);
+            this.panel1.Size = new System.Drawing.Size(10, 496);
             this.panel1.TabIndex = 51;
             // 
             // linkLabel1
@@ -431,11 +433,31 @@
             this.BtnNuevoRFC.UseVisualStyleBackColor = true;
             this.BtnNuevoRFC.Click += new System.EventHandler(this.BtnNuevoRFC_Click);
             // 
+            // TxtDireccion
+            // 
+            this.TxtDireccion.Location = new System.Drawing.Point(19, 399);
+            this.TxtDireccion.Multiline = true;
+            this.TxtDireccion.Name = "TxtDireccion";
+            this.TxtDireccion.Size = new System.Drawing.Size(185, 65);
+            this.TxtDireccion.TabIndex = 74;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(16, 380);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 16);
+            this.label8.TabIndex = 75;
+            this.label8.Text = "Direccion";
+            // 
             // Proveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 620);
+            this.ClientSize = new System.Drawing.Size(1061, 678);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.TxtDireccion);
             this.Controls.Add(this.BtnNuevoRFC);
             this.Controls.Add(this.BtnNuevoTelefono);
             this.Controls.Add(this.statusStrip1);
@@ -511,5 +533,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
         private System.Windows.Forms.Button BtnNuevoTelefono;
         private System.Windows.Forms.Button BtnNuevoRFC;
+        private System.Windows.Forms.TextBox TxtDireccion;
+        private System.Windows.Forms.Label label8;
     }
 }

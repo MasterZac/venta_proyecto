@@ -70,6 +70,7 @@ namespace venta_proyecto
             TxtNombre.Clear();
             TxtRFC.Clear();
             MkdTelefono.Clear();
+            TxtDireccion.Clear();
             TxtPaginaWeb.Clear();
             TxtID.Focus();
             TxtID.ReadOnly = false;
@@ -106,7 +107,7 @@ namespace venta_proyecto
                 try
                 {
                     Conectar();
-                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "') And Nombre = ('"+ TxtNombre.Text +"') And RFC = ('"+ TxtRFC.Text +"')";
+                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "');";
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
@@ -209,6 +210,10 @@ namespace venta_proyecto
                         _telefono.Value = MkdTelefono.Text;
                         cmd.Parameters.Add(_telefono);
 
+                        MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
+                        _direccion.Value = TxtDireccion.Text.Trim();
+                        cmd.Parameters.Add(_direccion);
+
                         MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
                         _web.Value = TxtPaginaWeb.Text.Trim();
                         cmd.Parameters.Add(_web);
@@ -301,7 +306,7 @@ namespace venta_proyecto
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             bool cambios = true;
-            bool existe = false;
+            bool existe = true;
 
             if (TxtID.Text == "" || TxtNombre.Text == "" || TxtRFC.Text == "" || MkdTelefono.Text == "" || TxtPaginaWeb.Text == "")
             {
@@ -309,12 +314,39 @@ namespace venta_proyecto
             }
             else
             {
+
+                try
+                {
+                    Conectar();
+                    string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "'); ";
+                    cmd = new MySqlCommand(query, cnn);
+                    cmd.CommandType = CommandType.Text;
+                    rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+                        MessageBox.Show("PROVEEDOR NO EXISTENTE");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
                 try
                 {
                     Conectar();
                     string query = "Select * From proveedor Where ID = ('" + TxtID.Text + "') " +
                         "And Nombre = ('" + TxtNombre.Text + "') And RFC = ('" + TxtRFC.Text + "') " +
-                        "And Telefono = ('" + MkdTelefono.Text+"') And Pagina_web = ('"+TxtPaginaWeb.Text+"'); ";
+                        "And Direccion = ('"+TxtDireccion.Text+"') And Telefono = ('" + MkdTelefono.Text+"') " +
+                        "And Pagina_web = ('"+TxtPaginaWeb.Text+"'); ";
 
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
@@ -323,13 +355,12 @@ namespace venta_proyecto
                     {
                         cambios = false;
                         MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
-                        existe = true;
                       
                     }
                     else
                     {
                         cambios = true;
-                        existe = false;
+                        
                     }
                 }
                 catch (Exception ex)
@@ -364,6 +395,10 @@ namespace venta_proyecto
                         MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
                         _telefono.Value = MkdTelefono.Text;
                         cmd.Parameters.Add(_telefono);
+
+                        MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
+                        _direccion.Value = TxtDireccion.Text.ToUpper().Trim();
+                        cmd.Parameters.Add(_direccion);
 
                         MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
                         _web.Value = TxtPaginaWeb.Text.Trim();
@@ -403,7 +438,8 @@ namespace venta_proyecto
                     TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
                     TxtRFC.Text = Dgv.SelectedCells[2].Value.ToString();
                     MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
-                    TxtPaginaWeb.Text = Dgv.SelectedCells[4].Value.ToString();
+                    TxtDireccion.Text = Dgv.SelectedCells[4].Value.ToString();
+                    TxtPaginaWeb.Text = Dgv.SelectedCells[5].Value.ToString();
                     TxtID.ReadOnly = true;
                     Dgv.ClearSelection();
                 }
@@ -419,7 +455,7 @@ namespace venta_proyecto
         {
            
         }
-
+        
         private void TxtNombre_TextChanged(object sender, EventArgs e)
         {
         

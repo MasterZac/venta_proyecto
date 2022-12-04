@@ -128,5 +128,25 @@ namespace venta_proyecto
                 Desconectar();
             }
         }
+
+        public void DgvUsuarios(DataGridView dgv)
+        {
+            try
+            {
+                Conectar();
+                da = new MySqlDataAdapter("dgvUsuarios", cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
     }
 }

@@ -33,9 +33,9 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.TxtContraseña = new System.Windows.Forms.TextBox();
             this.BtnAcceder = new System.Windows.Forms.Button();
-            this.LinkRegistrar = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.ChekBoxVer = new System.Windows.Forms.CheckBox();
+            this.linkExit = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -78,25 +78,13 @@
             // BtnAcceder
             // 
             this.BtnAcceder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAcceder.Location = new System.Drawing.Point(150, 173);
+            this.BtnAcceder.Location = new System.Drawing.Point(150, 150);
             this.BtnAcceder.Name = "BtnAcceder";
             this.BtnAcceder.Size = new System.Drawing.Size(75, 38);
             this.BtnAcceder.TabIndex = 4;
             this.BtnAcceder.Text = "Acceder";
             this.BtnAcceder.UseVisualStyleBackColor = true;
             this.BtnAcceder.Click += new System.EventHandler(this.BtnAcceder_Click);
-            // 
-            // LinkRegistrar
-            // 
-            this.LinkRegistrar.AutoSize = true;
-            this.LinkRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LinkRegistrar.Location = new System.Drawing.Point(104, 136);
-            this.LinkRegistrar.Name = "LinkRegistrar";
-            this.LinkRegistrar.Size = new System.Drawing.Size(184, 16);
-            this.LinkRegistrar.TabIndex = 7;
-            this.LinkRegistrar.TabStop = true;
-            this.LinkRegistrar.Text = "Presiona aqui para registrarte";
-            this.LinkRegistrar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkRegistrar_LinkClicked);
             // 
             // label3
             // 
@@ -121,14 +109,26 @@
             this.ChekBoxVer.UseVisualStyleBackColor = true;
             this.ChekBoxVer.CheckedChanged += new System.EventHandler(this.ChekBoxVer_CheckedChanged);
             // 
+            // linkExit
+            // 
+            this.linkExit.AutoSize = true;
+            this.linkExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkExit.Location = new System.Drawing.Point(329, 200);
+            this.linkExit.Name = "linkExit";
+            this.linkExit.Size = new System.Drawing.Size(39, 20);
+            this.linkExit.TabIndex = 11;
+            this.linkExit.TabStop = true;
+            this.linkExit.Text = "Exit";
+            this.linkExit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkExit_LinkClicked);
+            // 
             // LOGIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 229);
+            this.Controls.Add(this.linkExit);
             this.Controls.Add(this.ChekBoxVer);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.LinkRegistrar);
             this.Controls.Add(this.BtnAcceder);
             this.Controls.Add(this.TxtContraseña);
             this.Controls.Add(this.TxtUsuario);
@@ -151,8 +151,8 @@
         private System.Windows.Forms.TextBox TxtUsuario;
         private System.Windows.Forms.TextBox TxtContraseña;
         private System.Windows.Forms.Button BtnAcceder;
-        private System.Windows.Forms.LinkLabel LinkRegistrar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox ChekBoxVer;
+        private System.Windows.Forms.LinkLabel linkExit;
     }
 }

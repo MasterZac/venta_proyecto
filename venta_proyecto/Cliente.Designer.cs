@@ -273,7 +273,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Location = new System.Drawing.Point(324, 197);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(10, 497);
@@ -473,7 +473,7 @@
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 182);
+            this.groupBox2.Location = new System.Drawing.Point(0, 197);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(306, 516);
             this.groupBox2.TabIndex = 85;

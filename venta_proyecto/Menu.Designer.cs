@@ -45,6 +45,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.BtnVentas = new System.Windows.Forms.Button();
+            this.BtnUsuarios = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +133,7 @@
             // 
             this.BtnProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProveedores.ForeColor = System.Drawing.Color.Black;
-            this.BtnProveedores.Location = new System.Drawing.Point(483, 308);
+            this.BtnProveedores.Location = new System.Drawing.Point(483, 296);
             this.BtnProveedores.Name = "BtnProveedores";
             this.BtnProveedores.Size = new System.Drawing.Size(142, 130);
             this.BtnProveedores.TabIndex = 7;
@@ -244,11 +245,25 @@
             this.BtnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnVentas.UseVisualStyleBackColor = true;
             // 
+            // BtnUsuarios
+            // 
+            this.BtnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUsuarios.ForeColor = System.Drawing.Color.Black;
+            this.BtnUsuarios.Location = new System.Drawing.Point(282, 296);
+            this.BtnUsuarios.Name = "BtnUsuarios";
+            this.BtnUsuarios.Size = new System.Drawing.Size(142, 130);
+            this.BtnUsuarios.TabIndex = 13;
+            this.BtnUsuarios.Text = "Usuarios";
+            this.BtnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnUsuarios.UseVisualStyleBackColor = true;
+            this.BtnUsuarios.Click += new System.EventHandler(this.BtnUsuarios_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 450);
+            this.ClientSize = new System.Drawing.Size(913, 488);
+            this.Controls.Add(this.BtnUsuarios);
             this.Controls.Add(this.BtnVentas);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BtnClientes);
@@ -289,6 +304,7 @@
         private System.Windows.Forms.ToolStripStatusLabel LabelRol;
         private System.Windows.Forms.Button BtnVentas;
         private System.Windows.Forms.Button BtnCerrarPrograma;
+        private System.Windows.Forms.Button BtnUsuarios;
     }
 }
 
