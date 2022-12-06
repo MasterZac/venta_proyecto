@@ -474,14 +474,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 669);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.CboBuscarPor);
             this.Controls.Add(this.LabelProveedor);
             this.Controls.Add(this.CmbProveedor);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.LabelCategoria);
-            this.Controls.Add(this.CboBuscarPor);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.Dgv);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.CmbCategoria);

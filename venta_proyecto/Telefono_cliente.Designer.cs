@@ -43,6 +43,7 @@
             this.CmbNombreClienteTelefono = new System.Windows.Forms.ComboBox();
             this.TxtID_cliente = new System.Windows.Forms.TextBox();
             this.BtnEliminar = new System.Windows.Forms.Button();
+            this.BtnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 28);
+            this.label1.Location = new System.Drawing.Point(22, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 18);
             this.label1.TabIndex = 0;
@@ -60,7 +61,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 127);
+            this.label2.Location = new System.Drawing.Point(22, 165);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 18);
             this.label2.TabIndex = 2;
@@ -69,7 +70,7 @@
             // BtnAgregar
             // 
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregar.Location = new System.Drawing.Point(26, 195);
+            this.BtnAgregar.Location = new System.Drawing.Point(25, 233);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(140, 30);
             this.BtnAgregar.TabIndex = 4;
@@ -80,7 +81,7 @@
             // BtnLimpiar
             // 
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.Location = new System.Drawing.Point(26, 267);
+            this.BtnLimpiar.Location = new System.Drawing.Point(25, 305);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(140, 30);
             this.BtnLimpiar.TabIndex = 7;
@@ -94,7 +95,7 @@
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dgv.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Dgv.Location = new System.Drawing.Point(275, 93);
+            this.Dgv.Location = new System.Drawing.Point(274, 131);
             this.Dgv.MultiSelect = false;
             this.Dgv.Name = "Dgv";
             this.Dgv.ReadOnly = true;
@@ -105,7 +106,7 @@
             // MkdTelefono
             // 
             this.MkdTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MkdTelefono.Location = new System.Drawing.Point(26, 146);
+            this.MkdTelefono.Location = new System.Drawing.Point(25, 184);
             this.MkdTelefono.Mask = "0000000000";
             this.MkdTelefono.Name = "MkdTelefono";
             this.MkdTelefono.Size = new System.Drawing.Size(140, 24);
@@ -114,7 +115,7 @@
             // 
             // BtnLimpiarTxtBuscar
             // 
-            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(642, 38);
+            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(641, 76);
             this.BtnLimpiarTxtBuscar.Name = "BtnLimpiarTxtBuscar";
             this.BtnLimpiarTxtBuscar.Size = new System.Drawing.Size(70, 28);
             this.BtnLimpiarTxtBuscar.TabIndex = 78;
@@ -125,7 +126,7 @@
             // Txtbuscar
             // 
             this.Txtbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txtbuscar.Location = new System.Drawing.Point(453, 40);
+            this.Txtbuscar.Location = new System.Drawing.Point(452, 78);
             this.Txtbuscar.Multiline = true;
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
@@ -141,7 +142,7 @@
             "ID_cliente",
             "Nombre",
             "Telefono"});
-            this.CboBuscarPor.Location = new System.Drawing.Point(335, 39);
+            this.CboBuscarPor.Location = new System.Drawing.Point(334, 77);
             this.CboBuscarPor.Name = "CboBuscarPor";
             this.CboBuscarPor.Size = new System.Drawing.Size(97, 24);
             this.CboBuscarPor.TabIndex = 76;
@@ -150,7 +151,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(226, 41);
+            this.label9.Location = new System.Drawing.Point(225, 79);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 20);
             this.label9.TabIndex = 75;
@@ -160,7 +161,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 83);
+            this.label3.Location = new System.Drawing.Point(22, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 16);
             this.label3.TabIndex = 79;
@@ -168,7 +169,7 @@
             // 
             // BtnNuevoNumero
             // 
-            this.BtnNuevoNumero.Location = new System.Drawing.Point(172, 146);
+            this.BtnNuevoNumero.Location = new System.Drawing.Point(171, 184);
             this.BtnNuevoNumero.Name = "BtnNuevoNumero";
             this.BtnNuevoNumero.Size = new System.Drawing.Size(62, 25);
             this.BtnNuevoNumero.TabIndex = 81;
@@ -179,7 +180,7 @@
             // CmbNombreClienteTelefono
             // 
             this.CmbNombreClienteTelefono.FormattingEnabled = true;
-            this.CmbNombreClienteTelefono.Location = new System.Drawing.Point(26, 103);
+            this.CmbNombreClienteTelefono.Location = new System.Drawing.Point(25, 141);
             this.CmbNombreClienteTelefono.Name = "CmbNombreClienteTelefono";
             this.CmbNombreClienteTelefono.Size = new System.Drawing.Size(140, 21);
             this.CmbNombreClienteTelefono.TabIndex = 83;
@@ -188,7 +189,7 @@
             // TxtID_cliente
             // 
             this.TxtID_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtID_cliente.Location = new System.Drawing.Point(26, 49);
+            this.TxtID_cliente.Location = new System.Drawing.Point(25, 87);
             this.TxtID_cliente.Name = "TxtID_cliente";
             this.TxtID_cliente.ReadOnly = true;
             this.TxtID_cliente.Size = new System.Drawing.Size(140, 22);
@@ -198,7 +199,7 @@
             // BtnEliminar
             // 
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(26, 231);
+            this.BtnEliminar.Location = new System.Drawing.Point(25, 269);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(140, 30);
             this.BtnEliminar.TabIndex = 5;
@@ -206,11 +207,22 @@
             this.BtnEliminar.UseVisualStyleBackColor = true;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.Location = new System.Drawing.Point(606, 12);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.BtnCerrar.TabIndex = 85;
+            this.BtnCerrar.Text = "Cerrar";
+            this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            // 
             // Telefono_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 378);
+            this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.TxtID_cliente);
             this.Controls.Add(this.CmbNombreClienteTelefono);
             this.Controls.Add(this.BtnNuevoNumero);
@@ -254,5 +266,6 @@
         private System.Windows.Forms.ComboBox CmbNombreClienteTelefono;
         private System.Windows.Forms.TextBox TxtID_cliente;
         private System.Windows.Forms.Button BtnEliminar;
+        private System.Windows.Forms.Button BtnCerrar;
     }
 }

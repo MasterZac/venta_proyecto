@@ -127,6 +127,7 @@
             this.CmbTipoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbTipoUsuario.FormattingEnabled = true;
             this.CmbTipoUsuario.Items.AddRange(new object[] {
+            "SuperAdmin",
             "Administrador ",
             "Vendedor"});
             this.CmbTipoUsuario.Location = new System.Drawing.Point(130, 56);

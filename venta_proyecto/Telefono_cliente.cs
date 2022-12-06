@@ -358,5 +358,10 @@ namespace venta_proyecto
             Txtbuscar.Clear();
             cargar.DgvTelefono_cliente(Dgv);
         }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

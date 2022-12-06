@@ -542,5 +542,15 @@ namespace venta_proyecto
             Txtbuscar.Clear();
             cargar.DgvProveedor(Dgv);
         }
+
+        private void Txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

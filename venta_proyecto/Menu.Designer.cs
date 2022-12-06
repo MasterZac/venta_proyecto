@@ -180,6 +180,7 @@
             this.lblstatus2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 105);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.statusStrip1.Size = new System.Drawing.Size(913, 22);
             this.statusStrip1.TabIndex = 11;
@@ -244,6 +245,7 @@
             this.BtnVentas.Text = "Ventas";
             this.BtnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnVentas.UseVisualStyleBackColor = true;
+            this.BtnVentas.Click += new System.EventHandler(this.BtnVentas_Click);
             // 
             // BtnUsuarios
             // 

@@ -112,6 +112,11 @@ namespace venta_proyecto
                 BtnUsuarios.Enabled = false;
             }
 
+            if (LabelRol.Text == "Administrador")
+            {
+                BtnUsuarios.Enabled = false;
+            }
+
         }
 
         private void BtnCerrarPrograma_Click(object sender, EventArgs e)
@@ -123,6 +128,13 @@ namespace venta_proyecto
         {
             Registro_usuario x = new Registro_usuario();
             x.NombreUsuario = lblstatus1.Text;
+            this.Hide();
+            x.Show();
+        }
+
+        private void BtnVentas_Click(object sender, EventArgs e)
+        {
+            Ventas x = new Ventas();
             this.Hide();
             x.Show();
         }
