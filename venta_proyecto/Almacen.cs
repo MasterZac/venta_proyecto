@@ -261,6 +261,10 @@ namespace venta_proyecto
                         _precio.Value = TxtPrecio.Text;
                         cmd.Parameters.Add(_precio);
 
+                        MySqlParameter _precio_venta = new MySqlParameter("_precio_venta", MySqlDbType.Double);
+                        _precio_venta.Value = TxtPrecioVenta.Text;
+                        cmd.Parameters.Add(_precio_venta);
+
                         MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
                         _id_categoria.Value = Convert.ToInt32(LabelCategoria.Text);
                         cmd.Parameters.Add(_id_categoria);
@@ -370,7 +374,8 @@ namespace venta_proyecto
                     Conectar();
                     string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "') " +
                         "And Nombre = ('" + TxtNombre.Text + "') And Stock = (" + TxtStock.Text + ") " +
-                        "And Precio = (" + TxtPrecio.Text + ") And ID_categoria = (" + LabelCategoria.Text + ") " +
+                        "And Precio = (" + TxtPrecio.Text + ") And Precio_Venta = ('"+TxtPrecioVenta.Text+"')" +
+                        "And ID_categoria = (" + LabelCategoria.Text + ") " +
                         "And ID_proveedor  = ('" + LabelProveedor.Text + "'); ";
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
@@ -418,6 +423,10 @@ namespace venta_proyecto
                         _precio.Value = TxtPrecio.Text;
                         cmd.Parameters.Add(_precio);
 
+                        MySqlParameter _precio_venta = new MySqlParameter("_precio_venta", MySqlDbType.Double);
+                        _precio_venta.Value = TxtPrecioVenta.Text;
+                        cmd.Parameters.Add(_precio_venta);
+
                         MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
                         _id_categoria.Value = int.Parse(LabelCategoria.Text);
                         cmd.Parameters.Add(_id_categoria);
@@ -460,8 +469,9 @@ namespace venta_proyecto
                     TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
                     TxtStock.Text = Dgv.SelectedCells[2].Value.ToString();
                     TxtPrecio.Text = Dgv.SelectedCells[3].Value.ToString();
-                    LabelCategoria.Text = Dgv.SelectedCells[4].Value.ToString();
-                    LabelProveedor.Text = Dgv.SelectedCells[5].Value.ToString();
+                    TxtPrecioVenta.Text = Dgv.SelectedCells[4].Value.ToString();
+                    LabelCategoria.Text = Dgv.SelectedCells[5].Value.ToString();
+                    LabelProveedor.Text = Dgv.SelectedCells[6].Value.ToString();
                     Dgv.ClearSelection();
                     TxtSku.ReadOnly = true;
                     ConsultaNombreProveedor();

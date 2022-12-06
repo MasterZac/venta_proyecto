@@ -63,6 +63,8 @@
             this.CmbProveedor = new System.Windows.Forms.ComboBox();
             this.TxtPrecio = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -207,9 +209,9 @@
             // BtnEliminar
             // 
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(639, 154);
+            this.BtnEliminar.Location = new System.Drawing.Point(692, 63);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(84, 37);
+            this.BtnEliminar.Size = new System.Drawing.Size(78, 37);
             this.BtnEliminar.TabIndex = 14;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
@@ -218,9 +220,9 @@
             // BtnActualizar
             // 
             this.BtnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnActualizar.Location = new System.Drawing.Point(729, 154);
+            this.BtnActualizar.Location = new System.Drawing.Point(782, 63);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(80, 37);
+            this.BtnActualizar.Size = new System.Drawing.Size(74, 37);
             this.BtnActualizar.TabIndex = 15;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = true;
@@ -229,9 +231,9 @@
             // BtnAgregar
             // 
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregar.Location = new System.Drawing.Point(546, 154);
+            this.BtnAgregar.Location = new System.Drawing.Point(599, 63);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(83, 37);
+            this.BtnAgregar.Size = new System.Drawing.Size(77, 37);
             this.BtnAgregar.TabIndex = 16;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
@@ -240,7 +242,7 @@
             // BtnLimpiar
             // 
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.Location = new System.Drawing.Point(516, 183);
+            this.BtnLimpiar.Location = new System.Drawing.Point(425, 36);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(82, 40);
             this.BtnLimpiar.TabIndex = 17;
@@ -457,17 +459,37 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtPrecioVenta);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.BtnAgregar);
             this.groupBox1.Controls.Add(this.BtnEliminar);
             this.groupBox1.Controls.Add(this.BtnActualizar);
+            this.groupBox1.Controls.Add(this.BtnLimpiar);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(24, 131);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(839, 242);
+            this.groupBox1.Size = new System.Drawing.Size(905, 242);
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DETALLE PRODUCTO";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(543, 136);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 16);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "PRECIO VENTA";
+            // 
+            // TxtPrecioVenta
+            // 
+            this.TxtPrecioVenta.Location = new System.Drawing.Point(546, 161);
+            this.TxtPrecioVenta.Name = "TxtPrecioVenta";
+            this.TxtPrecioVenta.Size = new System.Drawing.Size(103, 22);
+            this.TxtPrecioVenta.TabIndex = 18;
             // 
             // Almacen
             // 
@@ -483,7 +505,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.LabelCategoria);
             this.Controls.Add(this.Dgv);
-            this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.CmbCategoria);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.TxtPrecio);
@@ -510,6 +531,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,5 +573,7 @@
         private System.Windows.Forms.ComboBox CmbProveedor;
         private System.Windows.Forms.TextBox TxtPrecio;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox TxtPrecioVenta;
     }
 }

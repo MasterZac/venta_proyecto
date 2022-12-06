@@ -53,14 +53,14 @@
             this.TxtCantidad = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.Dgv = new System.Windows.Forms.DataGridView();
-            this.BtnAgregarProducto = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.SKU_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnAgregarProducto = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.TxtProducto = new System.Windows.Forms.TextBox();
             this.TxtCliente = new System.Windows.Forms.TextBox();
@@ -78,6 +78,8 @@
             this.Txtbuscar = new System.Windows.Forms.TextBox();
             this.BtnLimpiarTxtBuscar = new System.Windows.Forms.Button();
             this.PanelConsultaProducto = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCantidad)).BeginInit();
@@ -105,7 +107,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 67);
+            this.panel2.Size = new System.Drawing.Size(893, 67);
             this.panel2.TabIndex = 124;
             // 
             // BtnSalir
@@ -144,7 +146,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 67);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(893, 22);
             this.statusStrip1.TabIndex = 125;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -228,7 +230,7 @@
             // 
             // BtnConsultar
             // 
-            this.BtnConsultar.Location = new System.Drawing.Point(323, 183);
+            this.BtnConsultar.Location = new System.Drawing.Point(390, 128);
             this.BtnConsultar.Name = "BtnConsultar";
             this.BtnConsultar.Size = new System.Drawing.Size(76, 23);
             this.BtnConsultar.TabIndex = 132;
@@ -300,7 +302,7 @@
             // 
             // TxtCantidad
             // 
-            this.TxtCantidad.Location = new System.Drawing.Point(549, 246);
+            this.TxtCantidad.Location = new System.Drawing.Point(665, 248);
             this.TxtCantidad.Name = "TxtCantidad";
             this.TxtCantidad.Size = new System.Drawing.Size(62, 20);
             this.TxtCantidad.TabIndex = 141;
@@ -308,7 +310,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(546, 230);
+            this.label8.Location = new System.Drawing.Point(662, 232);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 142;
@@ -327,35 +329,6 @@
             this.Dgv.Name = "Dgv";
             this.Dgv.Size = new System.Drawing.Size(675, 150);
             this.Dgv.TabIndex = 143;
-            // 
-            // BtnAgregarProducto
-            // 
-            this.BtnAgregarProducto.Location = new System.Drawing.Point(635, 241);
-            this.BtnAgregarProducto.Name = "BtnAgregarProducto";
-            this.BtnAgregarProducto.Size = new System.Drawing.Size(75, 23);
-            this.BtnAgregarProducto.TabIndex = 144;
-            this.BtnAgregarProducto.Text = "Agregar";
-            this.BtnAgregarProducto.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(31, 486);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 20);
-            this.label9.TabIndex = 145;
-            this.label9.Text = "Total:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(90, 486);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 20);
-            this.label10.TabIndex = 146;
-            this.label10.Text = "0.00";
             // 
             // SKU_producto
             // 
@@ -381,6 +354,36 @@
             // 
             this.SubTotal.HeaderText = "Sub Total";
             this.SubTotal.Name = "SubTotal";
+            // 
+            // BtnAgregarProducto
+            // 
+            this.BtnAgregarProducto.Location = new System.Drawing.Point(757, 245);
+            this.BtnAgregarProducto.Name = "BtnAgregarProducto";
+            this.BtnAgregarProducto.Size = new System.Drawing.Size(75, 23);
+            this.BtnAgregarProducto.TabIndex = 144;
+            this.BtnAgregarProducto.Text = "Agregar";
+            this.BtnAgregarProducto.UseVisualStyleBackColor = true;
+            this.BtnAgregarProducto.Click += new System.EventHandler(this.BtnAgregarProducto_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(31, 486);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 20);
+            this.label9.TabIndex = 145;
+            this.label9.Text = "Total:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(90, 486);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 20);
+            this.label10.TabIndex = 146;
+            this.label10.Text = "0.00";
             // 
             // button4
             // 
@@ -417,9 +420,9 @@
             this.PanelConsultaCliente.Controls.Add(this.label12);
             this.PanelConsultaCliente.Controls.Add(this.BtnCerrarConsultCliente);
             this.PanelConsultaCliente.Controls.Add(this.DgvClientes);
-            this.PanelConsultaCliente.Location = new System.Drawing.Point(777, 164);
+            this.PanelConsultaCliente.Location = new System.Drawing.Point(390, 112);
             this.PanelConsultaCliente.Name = "PanelConsultaCliente";
-            this.PanelConsultaCliente.Size = new System.Drawing.Size(495, 257);
+            this.PanelConsultaCliente.Size = new System.Drawing.Size(525, 261);
             this.PanelConsultaCliente.TabIndex = 152;
             this.PanelConsultaCliente.Visible = false;
             // 
@@ -575,18 +578,35 @@
             this.PanelConsultaProducto.Controls.Add(this.label11);
             this.PanelConsultaProducto.Controls.Add(this.BtnCerrarPanel2);
             this.PanelConsultaProducto.Controls.Add(this.DgvProducto);
-            this.PanelConsultaProducto.Location = new System.Drawing.Point(777, 164);
+            this.PanelConsultaProducto.Location = new System.Drawing.Point(390, 112);
             this.PanelConsultaProducto.Name = "PanelConsultaProducto";
-            this.PanelConsultaProducto.Size = new System.Drawing.Size(495, 257);
+            this.PanelConsultaProducto.Size = new System.Drawing.Size(525, 261);
             this.PanelConsultaProducto.TabIndex = 151;
             this.PanelConsultaProducto.Visible = false;
             this.PanelConsultaProducto.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelConsultaProducto_Paint);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(541, 228);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 13);
+            this.label13.TabIndex = 153;
+            this.label13.Text = "Precio Venta:";
+            // 
+            // TxtPrecioVenta
+            // 
+            this.TxtPrecioVenta.Location = new System.Drawing.Point(544, 248);
+            this.TxtPrecioVenta.Name = "TxtPrecioVenta";
+            this.TxtPrecioVenta.ReadOnly = true;
+            this.TxtPrecioVenta.Size = new System.Drawing.Size(88, 20);
+            this.TxtPrecioVenta.TabIndex = 154;
             // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 551);
+            this.ClientSize = new System.Drawing.Size(893, 551);
             this.Controls.Add(this.PanelConsultaProducto);
             this.Controls.Add(this.PanelConsultaCliente);
             this.Controls.Add(this.TxtCliente);
@@ -614,6 +634,8 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.TxtPrecioVenta);
+            this.Controls.Add(this.label13);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Ventas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -688,5 +710,7 @@
         private System.Windows.Forms.TextBox Txtbuscar;
         private System.Windows.Forms.Button BtnLimpiarTxtBuscar;
         private System.Windows.Forms.Panel PanelConsultaProducto;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox TxtPrecioVenta;
     }
 }

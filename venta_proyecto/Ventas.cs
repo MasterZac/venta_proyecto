@@ -182,10 +182,10 @@ namespace venta_proyecto
             {
                 if (DgvProducto.SelectedRows.Count > 0)
                 {
-                    TxtSKU.Text = DgvProducto.SelectedCells[1].Value.ToString();
-                    TxtProducto.Text = DgvProducto.SelectedCells[2].Value.ToString();
-                    TxtStock.Text = DgvProducto.SelectedCells[3].Value.ToString();
-                    Txt
+                    TxtSKU.Text = DgvProducto.SelectedCells[0].Value.ToString();
+                    TxtProducto.Text = DgvProducto.SelectedCells[1].Value.ToString();
+                    TxtStock.Text = DgvProducto.SelectedCells[2].Value.ToString();
+                    TxtPrecioVenta.Text = DgvProducto.SelectedCells[4].Value.ToString();
                 }
 
             }
@@ -197,6 +197,57 @@ namespace venta_proyecto
 
         private void DgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        public bool ProductoAgregado()
+        {
+            bool respuesta = false;
+            if (Dgv.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in Dgv.Rows)
+                {
+                    if (fila.Cells["SKU"].Value.ToString() == TxtSKU.Text)
+                    {
+                        respuesta = true;
+                        break;
+                    }
+                }
+            }
+            return respuesta;
+        }
+
+        private void BtnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            if (TxtID_cliente.Text.Trim() == "" && TxtCliente.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe escoger el cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            /*
+            if (ProductoAgregado())
+            {
+                MessageBox.Show("El producto ya está agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }*/
+            int stock = Convert.ToInt32(TxtStock.Text);
+
+            if (TxtCantidad.Value > stock)
+            {
+                MessageBox.Show("La cantidad no puede ser mayor al stock", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            int cantidad = Convert.ToInt32(TxtCantidad.Value.ToString());
+            double precioVenta = Convert.ToDouble(TxtPrecioVenta.Text);
+            double SubTotal = cantidad * precioVenta;
+
+            Dgv.Rows.Add(new object[] {"",
+                TxtSKU.Text,
+                TxtProducto.Text,
+                TxtCantidad.Value.ToString(),
+                TxtPrecioVenta.Text,
+                SubTotal.ToString()
+            });
 
         }
     }
