@@ -135,6 +135,7 @@ namespace venta_proyecto
         private void BtnVentas_Click(object sender, EventArgs e)
         {
             Ventas x = new Ventas();
+            x.NombreUsuario = lblstatus1.Text;
             this.Hide();
             x.Show();
         }
