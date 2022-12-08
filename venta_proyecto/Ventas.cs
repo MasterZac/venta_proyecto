@@ -44,6 +44,7 @@ namespace venta_proyecto
             ConsultaIDUsuario();
             cargar.DgvProductos(DgvProducto);
             cargar.DgvCliente(DgvClientes);
+            ConsultarNumFactura();
         }
 
         public void Limpiar()
@@ -126,7 +127,7 @@ namespace venta_proyecto
                 DgvClientes.DataSource = dt;
 
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -222,7 +223,7 @@ namespace venta_proyecto
                     TxtSKU.Text = DgvProducto.SelectedCells[0].Value.ToString();
                     TxtProducto.Text = DgvProducto.SelectedCells[1].Value.ToString();
                     TxtStock.Text = DgvProducto.SelectedCells[2].Value.ToString();
-                    TxtPrecioVenta.Text = DgvProducto.SelectedCells[4].Value.ToString();
+                    TxtPrecioVenta.Text = DgvProducto.SelectedCells[3].Value.ToString();
                     DgvProducto.ClearSelection();
                 }
 
@@ -313,10 +314,11 @@ namespace venta_proyecto
                 int cantidad = Convert.ToInt32(TxtCantidad.Value.ToString());
                 double precioVenta = Convert.ToDouble(TxtPrecioVenta.Text);
                 double SubTotal = cantidad * precioVenta;
-                Dgv.Rows.Add(new object[] { TxtSKU.Text, TxtProducto.Text, TxtCantidad.Value.ToString(), TxtPrecioVenta.Text, SubTotal.ToString() });
+                Dgv.Rows.Add(new object[] {TxtNum_factura.Text ,TxtSKU.Text, TxtProducto.Text, TxtCantidad.Value.ToString(), TxtPrecioVenta.Text, SubTotal.ToString() });
                 MessageBox.Show("PRODUCTO AGREGADO AL DETALLE_VENTA");
                 BtnConsultar.Enabled = false;
                 calcularTotal();
+
                 TxtSKU.Clear();
                 TxtProducto.Clear();
                 TxtStock.Clear();
@@ -326,7 +328,7 @@ namespace venta_proyecto
            }
            else
            {
-                MessageBox.Show("INGRESA LA CANTIDAD A LLEVAR");
+                MessageBox.Show("INGRESE LA CANTIDAD DE QUE LLEVARA DEL PRODUCTO ELEGIDO");
            }
 
         }
@@ -349,10 +351,10 @@ namespace venta_proyecto
         {
             if (Dgv.SelectedRows.Count > 0)
             {
-                TxtSKU.Text = Dgv.SelectedCells[0].Value.ToString();
-                TxtProducto.Text = Dgv.SelectedCells[1].Value.ToString();
-                TxtCantidad.Value = Convert.ToInt64(Dgv.SelectedCells[2].Value.ToString());
-                TxtPrecioVenta.Text = Dgv.SelectedCells[3].Value.ToString();
+                TxtSKU.Text = Dgv.SelectedCells[1].Value.ToString();
+                TxtProducto.Text = Dgv.SelectedCells[2].Value.ToString();
+                TxtCantidad.Value = Convert.ToInt64(Dgv.SelectedCells[3].Value.ToString());
+                TxtPrecioVenta.Text = Dgv.SelectedCells[4].Value.ToString();
 
                 ConsultarStock();
 
@@ -402,61 +404,113 @@ namespace venta_proyecto
 
         private void BtnTerminar_Click(object sender, EventArgs e)
         {
-            if (Dgv.Rows.Count == 0)
+            DialogResult opcion = MessageBox.Show("Desea terminar con la venta", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (opcion == DialogResult.OK)
             {
-                MessageBox.Show("Debe ingresar productos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            //Agregar Venta
-            try
-            {
-                Conectar();
-                cmd = new MySqlCommand("AddVenta", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                MySqlParameter _fecha = new MySqlParameter("_fecha", MySqlDbType.DateTime);
-                _fecha.Value = Convert.ToDateTime(DateTime.Now.ToString("s"));
-                cmd.Parameters.Add(_fecha);
-
-                MySqlParameter _id_cliente = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
-                _id_cliente.Value = TxtID_cliente.Text;
-                cmd.Parameters.Add(_id_cliente);
-
-                MySqlParameter _id_usuario = new MySqlParameter("_id_usuario", MySqlDbType.VarChar, 5);
-                _id_usuario.Value = ID_usuario.Text;
-                cmd.Parameters.Add(_id_usuario);
-
-                MySqlParameter _monto_final = new MySqlParameter("_monto_final", MySqlDbType.Double);
-                _monto_final.Value = Convert.ToDouble(LabelTotal.Text);
-                cmd.Parameters.Add(_monto_final);
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Desconectar();
-            }
-
-            //Agregar Detalle_venta
-            try
-            {
-                Conectar();
-                cmd = new MySqlCommand("AddDetalle_venta", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                foreach (DataGridViewRow row in Dgv.Rows)
+                bool venta_exito = false;
+                if (Dgv.Rows.Count == 0)
                 {
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.Add("_sku_producto", MySqlDbType.VarChar, 5).Value = Convert.ToString(row.Cells["SKU_producto"].Value);
-                    cmd.Parameters.Add("_nombre_producto", MySqlDbType.VarChar, 100).Value = Convert.ToString(row.Cells["Nombre_producto"].Value);
-                    cmd.Parameters.Add("_cantidad", MySqlDbType.Int32).Value = Convert.ToInt32(row.Cells["Cantidad_venta"].Value);
-                    cmd.Parameters.Add("_precio", MySqlDbType.Double).Value = Convert.ToDouble(row.Cells["Precio_venta"].Value);
+                    MessageBox.Show("Debe ingresar productos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                //Agregar Venta
+                try
+                {
+                    Conectar();
+                    cmd = new MySqlCommand("AddVenta", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    MySqlParameter _fecha = new MySqlParameter("_fecha", MySqlDbType.DateTime);
+                    _fecha.Value = Convert.ToDateTime(DateTime.Now.ToString("s"));
+                    cmd.Parameters.Add(_fecha);
+
+                    MySqlParameter _id_cliente = new MySqlParameter("_id_cliente", MySqlDbType.VarChar, 5);
+                    _id_cliente.Value = TxtID_cliente.Text;
+                    cmd.Parameters.Add(_id_cliente);
+
+                    MySqlParameter _id_usuario = new MySqlParameter("_id_usuario", MySqlDbType.VarChar, 5);
+                    _id_usuario.Value = ID_usuario.Text;
+                    cmd.Parameters.Add(_id_usuario);
+
+                    MySqlParameter _monto_final = new MySqlParameter("_monto_final", MySqlDbType.Double);
+                    _monto_final.Value = Convert.ToDouble(LabelTotal.Text);
+                    cmd.Parameters.Add(_monto_final);
                     cmd.ExecuteNonQuery();
-                    
+                    venta_exito = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                //Agregar Detalle_venta
+                if (venta_exito == true)
+                {
+                    try
+                    {
+                        Conectar();
+                        cmd = new MySqlCommand("AddDetalle_venta", cnn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Con el foreach recorro todos los datos de las columnas del datagridview y mando a mi base de datos
+                        foreach (DataGridViewRow row in Dgv.Rows)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add("_numero_factura", MySqlDbType.Int32).Value = Convert.ToString(row.Cells["Num_factura"].Value);
+                            cmd.Parameters.Add("_sku_producto", MySqlDbType.VarChar, 5).Value = Convert.ToString(row.Cells["SKU_producto"].Value);
+                            cmd.Parameters.Add("_nombre_producto", MySqlDbType.VarChar, 100).Value = Convert.ToString(row.Cells["Nombre_producto"].Value);
+                            cmd.Parameters.Add("_cantidad", MySqlDbType.Int32).Value = Convert.ToString(row.Cells["Cantidad_venta"].Value);
+                            cmd.Parameters.Add("_precio", MySqlDbType.Double).Value = Convert.ToString(row.Cells["Precio_venta"].Value);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Desconectar();
+                    }
+
+                    Dgv.Rows.Clear();
+                    Limpiar();
+                    MessageBox.Show("VENTA EXITOSA");
+                    BtnConsultar.Enabled = true;
+                    ConsultarNumFactura();
+
+                }
+            }
+        }
+
+        public void ConsultarNumFactura()
+        {
+            int a;
+            try
+            {
+                Conectar();
+                string query = "Select MAX(Numero_factura) From venta";
+                cmd = new MySqlCommand(query, cnn);
+                cmd.CommandType = CommandType.Text;
+                rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    string valor = rd[0].ToString();
+                    if (valor == "")
+                    {
+                        TxtNum_factura.Text = "1";
+                    }
+                    else
+                    {
+                        a = Convert.ToInt32(rd[0].ToString());
+                        a = a + 1;
+                        TxtNum_factura.Text = a.ToString();
+                    }
                 }
             }
             catch (Exception ex)
@@ -467,12 +521,23 @@ namespace venta_proyecto
             {
                 Desconectar();
             }
-            MessageBox.Show("VENTA EXITOSA");
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             lblstatus2.Text = DateTime.Now.ToString("F");
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            DialogResult boton = MessageBox.Show("Realmente desea salir?", "Alerta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (boton == DialogResult.OK)
+            {
+                Menu x = new Menu();
+                x.NombreUsuario = lblstatus1.Text;
+                this.Hide();
+                x.Show();
+            }
         }
     }
 }
