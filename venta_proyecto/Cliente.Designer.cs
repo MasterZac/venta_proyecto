@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -421,43 +423,44 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 87);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusStrip1.Size = new System.Drawing.Size(1077, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1077, 25);
             this.statusStrip1.TabIndex = 83;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(6, 3, 0, 2);
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(52, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(67, 20);
             this.toolStripStatusLabel2.Text = "Usuario:";
             // 
             // lblstatus1
             // 
             this.lblstatus1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblstatus1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblstatus1.Name = "lblstatus1";
-            this.lblstatus1.Size = new System.Drawing.Size(118, 17);
+            this.lblstatus1.Size = new System.Drawing.Size(151, 20);
             this.lblstatus1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(30, 3, 0, 2);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(102, 20);
             this.toolStripStatusLabel1.Text = "Fecha / Hora:";
             // 
             // lblstatus2
             // 
             this.lblstatus2.BackColor = System.Drawing.SystemColors.Control;
             this.lblstatus2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.lblstatus2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblstatus2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblstatus2.Name = "lblstatus2";
             this.lblstatus2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblstatus2.Size = new System.Drawing.Size(118, 17);
+            this.lblstatus2.Size = new System.Drawing.Size(151, 20);
             this.lblstatus2.Text = "toolStripStatusLabel1";
             // 
             // groupBox1
@@ -480,6 +483,11 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DETALLE CLIENTE";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // Cliente
             // 
@@ -573,5 +581,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Timer timer;
     }
 }

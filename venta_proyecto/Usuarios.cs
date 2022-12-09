@@ -244,7 +244,6 @@ namespace venta_proyecto
         private void Registro_usuario_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvUsuarios(Dgv);
         }
 
@@ -416,6 +415,11 @@ namespace venta_proyecto
             x.NombreUsuario = lblstatus1.Text;
             this.Hide();
             x.Show();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }

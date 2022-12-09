@@ -88,7 +88,6 @@ namespace venta_proyecto
         private void Proveedor_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvProveedor(Dgv);
            
         }
@@ -551,6 +550,11 @@ namespace venta_proyecto
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }

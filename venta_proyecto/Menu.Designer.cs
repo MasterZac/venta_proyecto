@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnCerrarPrograma = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,13 +47,14 @@
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.BtnVentas = new System.Windows.Forms.Button();
             this.BtnUsuarios = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.BtnCerrarPrograma);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.BtnSalir);
@@ -189,49 +191,51 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(6, 3, 0, 2);
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(52, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(59, 17);
             this.toolStripStatusLabel2.Text = "Usuario:";
             // 
             // lblstatus1
             // 
             this.lblstatus1.BackColor = System.Drawing.SystemColors.Control;
+            this.lblstatus1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblstatus1.Name = "lblstatus1";
-            this.lblstatus1.Size = new System.Drawing.Size(118, 17);
+            this.lblstatus1.Size = new System.Drawing.Size(131, 17);
             this.lblstatus1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel3
             // 
-            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(28, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel3.Text = "Rol:";
             // 
             // LabelRol
             // 
+            this.LabelRol.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelRol.Name = "LabelRol";
-            this.LabelRol.Size = new System.Drawing.Size(118, 17);
+            this.LabelRol.Size = new System.Drawing.Size(131, 17);
             this.LabelRol.Text = "toolStripStatusLabel4";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(30, 3, 0, 2);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(125, 17);
-            this.toolStripStatusLabel1.Text = "Fecha / Hora Ingreso:";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(91, 17);
+            this.toolStripStatusLabel1.Text = "Fecha / Hora:";
             // 
             // lblstatus2
             // 
             this.lblstatus2.BackColor = System.Drawing.SystemColors.Control;
             this.lblstatus2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.lblstatus2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblstatus2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblstatus2.Name = "lblstatus2";
             this.lblstatus2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblstatus2.Size = new System.Drawing.Size(118, 17);
+            this.lblstatus2.Size = new System.Drawing.Size(131, 17);
             this.lblstatus2.Text = "toolStripStatusLabel1";
             // 
             // BtnVentas
@@ -259,6 +263,11 @@
             this.BtnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnUsuarios.UseVisualStyleBackColor = true;
             this.BtnUsuarios.Click += new System.EventHandler(this.BtnUsuarios_Click);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // Menu
             // 
@@ -307,6 +316,7 @@
         private System.Windows.Forms.Button BtnVentas;
         private System.Windows.Forms.Button BtnCerrarPrograma;
         private System.Windows.Forms.Button BtnUsuarios;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

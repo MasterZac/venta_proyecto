@@ -31,7 +31,6 @@ namespace venta_proyecto
         private void Categoria_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format(NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvCategoria(Dgv);
            
         }
@@ -409,6 +408,11 @@ namespace venta_proyecto
             {
                 Consultas();
             }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }

@@ -88,7 +88,7 @@ namespace venta_proyecto
 
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM producto Where (" + CboBuscarPor.Text + ") Like ('" + Txtbuscar.Text + "%')";
+                cmd.CommandText = "SELECT * FROM producto Where (" + CboBuscarPorTipoProducto.Text + ") Like ('" + TxtBuscarP.Text + "%')";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();
@@ -117,7 +117,7 @@ namespace venta_proyecto
 
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM cliente Where (" + CmbConsultPor.Text + ") Like ('%" + TxtBusc.Text + "%')";
+                cmd.CommandText = "SELECT * FROM cliente Where (" + CmbConsultPorTipoC.Text + ") Like ('%" + TxtBusc.Text + "%')";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();
@@ -145,12 +145,11 @@ namespace venta_proyecto
 
         private void BtnConsultaProducto_Click(object sender, EventArgs e)
         {
-            PanelConsultaProducto.Visible = true;
+            tabControlProductos.Visible = true;
         }
 
         private void BtnCerrarPanel2_Click(object sender, EventArgs e)
         {
-            PanelConsultaProducto.Visible = false;
         }
 
         private void BtnConsultar_Click(object sender, EventArgs e)
@@ -160,31 +159,22 @@ namespace venta_proyecto
 
         private void BtnCerrarConsultCliente_Click(object sender, EventArgs e)
         {
-            PanelConsultaCliente.Visible = false;
+            tabControlClientes.Visible = false;
         }
 
         private void BtnConsultar_Click_1(object sender, EventArgs e)
         {
-            PanelConsultaCliente.Visible = true;
+            tabControlClientes.Visible = true;
         }
 
         private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
-            {
-                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                e.Handled = true;
-                return;
-            }
-            else
-            {
-                ConsultaProducto();
-            }
+            
         }
 
         private void TxtBusc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
+            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CmbConsultPorTipoC.Text == "")
             {
                 MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 e.Handled = true;
@@ -216,22 +206,7 @@ namespace venta_proyecto
 
         private void DgvProducto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (DgvProducto.SelectedRows.Count > 0)
-                {
-                    TxtSKU.Text = DgvProducto.SelectedCells[0].Value.ToString();
-                    TxtProducto.Text = DgvProducto.SelectedCells[1].Value.ToString();
-                    TxtStock.Text = DgvProducto.SelectedCells[2].Value.ToString();
-                    TxtPrecioVenta.Text = DgvProducto.SelectedCells[3].Value.ToString();
-                    DgvProducto.ClearSelection();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
         }
 
         private void DgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -483,6 +458,7 @@ namespace venta_proyecto
                     MessageBox.Show("VENTA EXITOSA");
                     BtnConsultar.Enabled = true;
                     ConsultarNumFactura();
+                    calcularTotal();
 
                 }
             }
@@ -530,13 +506,50 @@ namespace venta_proyecto
 
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("Realmente desea salir?", "Alerta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult boton = MessageBox.Show("Realmente desea salir?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (boton == DialogResult.OK)
             {
                 Menu x = new Menu();
                 x.NombreUsuario = lblstatus1.Text;
                 this.Hide();
                 x.Show();
+            }
+        }
+
+        private void TxtBuscarP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPorTipoProducto.Text == "")
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                ConsultaProducto();
+            }
+        }
+
+        private void BtnLimpiarBuscP_Click(object sender, EventArgs e)
+        {
+            TxtBuscarP.Clear();
+            cargar.DgvProductos(DgvProducto);
+        }
+
+        private void BtnCerrartapControlP_Click(object sender, EventArgs e)
+        {
+            tabControlProductos.Visible = false;
+        }
+
+        private void DgvProducto_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgvProducto.SelectedRows.Count > 0)
+            {
+                TxtSKU.Text = DgvProducto.SelectedCells[0].Value.ToString();
+                TxtProducto.Text = DgvProducto.SelectedCells[1].Value.ToString();
+                TxtStock.Text = DgvProducto.SelectedCells[2].Value.ToString();
+                TxtPrecioVenta.Text = DgvProducto.SelectedCells[3].Value.ToString();
+                DgvProducto.ClearSelection();
             }
         }
     }

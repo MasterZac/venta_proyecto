@@ -40,7 +40,6 @@ namespace venta_proyecto
         private void Almacen_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvProductos(Dgv);
             ConsultaComboProveedor();
             ConsultaComboCategoria();
@@ -670,6 +669,11 @@ namespace venta_proyecto
         {
            
 
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }

@@ -83,7 +83,6 @@ namespace venta_proyecto
         private void Cliente_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = String.Format("{0}", NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             cargar.DgvCliente(Dgv);
         }
 
@@ -514,6 +513,11 @@ namespace venta_proyecto
         {
             Txtbuscar.Clear();
             cargar.DgvCliente(Dgv);
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }

@@ -101,7 +101,6 @@ namespace venta_proyecto
         private void Menu_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
-            lblstatus2.Text = DateTime.Now.ToString("f");
             ConsultarTipoDeUser();
             if (LabelRol.Text == "Vendedor")
             {
@@ -138,6 +137,11 @@ namespace venta_proyecto
             x.NombreUsuario = lblstatus1.Text;
             this.Hide();
             x.Show();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblstatus2.Text = DateTime.Now.ToString("F");
         }
     }
 }
