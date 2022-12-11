@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnCerrar = new System.Windows.Forms.Button();
@@ -85,16 +85,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.BtnCerrartapControlP = new System.Windows.Forms.Button();
             this.DgvProducto = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControlClientes = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.DgvClientes = new System.Windows.Forms.DataGridView();
-            this.BtnCerrarConsultCliente = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.CmbConsultPorTipoC = new System.Windows.Forms.ComboBox();
-            this.TxtBusc = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.PanelConsultaCliente = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TxtBusc = new System.Windows.Forms.TextBox();
+            this.CmbConsultPorTipoC = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.BtnCerrarConsultCliente = new System.Windows.Forms.Button();
+            this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCantidad)).BeginInit();
@@ -104,8 +104,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvProducto)).BeginInit();
             this.tabControlClientes.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
             this.PanelConsultaCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -391,14 +391,14 @@
             this.Dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Num_factura,
@@ -673,13 +673,21 @@
             this.DgvProducto.TabIndex = 84;
             this.DgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProducto_CellClick_1);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(476, 238);
+            this.panel1.TabIndex = 161;
+            // 
             // tabControlClientes
             // 
             this.tabControlClientes.Controls.Add(this.tabPage2);
-            this.tabControlClientes.Location = new System.Drawing.Point(344, 183);
+            this.tabControlClientes.Location = new System.Drawing.Point(333, 183);
             this.tabControlClientes.Name = "tabControlClientes";
             this.tabControlClientes.SelectedIndex = 0;
-            this.tabControlClientes.Size = new System.Drawing.Size(523, 288);
+            this.tabControlClientes.Size = new System.Drawing.Size(496, 288);
             this.tabControlClientes.TabIndex = 160;
             this.tabControlClientes.Visible = false;
             // 
@@ -689,47 +697,47 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(515, 262);
+            this.tabPage2.Size = new System.Drawing.Size(488, 262);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Clientes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // DgvClientes
+            // PanelConsultaCliente
             // 
-            this.DgvClientes.AllowUserToAddRows = false;
-            this.DgvClientes.AllowUserToDeleteRows = false;
-            this.DgvClientes.AllowUserToResizeColumns = false;
-            this.DgvClientes.AllowUserToResizeRows = false;
-            this.DgvClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DgvClientes.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvClientes.Location = new System.Drawing.Point(31, 57);
-            this.DgvClientes.Name = "DgvClientes";
-            this.DgvClientes.Size = new System.Drawing.Size(429, 150);
-            this.DgvClientes.TabIndex = 0;
-            this.DgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvClientes_CellClick);
+            this.PanelConsultaCliente.BackColor = System.Drawing.Color.Gray;
+            this.PanelConsultaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelConsultaCliente.Controls.Add(this.button1);
+            this.PanelConsultaCliente.Controls.Add(this.TxtBusc);
+            this.PanelConsultaCliente.Controls.Add(this.CmbConsultPorTipoC);
+            this.PanelConsultaCliente.Controls.Add(this.label12);
+            this.PanelConsultaCliente.Controls.Add(this.BtnCerrarConsultCliente);
+            this.PanelConsultaCliente.Controls.Add(this.DgvClientes);
+            this.PanelConsultaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PanelConsultaCliente.Location = new System.Drawing.Point(6, 6);
+            this.PanelConsultaCliente.Name = "PanelConsultaCliente";
+            this.PanelConsultaCliente.Size = new System.Drawing.Size(474, 250);
+            this.PanelConsultaCliente.TabIndex = 152;
             // 
-            // BtnCerrarConsultCliente
+            // button1
             // 
-            this.BtnCerrarConsultCliente.Location = new System.Drawing.Point(385, 215);
-            this.BtnCerrarConsultCliente.Name = "BtnCerrarConsultCliente";
-            this.BtnCerrarConsultCliente.Size = new System.Drawing.Size(75, 23);
-            this.BtnCerrarConsultCliente.TabIndex = 83;
-            this.BtnCerrarConsultCliente.Text = "Cerrar";
-            this.BtnCerrarConsultCliente.UseVisualStyleBackColor = true;
-            this.BtnCerrarConsultCliente.Click += new System.EventHandler(this.BtnCerrarConsultCliente_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(390, 18);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 28);
+            this.button1.TabIndex = 80;
+            this.button1.Text = "Limpiar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // TxtBusc
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(27, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(104, 23);
-            this.label12.TabIndex = 81;
-            this.label12.Text = "Consular por:";
+            this.TxtBusc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBusc.Location = new System.Drawing.Point(251, 20);
+            this.TxtBusc.MaxLength = 100;
+            this.TxtBusc.Multiline = true;
+            this.TxtBusc.Name = "TxtBusc";
+            this.TxtBusc.Size = new System.Drawing.Size(114, 26);
+            this.TxtBusc.TabIndex = 79;
+            this.TxtBusc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBusc_KeyPress);
             // 
             // CmbConsultPorTipoC
             // 
@@ -749,50 +757,42 @@
             this.CmbConsultPorTipoC.Size = new System.Drawing.Size(97, 24);
             this.CmbConsultPorTipoC.TabIndex = 82;
             // 
-            // TxtBusc
+            // label12
             // 
-            this.TxtBusc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBusc.Location = new System.Drawing.Point(251, 20);
-            this.TxtBusc.MaxLength = 100;
-            this.TxtBusc.Multiline = true;
-            this.TxtBusc.Name = "TxtBusc";
-            this.TxtBusc.Size = new System.Drawing.Size(114, 26);
-            this.TxtBusc.TabIndex = 79;
-            this.TxtBusc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBusc_KeyPress);
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(27, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(104, 23);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Consular por:";
             // 
-            // button1
+            // BtnCerrarConsultCliente
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(390, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 28);
-            this.button1.TabIndex = 80;
-            this.button1.Text = "Limpiar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnCerrarConsultCliente.Location = new System.Drawing.Point(385, 215);
+            this.BtnCerrarConsultCliente.Name = "BtnCerrarConsultCliente";
+            this.BtnCerrarConsultCliente.Size = new System.Drawing.Size(75, 23);
+            this.BtnCerrarConsultCliente.TabIndex = 83;
+            this.BtnCerrarConsultCliente.Text = "Cerrar";
+            this.BtnCerrarConsultCliente.UseVisualStyleBackColor = true;
+            this.BtnCerrarConsultCliente.Click += new System.EventHandler(this.BtnCerrarConsultCliente_Click);
             // 
-            // PanelConsultaCliente
+            // DgvClientes
             // 
-            this.PanelConsultaCliente.BackColor = System.Drawing.SystemColors.Desktop;
-            this.PanelConsultaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelConsultaCliente.Controls.Add(this.button1);
-            this.PanelConsultaCliente.Controls.Add(this.TxtBusc);
-            this.PanelConsultaCliente.Controls.Add(this.CmbConsultPorTipoC);
-            this.PanelConsultaCliente.Controls.Add(this.label12);
-            this.PanelConsultaCliente.Controls.Add(this.BtnCerrarConsultCliente);
-            this.PanelConsultaCliente.Controls.Add(this.DgvClientes);
-            this.PanelConsultaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PanelConsultaCliente.Location = new System.Drawing.Point(6, 6);
-            this.PanelConsultaCliente.Name = "PanelConsultaCliente";
-            this.PanelConsultaCliente.Size = new System.Drawing.Size(503, 250);
-            this.PanelConsultaCliente.TabIndex = 152;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(476, 238);
-            this.panel1.TabIndex = 161;
+            this.DgvClientes.AllowUserToAddRows = false;
+            this.DgvClientes.AllowUserToDeleteRows = false;
+            this.DgvClientes.AllowUserToResizeColumns = false;
+            this.DgvClientes.AllowUserToResizeRows = false;
+            this.DgvClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DgvClientes.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.DgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvClientes.Location = new System.Drawing.Point(31, 57);
+            this.DgvClientes.Name = "DgvClientes";
+            this.DgvClientes.Size = new System.Drawing.Size(429, 150);
+            this.DgvClientes.TabIndex = 0;
+            this.DgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvClientes_CellClick);
             // 
             // Ventas
             // 
@@ -849,9 +849,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvProducto)).EndInit();
             this.tabControlClientes.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).EndInit();
             this.PanelConsultaCliente.ResumeLayout(false);
             this.PanelConsultaCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

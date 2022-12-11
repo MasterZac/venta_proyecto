@@ -48,6 +48,7 @@
             this.BtnVentas = new System.Windows.Forms.Button();
             this.BtnUsuarios = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.BtnSeccion_Consultas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -269,11 +270,25 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // BtnSeccion_Consultas
+            // 
+            this.BtnSeccion_Consultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSeccion_Consultas.ForeColor = System.Drawing.Color.Black;
+            this.BtnSeccion_Consultas.Location = new System.Drawing.Point(631, 160);
+            this.BtnSeccion_Consultas.Name = "BtnSeccion_Consultas";
+            this.BtnSeccion_Consultas.Size = new System.Drawing.Size(142, 130);
+            this.BtnSeccion_Consultas.TabIndex = 14;
+            this.BtnSeccion_Consultas.Text = "Seccion de consultas";
+            this.BtnSeccion_Consultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnSeccion_Consultas.UseVisualStyleBackColor = true;
+            this.BtnSeccion_Consultas.Click += new System.EventHandler(this.BtnSeccion_Consultas_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 488);
+            this.Controls.Add(this.BtnSeccion_Consultas);
             this.Controls.Add(this.BtnUsuarios);
             this.Controls.Add(this.BtnVentas);
             this.Controls.Add(this.statusStrip1);
@@ -317,6 +332,7 @@
         private System.Windows.Forms.Button BtnCerrarPrograma;
         private System.Windows.Forms.Button BtnUsuarios;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button BtnSeccion_Consultas;
     }
 }
 

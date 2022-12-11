@@ -91,9 +91,9 @@
             this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(6, 9);
+            this.label3.Location = new System.Drawing.Point(14, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(362, 33);
+            this.label3.Size = new System.Drawing.Size(320, 33);
             this.label3.TabIndex = 9;
             this.label3.Text = "INICIO DE SESION";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

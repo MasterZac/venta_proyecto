@@ -40,7 +40,7 @@ namespace venta_proyecto
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-            lblstatus1.Text = String.Format("{0}", NombreUsuario);
+              lblstatus1.Text = String.Format("{0}", NombreUsuario);
             ConsultaIDUsuario();
             cargar.DgvProductos(DgvProducto);
             cargar.DgvCliente(DgvClientes);
@@ -459,6 +459,7 @@ namespace venta_proyecto
                     BtnConsultar.Enabled = true;
                     ConsultarNumFactura();
                     calcularTotal();
+                    cargar.DgvProductos(DgvProducto);
 
                 }
             }

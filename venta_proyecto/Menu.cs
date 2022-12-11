@@ -143,5 +143,13 @@ namespace venta_proyecto
         {
             lblstatus2.Text = DateTime.Now.ToString("F");
         }
+
+        private void BtnSeccion_Consultas_Click(object sender, EventArgs e)
+        {
+            Seccion_de_Consultas x = new Seccion_de_Consultas();
+            x.nombreUsuario = lblstatus1.Text;
+            this.Hide();
+            x.Show();
+        }
     }
 }
