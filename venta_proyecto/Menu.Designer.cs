@@ -49,6 +49,7 @@
             this.BtnUsuarios = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.BtnSeccion_Consultas = new System.Windows.Forms.Button();
+            this.BtnLog = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -123,9 +124,9 @@
             // 
             this.BtnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnClientes.ForeColor = System.Drawing.Color.Black;
-            this.BtnClientes.Location = new System.Drawing.Point(110, 160);
+            this.BtnClientes.Location = new System.Drawing.Point(110, 198);
             this.BtnClientes.Name = "BtnClientes";
-            this.BtnClientes.Size = new System.Drawing.Size(142, 130);
+            this.BtnClientes.Size = new System.Drawing.Size(142, 74);
             this.BtnClientes.TabIndex = 8;
             this.BtnClientes.Text = "Clientes";
             this.BtnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -136,9 +137,9 @@
             // 
             this.BtnProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProveedores.ForeColor = System.Drawing.Color.Black;
-            this.BtnProveedores.Location = new System.Drawing.Point(483, 296);
+            this.BtnProveedores.Location = new System.Drawing.Point(457, 296);
             this.BtnProveedores.Name = "BtnProveedores";
-            this.BtnProveedores.Size = new System.Drawing.Size(142, 130);
+            this.BtnProveedores.Size = new System.Drawing.Size(142, 76);
             this.BtnProveedores.TabIndex = 7;
             this.BtnProveedores.Text = "Proveedores";
             this.BtnProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -149,9 +150,9 @@
             // 
             this.BtnCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCategorias.ForeColor = System.Drawing.Color.Black;
-            this.BtnCategorias.Location = new System.Drawing.Point(483, 160);
+            this.BtnCategorias.Location = new System.Drawing.Point(457, 198);
             this.BtnCategorias.Name = "BtnCategorias";
-            this.BtnCategorias.Size = new System.Drawing.Size(142, 130);
+            this.BtnCategorias.Size = new System.Drawing.Size(142, 74);
             this.BtnCategorias.TabIndex = 6;
             this.BtnCategorias.Text = "Categorias";
             this.BtnCategorias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -162,9 +163,9 @@
             // 
             this.BtnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProductos.ForeColor = System.Drawing.Color.Black;
-            this.BtnProductos.Location = new System.Drawing.Point(282, 160);
+            this.BtnProductos.Location = new System.Drawing.Point(282, 198);
             this.BtnProductos.Name = "BtnProductos";
-            this.BtnProductos.Size = new System.Drawing.Size(142, 130);
+            this.BtnProductos.Size = new System.Drawing.Size(125, 74);
             this.BtnProductos.TabIndex = 5;
             this.BtnProductos.Text = "Almacen";
             this.BtnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -245,7 +246,7 @@
             this.BtnVentas.ForeColor = System.Drawing.Color.Black;
             this.BtnVentas.Location = new System.Drawing.Point(110, 296);
             this.BtnVentas.Name = "BtnVentas";
-            this.BtnVentas.Size = new System.Drawing.Size(142, 130);
+            this.BtnVentas.Size = new System.Drawing.Size(142, 76);
             this.BtnVentas.TabIndex = 12;
             this.BtnVentas.Text = "Ventas";
             this.BtnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -258,7 +259,7 @@
             this.BtnUsuarios.ForeColor = System.Drawing.Color.Black;
             this.BtnUsuarios.Location = new System.Drawing.Point(282, 296);
             this.BtnUsuarios.Name = "BtnUsuarios";
-            this.BtnUsuarios.Size = new System.Drawing.Size(142, 130);
+            this.BtnUsuarios.Size = new System.Drawing.Size(125, 76);
             this.BtnUsuarios.TabIndex = 13;
             this.BtnUsuarios.Text = "Usuarios";
             this.BtnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -274,20 +275,34 @@
             // 
             this.BtnSeccion_Consultas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSeccion_Consultas.ForeColor = System.Drawing.Color.Black;
-            this.BtnSeccion_Consultas.Location = new System.Drawing.Point(631, 160);
+            this.BtnSeccion_Consultas.Location = new System.Drawing.Point(635, 198);
             this.BtnSeccion_Consultas.Name = "BtnSeccion_Consultas";
-            this.BtnSeccion_Consultas.Size = new System.Drawing.Size(142, 130);
+            this.BtnSeccion_Consultas.Size = new System.Drawing.Size(142, 74);
             this.BtnSeccion_Consultas.TabIndex = 14;
             this.BtnSeccion_Consultas.Text = "Seccion de consultas";
             this.BtnSeccion_Consultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnSeccion_Consultas.UseVisualStyleBackColor = true;
             this.BtnSeccion_Consultas.Click += new System.EventHandler(this.BtnSeccion_Consultas_Click);
             // 
+            // BtnLog
+            // 
+            this.BtnLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLog.ForeColor = System.Drawing.Color.Black;
+            this.BtnLog.Location = new System.Drawing.Point(635, 296);
+            this.BtnLog.Name = "BtnLog";
+            this.BtnLog.Size = new System.Drawing.Size(142, 76);
+            this.BtnLog.TabIndex = 15;
+            this.BtnLog.Text = "LOG";
+            this.BtnLog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnLog.UseVisualStyleBackColor = true;
+            this.BtnLog.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 488);
+            this.Controls.Add(this.BtnLog);
             this.Controls.Add(this.BtnSeccion_Consultas);
             this.Controls.Add(this.BtnUsuarios);
             this.Controls.Add(this.BtnVentas);
@@ -299,6 +314,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Menu";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
@@ -333,6 +349,7 @@
         private System.Windows.Forms.Button BtnUsuarios;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button BtnSeccion_Consultas;
+        private System.Windows.Forms.Button BtnLog;
     }
 }
 

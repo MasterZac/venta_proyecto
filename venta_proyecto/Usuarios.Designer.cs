@@ -50,6 +50,8 @@
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtConfirma = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -68,7 +70,7 @@
             // BtnRegistrar
             // 
             this.BtnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegistrar.Location = new System.Drawing.Point(121, 172);
+            this.BtnRegistrar.Location = new System.Drawing.Point(126, 203);
             this.BtnRegistrar.Name = "BtnRegistrar";
             this.BtnRegistrar.Size = new System.Drawing.Size(75, 36);
             this.BtnRegistrar.TabIndex = 0;
@@ -141,18 +143,18 @@
             // BtnNuevo
             // 
             this.BtnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNuevo.Location = new System.Drawing.Point(24, 172);
+            this.BtnNuevo.Location = new System.Drawing.Point(29, 203);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(75, 36);
             this.BtnNuevo.TabIndex = 11;
-            this.BtnNuevo.Text = "Refresh";
+            this.BtnNuevo.Text = "Limpiar";
             this.BtnNuevo.UseVisualStyleBackColor = true;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // BtnEliminar
             // 
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(216, 172);
+            this.BtnEliminar.Location = new System.Drawing.Point(221, 203);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(66, 36);
             this.BtnEliminar.TabIndex = 14;
@@ -217,7 +219,7 @@
             // 
             // BtnActualizar
             // 
-            this.BtnActualizar.Location = new System.Drawing.Point(24, 214);
+            this.BtnActualizar.Location = new System.Drawing.Point(29, 245);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(75, 33);
             this.BtnActualizar.TabIndex = 83;
@@ -282,6 +284,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.TxtConfirma);
             this.groupBox1.Controls.Add(this.BtnRegistrar);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtID);
@@ -294,12 +298,30 @@
             this.groupBox1.Controls.Add(this.CmbTipoUsuario);
             this.groupBox1.Controls.Add(this.BtnNuevo);
             this.groupBox1.Controls.Add(this.BtnEliminar);
-            this.groupBox1.Location = new System.Drawing.Point(16, 151);
+            this.groupBox1.Location = new System.Drawing.Point(21, 147);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(317, 299);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DETALLE USUARIO";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(54, 144);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 16);
+            this.label6.TabIndex = 86;
+            this.label6.Text = "Confirma:";
+            // 
+            // TxtConfirma
+            // 
+            this.TxtConfirma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtConfirma.Location = new System.Drawing.Point(130, 144);
+            this.TxtConfirma.Name = "TxtConfirma";
+            this.TxtConfirma.Size = new System.Drawing.Size(176, 22);
+            this.TxtConfirma.TabIndex = 87;
             // 
             // groupBox2
             // 
@@ -308,7 +330,7 @@
             this.groupBox2.Controls.Add(this.CboBuscarPor);
             this.groupBox2.Controls.Add(this.BtnLimpiarTxtBuscar);
             this.groupBox2.Controls.Add(this.Txtbuscar);
-            this.groupBox2.Location = new System.Drawing.Point(400, 151);
+            this.groupBox2.Location = new System.Drawing.Point(405, 147);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(508, 299);
             this.groupBox2.TabIndex = 88;
@@ -318,7 +340,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(365, 151);
+            this.panel2.Location = new System.Drawing.Point(370, 147);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(15, 316);
             this.panel2.TabIndex = 89;
@@ -439,5 +461,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtConfirma;
     }
 }

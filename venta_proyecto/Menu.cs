@@ -18,6 +18,8 @@ namespace venta_proyecto
         MySqlDataReader rd;
         public string NombreUsuario { get; set; }
         public string Rol { get; set; }
+        string fecha_entrada;
+        string fecha_salida;
         public Menu()
         {
             InitializeComponent();
@@ -69,6 +71,8 @@ namespace venta_proyecto
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
+            fecha_salida = Convert.ToString(DateTime.Now.ToString("s"));
+            EnviarBitacora();
             LOGIN x = new LOGIN();
             this.Hide();
             x.Show();
@@ -98,9 +102,42 @@ namespace venta_proyecto
             x.Show();
         }
 
+        public void EnviarBitacora()
+        {
+            try
+            {
+                Conectar();
+                cmd = new MySqlCommand("AddBitacora", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                MySqlParameter _usuario = new MySqlParameter("usuario", MySqlDbType.VarChar, 50);
+                _usuario.Value = lblstatus1.Text;
+                cmd.Parameters.Add(_usuario);
+
+                MySqlParameter _fecha_e = new MySqlParameter("fecha_e", MySqlDbType.DateTime);
+                _fecha_e.Value = Convert.ToDateTime(fecha_entrada);
+                cmd.Parameters.Add(_fecha_e);
+
+                MySqlParameter _fecha_s = new MySqlParameter("fecha_s", MySqlDbType.DateTime);
+                _fecha_s.Value = Convert.ToDateTime(fecha_salida);
+                cmd.Parameters.Add(_fecha_s);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
         private void Menu_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = string.Format("{0}", NombreUsuario);
+            fecha_entrada = Convert.ToString(DateTime.Now.ToString("s"));
             ConsultarTipoDeUser();
             if (LabelRol.Text == "Vendedor")
             {
@@ -149,6 +186,12 @@ namespace venta_proyecto
             Seccion_de_Consultas x = new Seccion_de_Consultas();
             x.nombreUsuario = lblstatus1.Text;
             this.Hide();
+            x.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Bitacora x = new Bitacora();
             x.Show();
         }
     }

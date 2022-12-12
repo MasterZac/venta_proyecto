@@ -55,7 +55,6 @@ namespace venta_proyecto
             {
                 try
                 {
-
                     Conectar();
                     string query = "";
                     switch(Cbo.SelectedIndex)
@@ -104,7 +103,7 @@ namespace venta_proyecto
                             break;
                         case 21: query = "SELECT producto.nombre, detalle_venta.Precio FROM detalle_venta, producto WHERE detalle_venta.SKU = producto.SKU AND detalle_venta.Num_factura = 5; ";
                             break;
-                        case 22: query = "SELECT producto.nombre FROM producto WHERE producto.ID_categoria NOT IN(SELECT ID FROM categoria WHERE Nombre = 'AUDIO'); ";
+                        case 22: query = "SELECT SUM(detalle_venta.Importe) As Monto_total FROM detalle_venta, producto WHERE detalle_venta.SKU = producto.SKU AND detalle_venta.Num_factura = 5; ";
                             break;
                         case 23: query = "SELECT producto.nombre FROM producto WHERE producto.ID_categoria NOT IN(SELECT ID FROM categoria WHERE Nombre = 'AUDIO'); ";
                             break;

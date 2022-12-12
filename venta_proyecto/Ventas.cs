@@ -21,6 +21,10 @@ namespace venta_proyecto
         DataTable dt;
 
         public string NombreUsuario { get; set; }
+        public string fecha_inicio;
+        public string fecha_corte;
+        public int ventas_turno = 0;
+        public double totalfacturas = 0;
 
         public Ventas()
         {
@@ -41,6 +45,7 @@ namespace venta_proyecto
         private void Ventas_Load(object sender, EventArgs e)
         {
               lblstatus1.Text = String.Format("{0}", NombreUsuario);
+            fecha_inicio = Convert.ToString(DateTime.Now.ToString("s"));
             ConsultaIDUsuario();
             cargar.DgvProductos(DgvProducto);
             cargar.DgvCliente(DgvClientes);
@@ -253,6 +258,7 @@ namespace venta_proyecto
             }
 
             LabelTotal.Text = total.ToString("0.00");
+            totalfacturas += total;
         }
 
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
@@ -412,6 +418,7 @@ namespace venta_proyecto
                     cmd.Parameters.Add(_monto_final);
                     cmd.ExecuteNonQuery();
                     venta_exito = true;
+                    ventas_turno++;
 
                 }
                 catch (Exception ex)
@@ -507,13 +514,19 @@ namespace venta_proyecto
 
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("Realmente desea salir?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult boton = MessageBox.Show("Desea cerrar turno?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (boton == DialogResult.OK)
             {
-                Menu x = new Menu();
+                fecha_corte = Convert.ToString(DateTime.Now.ToString("s"));
+                Corte_de_caja x = new Corte_de_caja();
                 x.NombreUsuario = lblstatus1.Text;
+                x.fecha_inicio = fecha_inicio;
+                x.fecha_corte = fecha_corte;
+                x.ventas_turno = ventas_turno;
+                x.totalfacturas = totalfacturas;
                 this.Hide();
                 x.Show();
+
             }
         }
 
@@ -552,6 +565,11 @@ namespace venta_proyecto
                 TxtPrecioVenta.Text = DgvProducto.SelectedCells[3].Value.ToString();
                 DgvProducto.ClearSelection();
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -148,5 +148,25 @@ namespace venta_proyecto
                 Desconectar();
             }
         }
+
+        public void DgvLog(DataGridView dgv)
+        {
+            try
+            {
+                Conectar();
+                da = new MySqlDataAdapter("dgvBitacora", cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
     }
 }

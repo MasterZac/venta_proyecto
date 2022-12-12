@@ -57,6 +57,12 @@
     <Compile Include="Almacen.Designer.cs">
       <DependentUpon>Almacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitacora.Designer.cs">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cargar_Dgv.cs" />
     <Compile Include="Categoria.cs">
       <SubType>Form</SubType>
@@ -69,6 +75,12 @@
     </Compile>
     <Compile Include="Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Corte de caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Corte de caja.Designer.cs">
+      <DependentUpon>Corte de caja.cs</DependentUpon>
     </Compile>
     <Compile Include="LOGIN.cs">
       <SubType>Form</SubType>
@@ -117,11 +129,17 @@
     <EmbeddedResource Include="Almacen.resx">
       <DependentUpon>Almacen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bitacora.resx">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Categoria.resx">
       <DependentUpon>Categoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Corte de caja.resx">
+      <DependentUpon>Corte de caja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOGIN.resx">
       <DependentUpon>LOGIN.cs</DependentUpon>

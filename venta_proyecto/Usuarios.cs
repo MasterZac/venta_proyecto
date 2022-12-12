@@ -45,6 +45,7 @@ namespace venta_proyecto
             TxtContraseña.Clear();
             CmbTipoUsuario.Text = " ";
             TxtNombreUsuario.Focus();
+            TxtConfirma.Clear();
             TxtID.ReadOnly = false;
         }
 
@@ -81,12 +82,17 @@ namespace venta_proyecto
         {
             bool existe = false;
 
-            if ( TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
+            if ( TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "" || TxtConfirma.Text == "")
             {
                 MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE REGISTRAR");
             }
             else
             {
+                if (TxtContraseña.Text != TxtConfirma.Text)
+                {
+                    MessageBox.Show("LAS CONTRASEÑAS DEBEN DE SER IGUALES");
+                    return;
+                }
                 try
                 {
                     Conectar();
@@ -313,6 +319,11 @@ namespace venta_proyecto
             }
             else
             {
+                if (TxtContraseña.Text != TxtConfirma.Text)
+                {
+                    MessageBox.Show("Las contraseñas deben de ser iguales");
+                    return;
+                }
                 try
                 {
                     Conectar();

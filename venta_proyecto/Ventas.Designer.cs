@@ -116,6 +116,7 @@
             this.groupBox2.Size = new System.Drawing.Size(737, 10);
             this.groupBox2.TabIndex = 123;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // panel2
             // 
@@ -135,11 +136,11 @@
             this.BtnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCerrar.ForeColor = System.Drawing.Color.White;
-            this.BtnCerrar.Location = new System.Drawing.Point(749, 12);
+            this.BtnCerrar.Location = new System.Drawing.Point(714, 12);
             this.BtnCerrar.Name = "BtnCerrar";
-            this.BtnCerrar.Size = new System.Drawing.Size(70, 42);
+            this.BtnCerrar.Size = new System.Drawing.Size(105, 42);
             this.BtnCerrar.TabIndex = 5;
-            this.BtnCerrar.Text = "Salir";
+            this.BtnCerrar.Text = "Cerrar turno";
             this.BtnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCerrar.UseVisualStyleBackColor = true;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
