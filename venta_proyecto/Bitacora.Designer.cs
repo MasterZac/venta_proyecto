@@ -39,10 +39,15 @@
             // 
             // Dgv
             // 
+            this.Dgv.AllowUserToAddRows = false;
+            this.Dgv.AllowUserToDeleteRows = false;
+            this.Dgv.AllowUserToResizeColumns = false;
+            this.Dgv.AllowUserToResizeRows = false;
+            this.Dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv.Location = new System.Drawing.Point(57, 81);
+            this.Dgv.Location = new System.Drawing.Point(12, 81);
             this.Dgv.Name = "Dgv";
-            this.Dgv.Size = new System.Drawing.Size(435, 170);
+            this.Dgv.Size = new System.Drawing.Size(530, 170);
             this.Dgv.TabIndex = 0;
             // 
             // label1

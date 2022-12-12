@@ -24,6 +24,17 @@ namespace venta_proyecto
         public int ventas_turno = 0;
         public double totalfacturas = 0;
 
+        public void Conectar()
+        {
+            cnn.ConnectionString = "Server = localhost; Database = ventahardware; user = root; password = root";
+            cnn.Open();
+        }
+
+        public void Desconectar()
+        {
+            cnn.Close();
+        }
+
         public Corte_de_caja()
         {
             InitializeComponent();
@@ -31,6 +42,7 @@ namespace venta_proyecto
 
         private void Corte_de_caja_Load(object sender, EventArgs e)
         {
+            ConsultarNumCorte();
             lblstatus1.Text = NombreUsuario.ToString();
             TxtFecha_inicio.Text = fecha_inicio.ToString();
             TxtFecha_cierre.Text = fecha_corte.ToString();
@@ -39,10 +51,46 @@ namespace venta_proyecto
             TxtTotalMonto.Text = totalfacturas.ToString();
         }
 
+        public void ConsultarNumCorte()
+        {
+            int a;
+            try
+            {
+                Conectar();
+                string query = "Select MAX(N°_corte) From corte_caja";
+                cmd = new MySqlCommand(query, cnn);
+                cmd.CommandType = CommandType.Text;
+                rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    string valor = rd[0].ToString();
+                    if (valor == "")
+                    {
+                        TxtNum_corte.Text = "1";
+                    }
+                    else
+                    {
+                        a = Convert.ToInt32(rd[0].ToString());
+                        a = a + 1;
+                        TxtNum_corte.Text = a.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             Ventas x = new Ventas();
             x.NombreUsuario = lblstatus1.Text;
+            x.ventas_turno = Convert.ToInt32(TxtTotal_Ventas.Text);
             x.totalfacturas = Convert.ToDouble(TxtTotalMonto.Text);
             this.Hide();
             x.Show();
@@ -55,10 +103,52 @@ namespace venta_proyecto
 
         private void BtnCerrarTurno_Click(object sender, EventArgs e)
         {
-            Menu x = new Menu();
-            x.NombreUsuario = lblstatus1.Text;
-            this.Hide();
-            x.Show();
+            DialogResult opcion = MessageBox.Show("Desear continuar con el cierre de turno?","Mensaje",MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (opcion == DialogResult.OK)
+            {
+                try
+                {
+                    Conectar();
+                    cmd = new MySqlCommand("AddCorte", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    MySqlParameter usuario = new MySqlParameter("usuario", MySqlDbType.VarChar, 50);
+                    usuario.Value = TxtNombreUsuario.Text;
+                    cmd.Parameters.Add(usuario);
+
+                    MySqlParameter fecha_i = new MySqlParameter("finicio", MySqlDbType.DateTime);
+                    fecha_i.Value = TxtFecha_inicio.Text;
+                    cmd.Parameters.Add(fecha_i);
+
+                    MySqlParameter ventas = new MySqlParameter("ventas", MySqlDbType.Int32);
+                    ventas.Value = Convert.ToInt32(TxtTotal_Ventas.Text);
+                    cmd.Parameters.Add(ventas);
+
+                    MySqlParameter fecha_c = new MySqlParameter("fcorte", MySqlDbType.DateTime);
+                    fecha_c.Value = TxtFecha_cierre;
+                    cmd.Parameters.Add(fecha_c);
+
+                    MySqlParameter efectivo = new MySqlParameter("efectivo", MySqlDbType.Double);
+                    efectivo.Value = Convert.ToDouble(TxtTotalMonto.Text);
+                    cmd.Parameters.Add(efectivo);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Corte exitoso");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+
+                Menu x = new Menu();
+                x.NombreUsuario = lblstatus1.Text;
+                this.Hide();
+                x.Show();
+            }
         }
     }
 }

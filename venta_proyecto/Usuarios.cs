@@ -432,5 +432,10 @@ namespace venta_proyecto
         {
             lblstatus2.Text = DateTime.Now.ToString("F");
         }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
