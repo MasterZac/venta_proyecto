@@ -168,5 +168,65 @@ namespace venta_proyecto
                 Desconectar();
             }
         }
+
+        public void DgvCompras(DataGridView dgv)
+        {
+            try
+            {
+                Conectar();
+                da = new MySqlDataAdapter("dgvCompras", cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
+        public void DgvVentas(DataGridView dgv)
+        {
+            try
+            {
+                Conectar();
+                da = new MySqlDataAdapter("dgvVentas", cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
+        public void DgvCortes(DataGridView dgv)
+        {
+            try
+            {
+                Conectar();
+                da = new MySqlDataAdapter("dgvCortes", cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
     }
 }

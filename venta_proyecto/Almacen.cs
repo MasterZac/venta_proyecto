@@ -127,7 +127,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select Nombre From categoria; ";
+                string query = "Select Nombre From categoria";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -152,7 +152,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select Nombre From proveedor; ";
+                string query = "Select Nombre From proveedor Where Estatus = 'Activo'; ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
@@ -186,10 +186,12 @@ namespace venta_proyecto
             TxtNombre.Clear();
             TxtStock.Clear();
             TxtPrecio.Clear();
+            TxtPrecioVenta.Clear();
             CmbCategoria.Text = " ";
             CmbProveedor.Text = " ";
             LabelCategoria.Text = "ID";
             LabelProveedor.Text = "ID";
+            TxtEstatus.Text = " ";
             TxtSku.Focus();
             TxtSku.ReadOnly = false;
         }
@@ -265,7 +267,7 @@ namespace venta_proyecto
                         cmd.Parameters.Add(_precio_venta);
 
                         MySqlParameter _id_categoria = new MySqlParameter("_id_categoria", MySqlDbType.Int32);
-                        _id_categoria.Value = Convert.ToInt32(LabelCategoria.Text);
+                        _id_categoria.Value = LabelCategoria.Text;
                         cmd.Parameters.Add(_id_categoria);
 
                         MySqlParameter _id_proveedor = new MySqlParameter("_id_proveedor", MySqlDbType.VarChar, 5);
@@ -295,14 +297,14 @@ namespace venta_proyecto
 
             if (TxtSku.Text == "") // Si la caja de texto de la clave PK esta vacia
             {
-                MessageBox.Show("INGRESA LA CLAVE PARA DEL PRODUCTO PARA REALIZAR LA ELIMINACION"); //imprimo que no se puede eliminar
+                MessageBox.Show("INGRESA LA CLAVE PARA DESHABILITAR EL PRODUCTO"); //imprimo que no se puede eliminar
             }
             else
             {
                 try
                 {
                     Conectar();
-                    //Antes de agregar consulto si ya existe ese producto
+                    
                     string query = "Select * From producto Where SKU = ('" + TxtSku.Text + "'); "; 
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
@@ -327,8 +329,20 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
+                bool estatus = false;
                 if ( existe == true) //Si existe el producto que haga el proceso para eliminar
                 {
+                    if (TxtEstatus.Text == "Activo")
+                    {
+                        TxtEstatus.Text = "Inactivo";
+                        estatus = true;
+                    }
+                    else if (TxtEstatus.Text == "Inactivo")
+                    {
+                        estatus = false;
+                        TxtEstatus.Text = "Activo";
+                    }
+
                     try
                     {
                         Conectar();
@@ -339,9 +353,16 @@ namespace venta_proyecto
                         _sku.Value = TxtSku.Text;
                         cmd.Parameters.Add(_sku);
 
+                        MySqlParameter _estatus = new MySqlParameter("_estatus", MySqlDbType.VarChar, 20);
+                        _estatus.Value = TxtEstatus.Text;
+                        cmd.Parameters.Add(_estatus);
+
                         cmd.ExecuteNonQuery();
                         cargar.DgvProductos(Dgv);
-                        MessageBox.Show("SE HA ELIMINADO EL PRODUCTO: " + TxtNombre.Text);
+                        if (estatus == true)
+                            MessageBox.Show("Producto deshabilitado");
+                        else
+                            MessageBox.Show("Producto habilitado");
                         Limpiar();
                     }
                     catch (Exception ex)
@@ -471,6 +492,7 @@ namespace venta_proyecto
                     TxtPrecioVenta.Text = Dgv.SelectedCells[4].Value.ToString();
                     LabelCategoria.Text = Dgv.SelectedCells[5].Value.ToString();
                     LabelProveedor.Text = Dgv.SelectedCells[6].Value.ToString();
+                    TxtEstatus.Text = Dgv.SelectedCells[7].Value.ToString();
                     Dgv.ClearSelection();
                     TxtSku.ReadOnly = true;
                     ConsultaNombreProveedor();

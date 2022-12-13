@@ -42,10 +42,10 @@ namespace venta_proyecto
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-            lblstatus1.Text = String.Format("{0}", NombreUsuario);
+            lblstatus1.Text = NombreUsuario.ToString();
             ConsultaIDUsuario();
-            cargar.DgvProductos(DgvProducto);
             cargar.DgvCliente(DgvClientes);
+            cargarProductosActivos();
             ConsultarNumFactura();
         }
 
@@ -59,6 +59,28 @@ namespace venta_proyecto
             TxtCantidad.Value = 0;
 
         }
+
+        public void cargarProductosActivos()
+        {
+            try
+            {
+                Conectar();
+                string query = "Select * From producto Where Estatus = 'Activo'";
+                da = new MySqlDataAdapter(query, cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                DgvProducto.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
         public void ConsultaIDUsuario()
         {
             try

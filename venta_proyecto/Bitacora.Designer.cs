@@ -43,17 +43,19 @@
             this.Dgv.AllowUserToDeleteRows = false;
             this.Dgv.AllowUserToResizeColumns = false;
             this.Dgv.AllowUserToResizeRows = false;
+            this.Dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv.Location = new System.Drawing.Point(12, 81);
+            this.Dgv.Location = new System.Drawing.Point(1, 41);
             this.Dgv.Name = "Dgv";
-            this.Dgv.Size = new System.Drawing.Size(530, 170);
+            this.Dgv.Size = new System.Drawing.Size(551, 170);
             this.Dgv.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(64, 44);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 18);
             this.label1.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             this.CboBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboBuscar.FormattingEnabled = true;
-            this.CboBuscar.Location = new System.Drawing.Point(172, 44);
+            this.CboBuscar.Location = new System.Drawing.Point(108, 0);
             this.CboBuscar.Name = "CboBuscar";
             this.CboBuscar.Size = new System.Drawing.Size(121, 26);
             this.CboBuscar.TabIndex = 2;
@@ -71,14 +73,14 @@
             // TxtBuscar
             // 
             this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBuscar.Location = new System.Drawing.Point(299, 46);
+            this.TxtBuscar.Location = new System.Drawing.Point(235, 0);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(109, 24);
             this.TxtBuscar.TabIndex = 3;
             // 
             // BtnLimpiar
             // 
-            this.BtnLimpiar.Location = new System.Drawing.Point(417, 48);
+            this.BtnLimpiar.Location = new System.Drawing.Point(350, 1);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.BtnLimpiar.TabIndex = 4;
@@ -87,7 +89,7 @@
             // 
             // BtnCerrar
             // 
-            this.BtnCerrar.Location = new System.Drawing.Point(465, 4);
+            this.BtnCerrar.Location = new System.Drawing.Point(465, -1);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(87, 27);
             this.BtnCerrar.TabIndex = 5;
@@ -99,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 264);
+            this.ClientSize = new System.Drawing.Size(554, 212);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.TxtBuscar);

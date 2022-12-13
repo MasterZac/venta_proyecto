@@ -102,6 +102,7 @@
             // 
             this.TxtNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombreUsuario.Location = new System.Drawing.Point(130, 86);
+            this.TxtNombreUsuario.MaxLength = 50;
             this.TxtNombreUsuario.Name = "TxtNombreUsuario";
             this.TxtNombreUsuario.Size = new System.Drawing.Size(176, 22);
             this.TxtNombreUsuario.TabIndex = 5;
@@ -111,6 +112,7 @@
             // 
             this.TxtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtContraseña.Location = new System.Drawing.Point(130, 114);
+            this.TxtContraseña.MaxLength = 10;
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.Size = new System.Drawing.Size(176, 22);
             this.TxtContraseña.TabIndex = 6;
@@ -241,6 +243,7 @@
             // 
             this.TxtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtID.Location = new System.Drawing.Point(130, 21);
+            this.TxtID.MaxLength = 5;
             this.TxtID.Name = "TxtID";
             this.TxtID.Size = new System.Drawing.Size(176, 22);
             this.TxtID.TabIndex = 85;
@@ -319,6 +322,7 @@
             // 
             this.TxtConfirma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtConfirma.Location = new System.Drawing.Point(130, 144);
+            this.TxtConfirma.MaxLength = 10;
             this.TxtConfirma.Name = "TxtConfirma";
             this.TxtConfirma.Size = new System.Drawing.Size(176, 22);
             this.TxtConfirma.TabIndex = 87;

@@ -72,6 +72,7 @@ namespace venta_proyecto
             MkdTelefono.Clear();
             TxtDireccion.Clear();
             TxtPaginaWeb.Clear();
+            TxtEstatus.Clear();
             TxtID.Focus();
             TxtID.ReadOnly = false;
            
@@ -272,8 +273,19 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
+                bool estatus = false;
                 if (existe == true)
                 {
+                    if (TxtEstatus.Text == "Activo")
+                    {
+                        TxtEstatus.Text = "Inactivo";
+                        estatus = true;
+                    }
+                    else if (TxtEstatus.Text == "Inactivo")
+                    {
+                        estatus = false;
+                        TxtEstatus.Text = "Activo";
+                    }
                     try
                     {
                         Conectar();
@@ -284,9 +296,16 @@ namespace venta_proyecto
                         _id.Value = TxtID.Text.Trim();
                         cmd.Parameters.Add(_id);
 
+                        MySqlParameter _estatus = new MySqlParameter("_estatus", MySqlDbType.VarChar, 20);
+                        _estatus.Value = TxtEstatus.Text;
+                        cmd.Parameters.Add(_estatus);
+
                         cmd.ExecuteNonQuery();
                         cargar.DgvProveedor(Dgv);
-                        MessageBox.Show("SE HA ELIMINADO EL PROVEEDOR: " + TxtNombre.Text);
+                        if (estatus == true)
+                            MessageBox.Show("Producto deshabilitado");
+                        else
+                            MessageBox.Show("Producto habilitado");
                         Limpiar();
                     }
                     catch (Exception ex)
@@ -439,6 +458,7 @@ namespace venta_proyecto
                     MkdTelefono.Text = Dgv.SelectedCells[3].Value.ToString();
                     TxtDireccion.Text = Dgv.SelectedCells[4].Value.ToString();
                     TxtPaginaWeb.Text = Dgv.SelectedCells[5].Value.ToString();
+                    TxtEstatus.Text = Dgv.SelectedCells[6].Value.ToString();
                     TxtID.ReadOnly = true;
                     Dgv.ClearSelection();
                 }

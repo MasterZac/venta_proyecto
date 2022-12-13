@@ -64,9 +64,11 @@
             this.CmbProveedor = new System.Windows.Forms.ComboBox();
             this.TxtPrecio = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.TxtEstatus = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -213,18 +215,18 @@
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEliminar.Location = new System.Drawing.Point(692, 63);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(78, 37);
+            this.BtnEliminar.Size = new System.Drawing.Size(96, 48);
             this.BtnEliminar.TabIndex = 14;
-            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.Text = "Habilitar / Deshabilitar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnActualizar
             // 
             this.BtnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnActualizar.Location = new System.Drawing.Point(782, 63);
+            this.BtnActualizar.Location = new System.Drawing.Point(804, 63);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(74, 37);
+            this.BtnActualizar.Size = new System.Drawing.Size(74, 48);
             this.BtnActualizar.TabIndex = 15;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = true;
@@ -235,7 +237,7 @@
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregar.Location = new System.Drawing.Point(599, 63);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(77, 37);
+            this.BtnAgregar.Size = new System.Drawing.Size(77, 48);
             this.BtnAgregar.TabIndex = 16;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
@@ -282,18 +284,18 @@
             // BtnLimpiarTxtBuscar
             // 
             this.BtnLimpiarTxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(712, 25);
+            this.BtnLimpiarTxtBuscar.Location = new System.Drawing.Point(695, 19);
             this.BtnLimpiarTxtBuscar.Name = "BtnLimpiarTxtBuscar";
             this.BtnLimpiarTxtBuscar.Size = new System.Drawing.Size(70, 28);
             this.BtnLimpiarTxtBuscar.TabIndex = 78;
-            this.BtnLimpiarTxtBuscar.Text = "Refresh";
+            this.BtnLimpiarTxtBuscar.Text = "Limpiar";
             this.BtnLimpiarTxtBuscar.UseVisualStyleBackColor = true;
             this.BtnLimpiarTxtBuscar.Click += new System.EventHandler(this.BtnLimpiarTxtBuscar_Click);
             // 
             // Txtbuscar
             // 
             this.Txtbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txtbuscar.Location = new System.Drawing.Point(516, 29);
+            this.Txtbuscar.Location = new System.Drawing.Point(509, 21);
             this.Txtbuscar.MaxLength = 100;
             this.Txtbuscar.Multiline = true;
             this.Txtbuscar.Name = "Txtbuscar";
@@ -410,9 +412,9 @@
             this.groupBox2.Controls.Add(this.BtnLimpiarTxtBuscar);
             this.groupBox2.Controls.Add(this.Txtbuscar);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(21, 379);
+            this.groupBox2.Location = new System.Drawing.Point(21, 393);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(859, 273);
+            this.groupBox2.Size = new System.Drawing.Size(859, 259);
             this.groupBox2.TabIndex = 84;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "LISTADO PRODUCTOS";
@@ -461,6 +463,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtEstatus);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.TxtPrecioVenta);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.BtnAgregar);
@@ -470,11 +474,21 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(24, 131);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(905, 242);
+            this.groupBox1.Size = new System.Drawing.Size(884, 242);
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DETALLE PRODUCTO";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(664, 136);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 16);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "ESTATUS:";
             // 
             // TxtPrecioVenta
             // 
@@ -497,6 +511,14 @@
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // TxtEstatus
+            // 
+            this.TxtEstatus.Location = new System.Drawing.Point(667, 161);
+            this.TxtEstatus.Name = "TxtEstatus";
+            this.TxtEstatus.ReadOnly = true;
+            this.TxtEstatus.Size = new System.Drawing.Size(103, 22);
+            this.TxtEstatus.TabIndex = 22;
             // 
             // Almacen
             // 
@@ -583,5 +605,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TxtPrecioVenta;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtEstatus;
     }
 }

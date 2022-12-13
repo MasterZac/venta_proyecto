@@ -16,6 +16,8 @@ namespace venta_proyecto
         MySqlConnection cnn = new MySqlConnection();
         MySqlCommand cmd = new MySqlCommand();
         MySqlDataReader rd;
+        DataTable dt;
+        MySqlDataAdapter da;
         public string NombreUsuario { get; set; }
         public string Rol { get; set; }
         string fecha_entrada;
@@ -134,9 +136,97 @@ namespace venta_proyecto
             }
         }
 
+        public void ConsultasProductosVendidos()
+        {
+            try
+            {
+                Conectar();
+
+                cmd = cnn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+              
+                cmd.CommandText = "SELECT * FROM detalle_venta Where (" + Cb1.Text + ") Like ('" + textBox1.Text + "%')";
+                cmd.ExecuteNonQuery();
+
+                dt = new DataTable();
+                da = new MySqlDataAdapter(cmd);
+
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+
+            }
+        }
+
+        public void ConsultaVentas()
+        {
+            try
+            {
+                Conectar();
+
+                cmd = cnn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM venta Where (" + cbo2.Text + ") Like ('" + textBox2.Text + "%')";
+                cmd.ExecuteNonQuery();
+
+                dt = new DataTable();
+                da = new MySqlDataAdapter(cmd);
+
+                da.Fill(dt);
+                dataGridView2.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+
+            }
+        }
+
+        public void ConsultasCorte()
+        {
+            try
+            {
+                Conectar();
+
+                cmd = cnn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM corte_caja Where (" + comboBox3.Text + ") Like ('" + textBox3.Text + "%')";
+                cmd.ExecuteNonQuery();
+
+                dt = new DataTable();
+                da = new MySqlDataAdapter(cmd);
+
+                da.Fill(dt);
+                dataGridView3.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+
+            }
+        }
+
         private void Menu_Load(object sender, EventArgs e)
         {
-            lblstatus1.Text = string.Format("{0}", NombreUsuario);
+            lblstatus1.Text = NombreUsuario.ToString();
             fecha_entrada = Convert.ToString(DateTime.Now.ToString("s"));
             ConsultarTipoDeUser();
             if (LabelRol.Text == "Vendedor")
@@ -193,6 +283,94 @@ namespace venta_proyecto
         {
             Bitacora x = new Bitacora();
             x.Show();
+        }
+
+        Cargar_Dgv cargar = new Cargar_Dgv();
+        private void hISTORIALDELASVENTASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cargar.DgvCompras(dataGridView1);
+            cargar.DgvVentas(dataGridView2);
+            cargar.DgvCortes(dataGridView3);
+
+            if (tabControl1.Visible == false)
+            {
+                tabControl1.Visible = true;
+            }
+            else
+            {
+                tabControl1.Visible = false;
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox3.Clear();
+            cargar.DgvCortes(dataGridView3);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            textBox2.Clear();
+            cargar.DgvVentas(dataGridView2);
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            cargar.DgvCompras(dataGridView1);
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Cb1.SelectedIndex < 0)
+            {
+                MessageBox.Show("Selecciona por que quieres consultar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                ConsultasProductosVendidos();
+            }
+        }
+
+        private void textBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (cbo2.SelectedIndex < 0)
+            {
+                MessageBox.Show("Selecciona por que quieres consultar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                ConsultaVentas();
+            }
+        }
+
+        private void textBox3_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (comboBox3.SelectedIndex < 0)
+            {
+                MessageBox.Show("Selecciona por que quieres consultar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                ConsultasCorte();
+            }
         }
     }
 }
