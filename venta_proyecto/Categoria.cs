@@ -20,8 +20,8 @@ namespace venta_proyecto
         MySqlDataAdapter da;
         DataTable dt;
 
-        public string NombreUsuario { get; set; }
-        public string Rol { get; set; }
+        public string NombreUsuario;
+        public string Rol;
 
         public Categoria()
         {
@@ -30,7 +30,7 @@ namespace venta_proyecto
 
         private void Categoria_Load(object sender, EventArgs e)
         {
-            lblstatus1.Text = string.Format(NombreUsuario);
+            lblstatus1.Text = NombreUsuario.ToString();
             cargar.DgvCategoria(Dgv);
            
         }
@@ -52,6 +52,7 @@ namespace venta_proyecto
             TxtNombre.Clear();
             TxtDescripcion.Clear();
             TxtNombre.Focus();
+            TxtEstatus.Clear();
         }
 
        
@@ -164,7 +165,7 @@ namespace venta_proyecto
 
             if (TxtID_categoria.Text == "" || TxtNombre.Text == "")
             {
-                MessageBox.Show("INGRESE EL NOMBRE DE LA  CATEGORIA PARA PODER ELIMINAR");
+                MessageBox.Show("Selecione una categoria");
             }
             else
             {
@@ -194,21 +195,40 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
+                bool aux = false;
                 if (existe == true)
                 {
+                    if (TxtEstatus.Text == "Activo")
+                    {
+                        aux = true;
+                        TxtEstatus.Text = "Inactivo";
+                    }
+                    else if (TxtEstatus.Text == "Inactivo")
+                    {
+                        aux = false;
+                        TxtEstatus.Text = "Activo";
+                    }
                     try
                     {
                         Conectar();
                         cmd = new MySqlCommand("DeleteCategoria", cnn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 70);
-                        _nombre.Value = TxtNombre.Text;
-                        cmd.Parameters.Add(_nombre);
+                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.Int32);
+                        _id.Value = TxtID_categoria.Text;
+                        cmd.Parameters.Add(_id);
+
+                        MySqlParameter _estatus = new MySqlParameter("_estatus", MySqlDbType.VarChar, 20);
+                        _estatus.Value = TxtEstatus.Text;
+                        cmd.Parameters.Add(_estatus);
 
                         cmd.ExecuteNonQuery();
                         cargar.DgvCategoria(Dgv);
-                        MessageBox.Show("SE HA ELIMINADO LA CATEGORIA: " + TxtNombre.Text);
+                        if (aux == true)
+                            MessageBox.Show("Categoria deshabilitada");
+                        else
+                            MessageBox.Show("Categoria habilitada");
+                        
                         Limpiar();
                     }
                     catch (Exception ex)
@@ -337,6 +357,7 @@ namespace venta_proyecto
                     TxtID_categoria.Text = Dgv.SelectedCells[0].Value.ToString();
                     TxtNombre.Text = Dgv.SelectedCells[1].Value.ToString();
                     TxtDescripcion.Text = Dgv.SelectedCells[2].Value.ToString();
+                    TxtEstatus.Text = Dgv.SelectedCells[3].Value.ToString();
                     Dgv.ClearSelection();
                 }
 

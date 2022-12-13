@@ -202,7 +202,7 @@ namespace venta_proyecto
 
             if (TxtID.Text == "")
             {
-                MessageBox.Show("INGRESE LA CLAVE DEL PRODUCTO PARA PODER ELIMINAR");
+                MessageBox.Show("El campo id esta vacio");
             }
             else
             {
@@ -235,6 +235,14 @@ namespace venta_proyecto
 
                 if (existe == true)
                 {
+                    if (TxtEstatus.Text == "Activo")
+                    {
+                        TxtEstatus.Text = "Inactivo";
+                    }
+                    else if (TxtEstatus.Text == "Inactivo")
+                    {
+                        TxtEstatus.Text = "Activo";
+                    }
                     try
                     {
                         Conectar();
@@ -244,6 +252,10 @@ namespace venta_proyecto
                         MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
                         _id.Value = TxtID.Text;
                         cmd.Parameters.Add(_id);
+
+                        MySqlParameter _estatus = new MySqlParameter("_estatus", MySqlDbType.VarChar, 20);
+                        _estatus.Value = TxtEstatus.Text;
+                        cmd.Parameters.Add(_estatus);
 
                         cmd.ExecuteNonQuery();
                         cargar.DgvCliente(Dgv);
@@ -321,6 +333,7 @@ namespace venta_proyecto
                     TxtComuna.Text = Dgv.SelectedCells[5].Value.ToString();
                     TxtCalle.Text = Dgv.SelectedCells[6].Value.ToString();
                     TxtNumero.Text = Dgv.SelectedCells[7].Value.ToString();
+                    TxtEstatus.Text = Dgv.SelectedCells[8].Value.ToString();
                     Dgv.ClearSelection();
                     TxtID.ReadOnly = true;
                 }

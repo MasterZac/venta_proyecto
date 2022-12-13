@@ -127,7 +127,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select Nombre From categoria";
+                string query = "Select Nombre From categoria Where Estatus = 'Activo';";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();

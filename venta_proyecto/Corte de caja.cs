@@ -18,7 +18,7 @@ namespace venta_proyecto
         Cargar_Dgv cargar = new Cargar_Dgv();
         MySqlDataReader rd;
 
-        public string NombreUsuario { get; set; }
+        public string NombreUsuario;
         public string fecha_inicio;
         public string fecha_corte;
         public int ventas_turno = 0;
@@ -90,8 +90,6 @@ namespace venta_proyecto
         {
             Ventas x = new Ventas();
             x.NombreUsuario = lblstatus1.Text;
-            x.ventas_turno = Convert.ToInt32(TxtTotal_Ventas.Text);
-            x.totalfacturas = Convert.ToDouble(TxtTotalMonto.Text);
             this.Hide();
             x.Show();
         }

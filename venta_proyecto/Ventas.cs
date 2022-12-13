@@ -20,9 +20,9 @@ namespace venta_proyecto
         MySqlDataAdapter da;
         DataTable dt;
 
-        public string NombreUsuario { get; set; }
-        public int ventas_turno = 0;
-        public double totalfacturas = 0;
+        public string NombreUsuario;
+        public static int ventas_turno = 0;
+        public static double totalfacturas = 0;
 
         public Ventas()
         {
@@ -44,7 +44,7 @@ namespace venta_proyecto
         {
             lblstatus1.Text = NombreUsuario.ToString();
             ConsultaIDUsuario();
-            cargar.DgvCliente(DgvClientes);
+            cargarClientesActivos();
             cargarProductosActivos();
             ConsultarNumFactura();
         }
@@ -58,6 +58,27 @@ namespace venta_proyecto
             TxtStock.Clear();
             TxtCantidad.Value = 0;
 
+        }
+
+        public void cargarClientesActivos()
+        {
+            try
+            {
+                Conectar();
+                string query = "Select * From cliente Where Estatus = 'Activo'";
+                da = new MySqlDataAdapter(query, cnn);
+                dt = new DataTable();
+                da.Fill(dt);
+                DgvClientes.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
         }
 
         public void cargarProductosActivos()
@@ -109,10 +130,9 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM producto Where (" + CboBuscarPorTipoProducto.Text + ") Like ('" + TxtBuscarP.Text + "%')";
+                cmd.CommandText = "SELECT * FROM producto Where (" + CboBuscarPorTipoProducto.Text + ") Like ('" + TxtBuscarP.Text + "%') And Estatus = 'Activo'";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();
@@ -141,7 +161,7 @@ namespace venta_proyecto
 
                 cmd = cnn.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM cliente Where (" + CmbConsultPorTipoC.Text + ") Like ('%" + TxtBusc.Text + "%')";
+                cmd.CommandText = "SELECT * FROM cliente Where (" + CmbConsultPorTipoC.Text + ") Like ('%" + TxtBusc.Text + "%') And Estatus = 'Activo'";
                 cmd.ExecuteNonQuery();
 
                 dt = new DataTable();
@@ -328,7 +348,7 @@ namespace venta_proyecto
            }
            else
            {
-                MessageBox.Show("INGRESE LA CANTIDAD DE QUE LLEVARA DEL PRODUCTO ELEGIDO");
+                MessageBox.Show("INGRESE LA CANTIDAD DE QUE LLEVARA DEL PRODUCTO");
            }
 
         }
@@ -392,14 +412,10 @@ namespace venta_proyecto
             if (Dgv.Rows.Count > 0)
             {
                 Dgv.Rows.Clear();
-                calcularTotal();
-                Limpiar();
-                BtnConsultar.Enabled = true;
             }
-            else
-            {
-                MessageBox.Show("No hay producto agregados para cancelar las compras");
-            }
+            calcularTotal();
+            Limpiar();
+            BtnConsultar.Enabled = true;
         }
 
         private void BtnTerminar_Click(object sender, EventArgs e)
@@ -563,7 +579,7 @@ namespace venta_proyecto
         private void BtnLimpiarBuscP_Click(object sender, EventArgs e)
         {
             TxtBuscarP.Clear();
-            cargar.DgvProductos(DgvProducto);
+            cargarProductosActivos();
         }
 
         private void BtnCerrartapControlP_Click(object sender, EventArgs e)
@@ -586,6 +602,27 @@ namespace venta_proyecto
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TxtBusc.Clear();
+            cargarClientesActivos();
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            if (Dgv.Rows.Count > 0)
+            {
+                MessageBox.Show("Termina la venta para poder regresar");
+            }
+            else
+            {
+                Menu x = new Menu();
+                x.NombreUsuario = lblstatus1.Text;
+                this.Hide();
+                x.Show();
+            }
         }
     }
 }
