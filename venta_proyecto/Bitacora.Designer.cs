@@ -43,7 +43,6 @@
             this.Dgv.AllowUserToDeleteRows = false;
             this.Dgv.AllowUserToResizeColumns = false;
             this.Dgv.AllowUserToResizeRows = false;
-            this.Dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Location = new System.Drawing.Point(12, 81);
             this.Dgv.Name = "Dgv";

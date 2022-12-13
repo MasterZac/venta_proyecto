@@ -40,8 +40,6 @@
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNombreUsuario = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtFecha_inicio = new System.Windows.Forms.TextBox();
             this.TxtFecha_cierre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -144,7 +142,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(342, 63);
+            this.label2.Location = new System.Drawing.Point(341, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 127;
@@ -154,44 +152,25 @@
             // 
             this.TxtNombreUsuario.Enabled = false;
             this.TxtNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreUsuario.Location = new System.Drawing.Point(405, 63);
+            this.TxtNombreUsuario.Location = new System.Drawing.Point(405, 104);
             this.TxtNombreUsuario.Name = "TxtNombreUsuario";
-            this.TxtNombreUsuario.Size = new System.Drawing.Size(127, 22);
+            this.TxtNombreUsuario.Size = new System.Drawing.Size(136, 22);
             this.TxtNombreUsuario.TabIndex = 128;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 16);
-            this.label3.TabIndex = 129;
-            this.label3.Text = "Fecha de inicio:";
-            // 
-            // TxtFecha_inicio
-            // 
-            this.TxtFecha_inicio.Enabled = false;
-            this.TxtFecha_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFecha_inicio.Location = new System.Drawing.Point(125, 113);
-            this.TxtFecha_inicio.Name = "TxtFecha_inicio";
-            this.TxtFecha_inicio.Size = new System.Drawing.Size(127, 22);
-            this.TxtFecha_inicio.TabIndex = 130;
             // 
             // TxtFecha_cierre
             // 
             this.TxtFecha_cierre.Enabled = false;
             this.TxtFecha_cierre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFecha_cierre.Location = new System.Drawing.Point(405, 113);
+            this.TxtFecha_cierre.Location = new System.Drawing.Point(125, 113);
             this.TxtFecha_cierre.Name = "TxtFecha_cierre";
-            this.TxtFecha_cierre.Size = new System.Drawing.Size(127, 22);
+            this.TxtFecha_cierre.Size = new System.Drawing.Size(169, 22);
             this.TxtFecha_cierre.TabIndex = 132;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(295, 113);
+            this.label4.Location = new System.Drawing.Point(6, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 16);
             this.label4.TabIndex = 131;
@@ -276,8 +255,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.TxtFecha_cierre);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.TxtFecha_inicio);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.TxtNombreUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.statusStrip1);
@@ -308,8 +285,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblstatus2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtNombreUsuario;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TxtFecha_inicio;
         private System.Windows.Forms.TextBox TxtFecha_cierre;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

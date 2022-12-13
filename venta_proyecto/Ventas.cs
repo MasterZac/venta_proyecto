@@ -21,8 +21,6 @@ namespace venta_proyecto
         DataTable dt;
 
         public string NombreUsuario { get; set; }
-        public string fecha_inicio;
-        public string fecha_corte;
         public int ventas_turno = 0;
         public double totalfacturas = 0;
 
@@ -44,8 +42,7 @@ namespace venta_proyecto
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-              lblstatus1.Text = String.Format("{0}", NombreUsuario);
-            fecha_inicio = Convert.ToString(DateTime.Now.ToString("s"));
+            lblstatus1.Text = String.Format("{0}", NombreUsuario);
             ConsultaIDUsuario();
             cargar.DgvProductos(DgvProducto);
             cargar.DgvCliente(DgvClientes);
@@ -295,7 +292,7 @@ namespace venta_proyecto
                 int cantidad = Convert.ToInt32(TxtCantidad.Value.ToString());
                 double precioVenta = Convert.ToDouble(TxtPrecioVenta.Text);
                 double SubTotal = cantidad * precioVenta;
-                Dgv.Rows.Add(new object[] {TxtNum_factura.Text ,TxtSKU.Text, TxtProducto.Text, TxtCantidad.Value.ToString(), TxtPrecioVenta.Text, SubTotal.ToString() });
+                Dgv.Rows.Add(TxtNum_factura.Text ,TxtSKU.Text, TxtProducto.Text, TxtCantidad.Value.ToString(), TxtPrecioVenta.Text, SubTotal.ToString());
                 MessageBox.Show("PRODUCTO AGREGADO AL DETALLE_VENTA");
                 BtnConsultar.Enabled = false;
                 calcularTotal();
@@ -517,11 +514,8 @@ namespace venta_proyecto
             DialogResult boton = MessageBox.Show("Desea cerrar turno?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (boton == DialogResult.OK)
             {
-                fecha_corte = Convert.ToString(DateTime.Now.ToString("s"));
                 Corte_de_caja x = new Corte_de_caja();
                 x.NombreUsuario = lblstatus1.Text;
-                x.fecha_inicio = fecha_inicio;
-                x.fecha_corte = fecha_corte;
                 x.ventas_turno = ventas_turno;
                 x.totalfacturas = totalfacturas;
                 this.Hide();

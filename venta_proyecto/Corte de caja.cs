@@ -24,6 +24,12 @@ namespace venta_proyecto
         public int ventas_turno = 0;
         public double totalfacturas = 0;
 
+
+        public Corte_de_caja()
+        {
+            InitializeComponent();
+        }
+
         public void Conectar()
         {
             cnn.ConnectionString = "Server = localhost; Database = ventahardware; user = root; password = root";
@@ -35,17 +41,11 @@ namespace venta_proyecto
             cnn.Close();
         }
 
-        public Corte_de_caja()
-        {
-            InitializeComponent();
-        }
-
         private void Corte_de_caja_Load(object sender, EventArgs e)
         {
             ConsultarNumCorte();
-            lblstatus1.Text = NombreUsuario.ToString();
-            TxtFecha_inicio.Text = fecha_inicio.ToString();
-            TxtFecha_cierre.Text = fecha_corte.ToString();
+            lblstatus1.Text = NombreUsuario;
+            TxtFecha_cierre.Text = DateTime.Now.ToString("G");
             TxtNombreUsuario.Text = lblstatus1.Text;
             TxtTotal_Ventas.Text = ventas_turno.ToString();
             TxtTotalMonto.Text = totalfacturas.ToString();
@@ -112,24 +112,22 @@ namespace venta_proyecto
                     cmd = new MySqlCommand("AddCorte", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Clear();
+
                     MySqlParameter usuario = new MySqlParameter("usuario", MySqlDbType.VarChar, 50);
                     usuario.Value = TxtNombreUsuario.Text;
                     cmd.Parameters.Add(usuario);
 
-                    MySqlParameter fecha_i = new MySqlParameter("finicio", MySqlDbType.DateTime);
-                    fecha_i.Value = TxtFecha_inicio.Text;
-                    cmd.Parameters.Add(fecha_i);
-
-                    MySqlParameter ventas = new MySqlParameter("ventas", MySqlDbType.Int32);
-                    ventas.Value = Convert.ToInt32(TxtTotal_Ventas.Text);
-                    cmd.Parameters.Add(ventas);
-
                     MySqlParameter fecha_c = new MySqlParameter("fcorte", MySqlDbType.DateTime);
-                    fecha_c.Value = TxtFecha_cierre;
+                    fecha_c.Value = Convert.ToDateTime(TxtFecha_cierre.Text);
                     cmd.Parameters.Add(fecha_c);
 
+                    MySqlParameter ventas = new MySqlParameter("ventas", MySqlDbType.Int32);
+                    ventas.Value = TxtTotal_Ventas.Text;
+                    cmd.Parameters.Add(ventas);
+
                     MySqlParameter efectivo = new MySqlParameter("efectivo", MySqlDbType.Double);
-                    efectivo.Value = Convert.ToDouble(TxtTotalMonto.Text);
+                    efectivo.Value = TxtTotalMonto.Text;
                     cmd.Parameters.Add(efectivo);
 
                     cmd.ExecuteNonQuery();
