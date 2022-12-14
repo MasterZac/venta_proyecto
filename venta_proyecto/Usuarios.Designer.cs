@@ -60,6 +60,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.TxtEstatus = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.BtnCambiarContra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,9 +73,9 @@
             // BtnRegistrar
             // 
             this.BtnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegistrar.Location = new System.Drawing.Point(126, 203);
+            this.BtnRegistrar.Location = new System.Drawing.Point(130, 271);
             this.BtnRegistrar.Name = "BtnRegistrar";
-            this.BtnRegistrar.Size = new System.Drawing.Size(75, 36);
+            this.BtnRegistrar.Size = new System.Drawing.Size(75, 45);
             this.BtnRegistrar.TabIndex = 0;
             this.BtnRegistrar.Text = "Agregar";
             this.BtnRegistrar.UseVisualStyleBackColor = true;
@@ -92,7 +95,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 114);
+            this.label3.Location = new System.Drawing.Point(38, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 3;
@@ -111,7 +114,7 @@
             // TxtContraseña
             // 
             this.TxtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseña.Location = new System.Drawing.Point(130, 114);
+            this.TxtContraseña.Location = new System.Drawing.Point(130, 130);
             this.TxtContraseña.MaxLength = 10;
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.Size = new System.Drawing.Size(176, 22);
@@ -145,7 +148,7 @@
             // BtnNuevo
             // 
             this.BtnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNuevo.Location = new System.Drawing.Point(29, 203);
+            this.BtnNuevo.Location = new System.Drawing.Point(42, 227);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(75, 36);
             this.BtnNuevo.TabIndex = 11;
@@ -156,11 +159,11 @@
             // BtnEliminar
             // 
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Location = new System.Drawing.Point(221, 203);
+            this.BtnEliminar.Location = new System.Drawing.Point(222, 271);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(66, 36);
+            this.BtnEliminar.Size = new System.Drawing.Size(89, 45);
             this.BtnEliminar.TabIndex = 14;
-            this.BtnEliminar.Text = "Eliminar ";
+            this.BtnEliminar.Text = "Habilitar / Deshabilitar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
@@ -221,9 +224,10 @@
             // 
             // BtnActualizar
             // 
-            this.BtnActualizar.Location = new System.Drawing.Point(29, 245);
+            this.BtnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnActualizar.Location = new System.Drawing.Point(41, 269);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(75, 33);
+            this.BtnActualizar.Size = new System.Drawing.Size(75, 48);
             this.BtnActualizar.TabIndex = 83;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = true;
@@ -287,6 +291,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BtnCambiarContra);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.TxtEstatus);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.TxtConfirma);
             this.groupBox1.Controls.Add(this.BtnRegistrar);
@@ -303,16 +310,17 @@
             this.groupBox1.Controls.Add(this.BtnEliminar);
             this.groupBox1.Location = new System.Drawing.Point(21, 147);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(317, 299);
+            this.groupBox1.Size = new System.Drawing.Size(317, 338);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DETALLE USUARIO";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(54, 144);
+            this.label6.Location = new System.Drawing.Point(54, 160);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 16);
             this.label6.TabIndex = 86;
@@ -321,7 +329,7 @@
             // TxtConfirma
             // 
             this.TxtConfirma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtConfirma.Location = new System.Drawing.Point(130, 144);
+            this.TxtConfirma.Location = new System.Drawing.Point(130, 160);
             this.TxtConfirma.MaxLength = 10;
             this.TxtConfirma.Name = "TxtConfirma";
             this.TxtConfirma.Size = new System.Drawing.Size(176, 22);
@@ -406,11 +414,42 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // TxtEstatus
+            // 
+            this.TxtEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstatus.Location = new System.Drawing.Point(210, 188);
+            this.TxtEstatus.MaxLength = 5;
+            this.TxtEstatus.Name = "TxtEstatus";
+            this.TxtEstatus.ReadOnly = true;
+            this.TxtEstatus.Size = new System.Drawing.Size(87, 22);
+            this.TxtEstatus.TabIndex = 91;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(151, 191);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 16);
+            this.label7.TabIndex = 92;
+            this.label7.Text = "Estatus:";
+            // 
+            // BtnCambiarContra
+            // 
+            this.BtnCambiarContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCambiarContra.Location = new System.Drawing.Point(123, 227);
+            this.BtnCambiarContra.Name = "BtnCambiarContra";
+            this.BtnCambiarContra.Size = new System.Drawing.Size(188, 35);
+            this.BtnCambiarContra.TabIndex = 93;
+            this.BtnCambiarContra.Text = "Cambiar contraseña";
+            this.BtnCambiarContra.UseVisualStyleBackColor = true;
+            this.BtnCambiarContra.Click += new System.EventHandler(this.BtnCambiarContra_Click);
+            // 
             // Registro_usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 479);
+            this.ClientSize = new System.Drawing.Size(939, 527);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox2);
@@ -468,5 +507,8 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtConfirma;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox TxtEstatus;
+        private System.Windows.Forms.Button BtnCambiarContra;
     }
 }

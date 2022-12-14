@@ -46,6 +46,7 @@ namespace venta_proyecto
             CmbTipoUsuario.Text = " ";
             TxtNombreUsuario.Focus();
             TxtConfirma.Clear();
+            TxtEstatus.Clear();
             TxtID.ReadOnly = false;
         }
 
@@ -96,7 +97,7 @@ namespace venta_proyecto
                 try
                 {
                     Conectar();
-                    string query = "Select * From users Where ID = ('" + TxtID.Text + "'); ";
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "') And Usuario = ('" + TxtNombreUsuario.Text + "'); ";
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
@@ -178,7 +179,7 @@ namespace venta_proyecto
 
             if ( TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
             {
-                MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE REGISTRAR");
+                MessageBox.Show("EXISTEN CAMPOS VACIOS");
             }
             else
             {
@@ -211,8 +212,19 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
+                bool aux = false;
                 if (existe == true)
                 {
+                    if (TxtEstatus.Text == "Activo")
+                    {
+                        aux = true;
+                        TxtEstatus.Text = "Inactivo";
+                    }
+                    else if (TxtEstatus.Text == "Inactivo")
+                    {
+                        aux = false;
+                        TxtEstatus.Text = "Activo";
+                    }
                     try
                     {
                         Conectar();
@@ -223,9 +235,17 @@ namespace venta_proyecto
                         _id.Value = TxtID.Text;
                         cmd.Parameters.Add(_id);
 
+                        MySqlParameter _estatus = new MySqlParameter("_estatus", MySqlDbType.VarChar, 20);
+                        _estatus.Value = TxtEstatus.Text;
+                        cmd.Parameters.Add(_estatus);
+
                         cmd.ExecuteNonQuery();
                         cargar.DgvUsuarios(Dgv);
-                        MessageBox.Show("SE ELIMINO EL USUARIO: " + TxtNombreUsuario.Text);
+                        if (aux == true)
+                            MessageBox.Show("Usuario deshabiltiado");
+                        else
+                            MessageBox.Show("Usuario habilitado");
+                        
                         Limpiar();
 
 
@@ -278,6 +298,7 @@ namespace venta_proyecto
                     CmbTipoUsuario.Text = Dgv.SelectedCells[2].Value.ToString();
                     TxtNombreUsuario.Text = Dgv.SelectedCells[1].Value.ToString();
                     TxtContraseña.Text = Dgv.SelectedCells[3].Value.ToString();
+                    TxtEstatus.Text = Dgv.SelectedCells[4].Value.ToString();
                     TxtID.ReadOnly = true;
                     Dgv.ClearSelection();
                 }
@@ -313,28 +334,25 @@ namespace venta_proyecto
             bool existe = true;
             bool cambios = true;
 
-            if (TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "" || TxtContraseña.Text == "")
+            if (TxtID.Text == "" || CmbTipoUsuario.Text == "" || TxtNombreUsuario.Text == "")
             {
                 MessageBox.Show("EXISTEN CAMPOS VACIOS, NO SE PUEDE ACTUALIZAR");
             }
             else
             {
-                if (TxtContraseña.Text != TxtConfirma.Text)
-                {
-                    MessageBox.Show("Las contraseñas deben de ser iguales");
-                    return;
-                }
                 try
                 {
                     Conectar();
-                    string query = "Select * From users Where ID = ('" + TxtID.Text + "') And Usuario = ('"+TxtNombreUsuario.Text+"') And Rol_usuario = ('"+CmbTipoUsuario.Text+"') And Contraseña = ('"+TxtContraseña.Text+"'); ";
+                    string query = "Select * From users Where ID = ('" + TxtID.Text + "') " +
+                        "And Usuario = ('"+TxtNombreUsuario.Text+"') And Rol_usuario = " +
+                        "('"+CmbTipoUsuario.Text+"') And Contraseña = ('"+TxtContraseña.Text+"'); ";
                     cmd = new MySqlCommand(query, cnn);
                     cmd.CommandType = CommandType.Text;
                     rd = cmd.ExecuteReader();
                     if (rd.Read())
                     {
                         cambios = false;
-                        MessageBox.Show("NO REALIZO NINGUN CAMBIO");
+                       
                     }
                     else
                     {
@@ -364,7 +382,7 @@ namespace venta_proyecto
                     else
                     {
                         existe = false;
-                        MessageBox.Show("USUARIO NO EXISTENTE");
+                        
                     }
                 }
                 catch (Exception ex)
@@ -376,43 +394,54 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (cambios == true && existe == true)
+                if (existe == true)
                 {
-                    try
+                    if (cambios == true)
                     {
-                        Conectar();
-                        cmd = new MySqlCommand("UpdateUser", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        try
+                        {
+                            Conectar();
+                            cmd = new MySqlCommand("UpdateUser", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
 
-                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text;
-                        cmd.Parameters.Add(_id);
+                            MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                            _id.Value = TxtID.Text;
+                            cmd.Parameters.Add(_id);
 
-                        MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 80);
-                        _usuario.Value = TxtNombreUsuario.Text;
-                        cmd.Parameters.Add(_usuario);
+                            MySqlParameter _usuario = new MySqlParameter("_usuario", MySqlDbType.VarChar, 80);
+                            _usuario.Value = TxtNombreUsuario.Text;
+                            cmd.Parameters.Add(_usuario);
 
-                        MySqlParameter _rol = new MySqlParameter("_rol", MySqlDbType.VarChar, 15);
-                        _rol.Value = CmbTipoUsuario.Text;
-                        cmd.Parameters.Add(_rol);
+                            MySqlParameter _rol = new MySqlParameter("_rol", MySqlDbType.VarChar, 15);
+                            _rol.Value = CmbTipoUsuario.Text;
+                            cmd.Parameters.Add(_rol);
 
-                        MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 20);
-                        _contraseña.Value = TxtContraseña.Text;
-                        cmd.Parameters.Add(_contraseña);
+                            MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 20);
+                            _contraseña.Value = TxtContraseña.Text;
+                            cmd.Parameters.Add(_contraseña);
 
-                        cmd.ExecuteNonQuery();
-                        cargar.DgvUsuarios(Dgv);
-                        MessageBox.Show("SE ACTUALIZARON LOS DATOS DEL USUARIO: " + TxtNombreUsuario.Text);
-                        Limpiar();
+                            cmd.ExecuteNonQuery();
+                            cargar.DgvUsuarios(Dgv);
+                            MessageBox.Show("SE ACTUALIZARON LOS DATOS DEL USUARIO: " + TxtNombreUsuario.Text);
+                            Limpiar();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            Desconectar();
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("No se realizo ningun cambio");
                     }
-                    finally
-                    {
-                        Desconectar();
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Usuario no existente");
                 }
             }
 
@@ -436,6 +465,23 @@ namespace venta_proyecto
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCambiarContra_Click(object sender, EventArgs e)
+        {
+            if (TxtContraseña.Text == "" && TxtConfirma.Text == "" && TxtID.Text == "")
+            {
+                MessageBox.Show("Estan vacios los campos");
+            }
+            else
+            {
+
+            }
         }
     }
 }

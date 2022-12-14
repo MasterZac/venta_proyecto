@@ -236,6 +236,8 @@ namespace venta_proyecto
                 BtnClientes.Enabled = false;
                 BtnProveedores.Enabled = false;
                 BtnUsuarios.Enabled = false;
+                hISTORIALDELASVENTASToolStripMenuItem.Enabled = false;
+                BtnLog.Enabled = false;
             }
 
             if (LabelRol.Text == "Administrador")
