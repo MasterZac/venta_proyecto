@@ -20,6 +20,7 @@ namespace venta_proyecto
         MySqlDataAdapter da;
         DataTable dt;
 
+        public bool cierre;
         public string NombreUsuario;
         public static int ventas_turno = 0;
         public static double totalfacturas = 0;
@@ -47,6 +48,11 @@ namespace venta_proyecto
             cargarClientesActivos();
             cargarProductosActivos();
             ConsultarNumFactura();
+            if (cierre == true)
+            {
+                totalfacturas = 0;
+                ventas_turno = 0;
+            }
         }
 
         public void Limpiar()
@@ -297,7 +303,6 @@ namespace venta_proyecto
             }
 
             LabelTotal.Text = total.ToString("0.00");
-            totalfacturas += total;
         }
 
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
@@ -454,6 +459,7 @@ namespace venta_proyecto
                     cmd.ExecuteNonQuery();
                     venta_exito = true;
                     ventas_turno++;
+                    totalfacturas += Convert.ToDouble(LabelTotal.Text);
 
                 }
                 catch (Exception ex)
@@ -549,7 +555,7 @@ namespace venta_proyecto
 
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
-            DialogResult boton = MessageBox.Show("Desea cerrar turno?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult boton = MessageBox.Show("Desea hacer corte de caja?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (boton == DialogResult.OK)
             {
                 Corte_de_caja x = new Corte_de_caja();

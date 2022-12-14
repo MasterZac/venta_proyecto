@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TxtNum_corte = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ID_usuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -75,8 +73,6 @@
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel3,
-            this.ID_usuario,
             this.toolStripStatusLabel2,
             this.lblstatus1,
             this.toolStripStatusLabel1,
@@ -84,23 +80,9 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusStrip1.Size = new System.Drawing.Size(694, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(662, 25);
             this.statusStrip1.TabIndex = 126;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(81, 20);
-            this.toolStripStatusLabel3.Text = "ID_Usuario:";
-            // 
-            // ID_usuario
-            // 
-            this.ID_usuario.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID_usuario.Name = "ID_usuario";
-            this.ID_usuario.Size = new System.Drawing.Size(48, 20);
-            this.ID_usuario.Text = "labelID";
             // 
             // toolStripStatusLabel2
             // 
@@ -222,7 +204,7 @@
             this.BtnCerrarTurno.Name = "BtnCerrarTurno";
             this.BtnCerrarTurno.Size = new System.Drawing.Size(94, 45);
             this.BtnCerrarTurno.TabIndex = 137;
-            this.BtnCerrarTurno.Text = "Cerrar turno";
+            this.BtnCerrarTurno.Text = "Continuar con el corte";
             this.BtnCerrarTurno.UseVisualStyleBackColor = true;
             this.BtnCerrarTurno.Click += new System.EventHandler(this.BtnCerrarTurno_Click);
             // 
@@ -246,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 323);
+            this.ClientSize = new System.Drawing.Size(662, 323);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnCerrarTurno);
             this.Controls.Add(this.TxtTotalMonto);
@@ -277,8 +259,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtNum_corte;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel ID_usuario;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel lblstatus1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

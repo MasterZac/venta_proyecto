@@ -18,6 +18,7 @@ namespace venta_proyecto
         Cargar_Dgv cargar = new Cargar_Dgv();
         MySqlDataReader rd;
 
+        public bool cierre;
         public string NombreUsuario;
         public string fecha_inicio;
         public string fecha_corte;
@@ -140,10 +141,13 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                Menu x = new Menu();
-                x.NombreUsuario = lblstatus1.Text;
+                cierre = true;
+                Ventas cerro = new Ventas();
+                cerro.cierre = cierre;
+                cerro.NombreUsuario = lblstatus1.Text;
                 this.Hide();
-                x.Show();
+                cerro.Show();
+                
             }
         }
     }

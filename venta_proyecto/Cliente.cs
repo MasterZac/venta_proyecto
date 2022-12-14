@@ -76,6 +76,7 @@ namespace venta_proyecto
             TxtCalle.Clear();
             TxtNumero.Clear();
             TxtID.Focus();
+            TxtEstatus.Clear();
             TxtID.ReadOnly = false;
 
         }

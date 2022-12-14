@@ -480,7 +480,33 @@ namespace venta_proyecto
             }
             else
             {
+                try
+                {
+                    Conectar();
+                    cmd = new MySqlCommand("UpdateContraseña", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                    _id.Value = TxtID.Text;
+                    cmd.Parameters.Add(_id);
+
+                    MySqlParameter _contraseña = new MySqlParameter("_contraseña", MySqlDbType.VarChar, 10);
+                    _contraseña.Value = TxtContraseña.Text;
+                    cmd.Parameters.Add(_contraseña);
+
+                    cmd.ExecuteNonQuery();
+                    cargar.DgvUsuarios(Dgv);
+                    MessageBox.Show("Contraseña actualizada");
+                    Limpiar();
+                }
+                catch (Exception ex )
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
             }
         }
     }

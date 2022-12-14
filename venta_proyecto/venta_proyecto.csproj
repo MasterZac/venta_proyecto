@@ -155,6 +155,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Proveedor.resx">
       <DependentUpon>Proveedor.cs</DependentUpon>
@@ -183,6 +184,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\003-proveedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-almacn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\005-cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\001-grupo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004-arriba-y-abajo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\003-categorias.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-requerido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\001-zakat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
