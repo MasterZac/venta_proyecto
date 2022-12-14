@@ -114,7 +114,7 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe = true;
-                        MessageBox.Show("PROVEEDOR YA EXISTENTE");
+                        
                     }
                     else
                     {
@@ -141,7 +141,7 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe_telefono = true;
-                        MessageBox.Show("TELEFONO YA EXISTENTE");
+                        
                     }
                     else
                     {
@@ -169,7 +169,6 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe_RFC = true;
-                        MessageBox.Show("RFC YA EXISTENTE");
                     }
                     else
                     {
@@ -186,53 +185,71 @@ namespace venta_proyecto
                 }
 
 
-                if (existe == false && existe_telefono == false && existe_RFC == false)
+                if (existe == false)
                 {
-                    try
-                    {
-                        Conectar();
-                        cmd = new MySqlCommand("AddProveedor", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                   if (existe_telefono == false)
+                   {
+                        if (existe_RFC == false)
+                        {
+                            try
+                            {
+                                Conectar();
+                                cmd = new MySqlCommand("AddProveedor", cnn);
+                                cmd.CommandType = CommandType.StoredProcedure;
 
-                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text.Trim();
-                        cmd.Parameters.Add(_id);
+                                MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                                _id.Value = TxtID.Text.Trim();
+                                cmd.Parameters.Add(_id);
 
-                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
-                        _nombre.Value = TxtNombre.Text.Trim();
-                        cmd.Parameters.Add(_nombre);
+                                MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 100);
+                                _nombre.Value = TxtNombre.Text.Trim();
+                                cmd.Parameters.Add(_nombre);
 
-                        MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                        _rfc.Value = TxtRFC.Text.ToUpper().Trim();
-                        cmd.Parameters.Add(_rfc);
+                                MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
+                                _rfc.Value = TxtRFC.Text.ToUpper().Trim();
+                                cmd.Parameters.Add(_rfc);
 
-                        MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                        _telefono.Value = MkdTelefono.Text;
-                        cmd.Parameters.Add(_telefono);
+                                MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                                _telefono.Value = MkdTelefono.Text;
+                                cmd.Parameters.Add(_telefono);
 
-                        MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
-                        _direccion.Value = TxtDireccion.Text.Trim();
-                        cmd.Parameters.Add(_direccion);
+                                MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
+                                _direccion.Value = TxtDireccion.Text.Trim();
+                                cmd.Parameters.Add(_direccion);
 
-                        MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                        _web.Value = TxtPaginaWeb.Text.Trim();
-                        cmd.Parameters.Add(_web);
+                                MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
+                                _web.Value = TxtPaginaWeb.Text.Trim();
+                                cmd.Parameters.Add(_web);
 
-                        cmd.ExecuteNonQuery();
-                        cargar.DgvProveedor(Dgv);
-                        MessageBox.Show("SE HA AGREGADO EL PROVEEDOR: " + TxtNombre.Text);
-                        Limpiar();
+                                cmd.ExecuteNonQuery();
+                                cargar.DgvProveedor(Dgv);
+                                MessageBox.Show("SE HA AGREGADO EL PROVEEDOR: " + TxtNombre.Text);
+                                Limpiar();
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        Desconectar();
-                    }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            finally
+                            {
+                                Desconectar();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("RFC ya existente");
+                        }
+                   }
+                   else
+                   {
+                        MessageBox.Show("Telefono ya existente");
+                   }
+                }
+                else
+                {
+                    MessageBox.Show("Proveedor ya existente");
                 }
             }
         }
@@ -347,7 +364,6 @@ namespace venta_proyecto
                     else
                     {
                         existe = false;
-                        MessageBox.Show("PROVEEDOR NO EXISTENTE");
                     }
                 }
                 catch (Exception ex)
@@ -372,13 +388,10 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         cambios = false;
-                        MessageBox.Show("NO SE REALIZO NINGUN CAMBIO");
-                      
                     }
                     else
                     {
                         cambios = true;
-                        
                     }
                 }
                 catch (Exception ex)
@@ -390,51 +403,62 @@ namespace venta_proyecto
                     Desconectar();
                 }
 
-                if (cambios == true && existe == true)
+                if (existe == true)
                 {
-                    try
+                    if (cambios == true)
                     {
-                        Conectar();
-                        cmd = new MySqlCommand("UpdateProveedor", cnn);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        try
+                        {
+                            Conectar();
+                            cmd = new MySqlCommand("UpdateProveedor", cnn);
+                            cmd.CommandType = CommandType.StoredProcedure;
 
-                        MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
-                        _id.Value = TxtID.Text.Trim();
-                        cmd.Parameters.Add(_id);
+                            MySqlParameter _id = new MySqlParameter("_id", MySqlDbType.VarChar, 5);
+                            _id.Value = TxtID.Text.Trim();
+                            cmd.Parameters.Add(_id);
 
-                        MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 50);
-                        _nombre.Value = TxtNombre.Text.Trim();
-                        cmd.Parameters.Add(_nombre);
+                            MySqlParameter _nombre = new MySqlParameter("_nombre", MySqlDbType.VarChar, 50);
+                            _nombre.Value = TxtNombre.Text.Trim();
+                            cmd.Parameters.Add(_nombre);
 
-                        MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
-                        _rfc.Value = TxtRFC.Text.ToUpper().Trim();
-                        cmd.Parameters.Add(_rfc);
+                            MySqlParameter _rfc = new MySqlParameter("_rfc", MySqlDbType.VarChar, 10);
+                            _rfc.Value = TxtRFC.Text.ToUpper().Trim();
+                            cmd.Parameters.Add(_rfc);
 
-                        MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
-                        _telefono.Value = MkdTelefono.Text;
-                        cmd.Parameters.Add(_telefono);
+                            MySqlParameter _telefono = new MySqlParameter("_telefono", MySqlDbType.VarChar, 10);
+                            _telefono.Value = MkdTelefono.Text;
+                            cmd.Parameters.Add(_telefono);
 
-                        MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
-                        _direccion.Value = TxtDireccion.Text.ToUpper().Trim();
-                        cmd.Parameters.Add(_direccion);
+                            MySqlParameter _direccion = new MySqlParameter("_direccion", MySqlDbType.VarChar, 100);
+                            _direccion.Value = TxtDireccion.Text.ToUpper().Trim();
+                            cmd.Parameters.Add(_direccion);
 
-                        MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
-                        _web.Value = TxtPaginaWeb.Text.Trim();
-                        cmd.Parameters.Add(_web);
+                            MySqlParameter _web = new MySqlParameter("_pagina_web", MySqlDbType.Text);
+                            _web.Value = TxtPaginaWeb.Text.Trim();
+                            cmd.Parameters.Add(_web);
 
-                        cmd.ExecuteNonQuery();
-                        cargar.DgvProveedor(Dgv);
-                        MessageBox.Show("SE HAN ACTUALIZADO LOS DATOS DEL PROVEEDOR: " + TxtNombre.Text);
-                        Limpiar();
+                            cmd.ExecuteNonQuery();
+                            cargar.DgvProveedor(Dgv);
+                            MessageBox.Show("SE HAN ACTUALIZADO LOS DATOS DEL PROVEEDOR: " + TxtNombre.Text);
+                            Limpiar();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            Desconectar();
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        Desconectar();
-                    }
+                        MessageBox.Show("No se realizo ningun cambio");
+                    }   
+                }
+                else
+                {
+                    MessageBox.Show("Proveedor no existete");
                 }
             }
 
