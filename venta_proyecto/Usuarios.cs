@@ -104,7 +104,6 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe = true;
-                        MessageBox.Show("USUARIO YA EXISTENTE");
                     }
                     else
                     {
@@ -157,6 +156,10 @@ namespace venta_proyecto
                     {
                         Desconectar();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("USUARIO YA EXISTENTE");
                 }
             }
             
@@ -311,16 +314,7 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
-            {
-                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                e.Handled = true;
-                return;
-            }
-            else
-            {
-                Consultas();
-            }
+            
         }
 
         private void BtnLimpiarTxtBuscar_Click(object sender, EventArgs e)
@@ -474,12 +468,18 @@ namespace venta_proyecto
 
         private void BtnCambiarContra_Click(object sender, EventArgs e)
         {
-            if (TxtContraseña.Text == "" && TxtConfirma.Text == "" && TxtID.Text == "")
+            if (TxtContraseña.Text == "" || TxtConfirma.Text == "" || TxtID.Text == "")
             {
                 MessageBox.Show("Estan vacios los campos");
             }
             else
             {
+                if (TxtContraseña.Text != TxtConfirma.Text)
+                {
+                    MessageBox.Show("Las contraseñas no son iguales");
+                    return;
+                }
+
                 try
                 {
                     Conectar();
@@ -507,6 +507,20 @@ namespace venta_proyecto
                 {
                     Desconectar();
                 }
+            }
+        }
+
+        private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ( CboBuscarPor.Text == "" )
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Handled = true;
+                return;
+            }
+            else
+            {
+                Consultas();
             }
         }
     }

@@ -50,6 +50,9 @@
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnCambiarContra = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtEstatus = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtConfirma = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -60,9 +63,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblstatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.TxtEstatus = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.BtnCambiarContra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -198,15 +198,18 @@
             this.Txtbuscar.Size = new System.Drawing.Size(170, 26);
             this.Txtbuscar.TabIndex = 81;
             this.Txtbuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtbuscar_KeyPress);
+            this.Txtbuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txtbuscar_KeyUp);
             // 
             // CboBuscarPor
             // 
             this.CboBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboBuscarPor.FormattingEnabled = true;
             this.CboBuscarPor.Items.AddRange(new object[] {
-            "Rol_usuario",
+            "ID",
             "Usuario",
-            "Contraseña"});
+            "Rol_usuario",
+            "Contraseña",
+            "Estatus"});
             this.CboBuscarPor.Location = new System.Drawing.Point(118, 25);
             this.CboBuscarPor.Name = "CboBuscarPor";
             this.CboBuscarPor.Size = new System.Drawing.Size(97, 24);
@@ -316,6 +319,37 @@
             this.groupBox1.Text = "DETALLE USUARIO";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // BtnCambiarContra
+            // 
+            this.BtnCambiarContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCambiarContra.Location = new System.Drawing.Point(123, 227);
+            this.BtnCambiarContra.Name = "BtnCambiarContra";
+            this.BtnCambiarContra.Size = new System.Drawing.Size(188, 35);
+            this.BtnCambiarContra.TabIndex = 93;
+            this.BtnCambiarContra.Text = "Cambiar contraseña";
+            this.BtnCambiarContra.UseVisualStyleBackColor = true;
+            this.BtnCambiarContra.Click += new System.EventHandler(this.BtnCambiarContra_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(151, 191);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 16);
+            this.label7.TabIndex = 92;
+            this.label7.Text = "Estatus:";
+            // 
+            // TxtEstatus
+            // 
+            this.TxtEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstatus.Location = new System.Drawing.Point(210, 188);
+            this.TxtEstatus.MaxLength = 5;
+            this.TxtEstatus.Name = "TxtEstatus";
+            this.TxtEstatus.ReadOnly = true;
+            this.TxtEstatus.Size = new System.Drawing.Size(87, 22);
+            this.TxtEstatus.TabIndex = 91;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -413,37 +447,6 @@
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // TxtEstatus
-            // 
-            this.TxtEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEstatus.Location = new System.Drawing.Point(210, 188);
-            this.TxtEstatus.MaxLength = 5;
-            this.TxtEstatus.Name = "TxtEstatus";
-            this.TxtEstatus.ReadOnly = true;
-            this.TxtEstatus.Size = new System.Drawing.Size(87, 22);
-            this.TxtEstatus.TabIndex = 91;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(151, 191);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 16);
-            this.label7.TabIndex = 92;
-            this.label7.Text = "Estatus:";
-            // 
-            // BtnCambiarContra
-            // 
-            this.BtnCambiarContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCambiarContra.Location = new System.Drawing.Point(123, 227);
-            this.BtnCambiarContra.Name = "BtnCambiarContra";
-            this.BtnCambiarContra.Size = new System.Drawing.Size(188, 35);
-            this.BtnCambiarContra.TabIndex = 93;
-            this.BtnCambiarContra.Text = "Cambiar contraseña";
-            this.BtnCambiarContra.UseVisualStyleBackColor = true;
-            this.BtnCambiarContra.Click += new System.EventHandler(this.BtnCambiarContra_Click);
             // 
             // Registro_usuario
             // 
