@@ -95,12 +95,11 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(966, 15);
+            this.BtnSalir.Location = new System.Drawing.Point(949, 15);
             this.BtnSalir.Name = "BtnSalir";
-            this.BtnSalir.Size = new System.Drawing.Size(70, 42);
+            this.BtnSalir.Size = new System.Drawing.Size(87, 42);
             this.BtnSalir.TabIndex = 3;
-            this.BtnSalir.Text = "Salir";
-            this.BtnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnSalir.Text = "Regresar";
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
@@ -530,6 +529,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1077, 697);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.BtnActualizar);
             this.Controls.Add(this.statusStrip1);

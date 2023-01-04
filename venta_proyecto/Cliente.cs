@@ -116,7 +116,6 @@ namespace venta_proyecto
                     if (rd.Read())
                     {
                         existe = true;
-                        MessageBox.Show("CLIENTE YA EXISTENTE");
                     }
                     else
                     {
@@ -187,6 +186,10 @@ namespace venta_proyecto
                     {
                         Desconectar();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("CLIENTE YA EXISTENTE");
                 }
             }
             

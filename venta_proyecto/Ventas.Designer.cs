@@ -34,9 +34,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.BtnCerrar = new System.Windows.Forms.Button();
+            this.BtnRegresar = new System.Windows.Forms.Button();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnCerrar = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ID_usuario = new System.Windows.Forms.ToolStripStatusLabel();
@@ -60,6 +61,12 @@
             this.TxtCantidad = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.Dgv = new System.Windows.Forms.DataGridView();
+            this.Num_factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SKU_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sub_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnAgregarProducto = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.LabelTotal = new System.Windows.Forms.Label();
@@ -91,13 +98,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.BtnCerrarConsultCliente = new System.Windows.Forms.Button();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
-            this.BtnRegresar = new System.Windows.Forms.Button();
-            this.Num_factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SKU_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sub_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCantidad)).BeginInit();
@@ -133,20 +133,16 @@
             this.panel2.Size = new System.Drawing.Size(840, 67);
             this.panel2.TabIndex = 124;
             // 
-            // BtnCerrar
+            // BtnRegresar
             // 
-            this.BtnCerrar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.BtnCerrar.FlatAppearance.BorderSize = 0;
-            this.BtnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCerrar.ForeColor = System.Drawing.Color.Black;
-            this.BtnCerrar.Location = new System.Drawing.Point(286, 95);
-            this.BtnCerrar.Name = "BtnCerrar";
-            this.BtnCerrar.Size = new System.Drawing.Size(105, 47);
-            this.BtnCerrar.TabIndex = 5;
-            this.BtnCerrar.Text = "Corte de caja";
-            this.BtnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnCerrar.UseVisualStyleBackColor = true;
-            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            this.BtnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRegresar.Location = new System.Drawing.Point(734, 23);
+            this.BtnRegresar.Name = "BtnRegresar";
+            this.BtnRegresar.Size = new System.Drawing.Size(91, 33);
+            this.BtnRegresar.TabIndex = 3;
+            this.BtnRegresar.Text = "Regresar";
+            this.BtnRegresar.UseVisualStyleBackColor = true;
+            this.BtnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click);
             // 
             // BtnSalir
             // 
@@ -172,6 +168,21 @@
             this.label1.Size = new System.Drawing.Size(237, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "REGISTRO DE VENTAS";
+            // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.BtnCerrar.FlatAppearance.BorderSize = 0;
+            this.BtnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCerrar.ForeColor = System.Drawing.Color.Black;
+            this.BtnCerrar.Location = new System.Drawing.Point(286, 95);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(105, 47);
+            this.BtnCerrar.TabIndex = 5;
+            this.BtnCerrar.Text = "Corte de caja";
+            this.BtnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // statusStrip1
             // 
@@ -435,6 +446,43 @@
             this.Dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv.Size = new System.Drawing.Size(675, 150);
             this.Dgv.TabIndex = 143;
+            // 
+            // Num_factura
+            // 
+            this.Num_factura.HeaderText = "Numero Factura";
+            this.Num_factura.Name = "Num_factura";
+            this.Num_factura.ReadOnly = true;
+            this.Num_factura.Visible = false;
+            // 
+            // SKU_producto
+            // 
+            this.SKU_producto.HeaderText = "SKU";
+            this.SKU_producto.Name = "SKU_producto";
+            this.SKU_producto.ReadOnly = true;
+            // 
+            // Nombre_producto
+            // 
+            this.Nombre_producto.HeaderText = "Nombre";
+            this.Nombre_producto.Name = "Nombre_producto";
+            this.Nombre_producto.ReadOnly = true;
+            // 
+            // Cantidad_venta
+            // 
+            this.Cantidad_venta.HeaderText = "Cantidad";
+            this.Cantidad_venta.Name = "Cantidad_venta";
+            this.Cantidad_venta.ReadOnly = true;
+            // 
+            // Precio_venta
+            // 
+            this.Precio_venta.HeaderText = "Precio Venta";
+            this.Precio_venta.Name = "Precio_venta";
+            this.Precio_venta.ReadOnly = true;
+            // 
+            // Sub_Total
+            // 
+            this.Sub_Total.HeaderText = "Sub Total";
+            this.Sub_Total.Name = "Sub_Total";
+            this.Sub_Total.ReadOnly = true;
             // 
             // BtnAgregarProducto
             // 
@@ -788,59 +836,12 @@
             this.DgvClientes.TabIndex = 0;
             this.DgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvClientes_CellClick);
             // 
-            // BtnRegresar
-            // 
-            this.BtnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegresar.Location = new System.Drawing.Point(734, 23);
-            this.BtnRegresar.Name = "BtnRegresar";
-            this.BtnRegresar.Size = new System.Drawing.Size(91, 33);
-            this.BtnRegresar.TabIndex = 3;
-            this.BtnRegresar.Text = "Regresar";
-            this.BtnRegresar.UseVisualStyleBackColor = true;
-            this.BtnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click);
-            // 
-            // Num_factura
-            // 
-            this.Num_factura.HeaderText = "Numero Factura";
-            this.Num_factura.Name = "Num_factura";
-            this.Num_factura.ReadOnly = true;
-            this.Num_factura.Visible = false;
-            // 
-            // SKU_producto
-            // 
-            this.SKU_producto.HeaderText = "SKU";
-            this.SKU_producto.Name = "SKU_producto";
-            this.SKU_producto.ReadOnly = true;
-            // 
-            // Nombre_producto
-            // 
-            this.Nombre_producto.HeaderText = "Nombre";
-            this.Nombre_producto.Name = "Nombre_producto";
-            this.Nombre_producto.ReadOnly = true;
-            // 
-            // Cantidad_venta
-            // 
-            this.Cantidad_venta.HeaderText = "Cantidad";
-            this.Cantidad_venta.Name = "Cantidad_venta";
-            this.Cantidad_venta.ReadOnly = true;
-            // 
-            // Precio_venta
-            // 
-            this.Precio_venta.HeaderText = "Precio Venta";
-            this.Precio_venta.Name = "Precio_venta";
-            this.Precio_venta.ReadOnly = true;
-            // 
-            // Sub_Total
-            // 
-            this.Sub_Total.HeaderText = "Sub Total";
-            this.Sub_Total.Name = "Sub_Total";
-            this.Sub_Total.ReadOnly = true;
-            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 525);
+            this.ControlBox = false;
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.tabControlClientes);
             this.Controls.Add(this.tabControlProductos);
