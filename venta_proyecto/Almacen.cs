@@ -526,7 +526,9 @@ namespace venta_proyecto
 
         private void CmbID_proveedor_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ConsultaIdProveedor();
+            if (CmbProveedor.SelectedIndex >= 0)
+                ConsultaIdProveedor();
+            CmbCategoria.Focus();
         }
 
         private void CmbID_categoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -592,7 +594,9 @@ namespace venta_proyecto
 
         private void CmbID_categoria_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ConsultaIdCategoria();
+            if (CmbCategoria.SelectedIndex >= 0)
+                ConsultaIdCategoria();
+            TxtSku.Focus();
         }
 
         private void CmbID_categoria_DropDownClosed(object sender, EventArgs e)
