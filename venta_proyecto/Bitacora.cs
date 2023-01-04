@@ -33,5 +33,10 @@ namespace venta_proyecto
         {
             this.Hide();
         }
+
+        private void BtnCerrar_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
