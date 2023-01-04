@@ -375,10 +375,9 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscar.Text == "")
+            if (CboBuscar.Text == "")
             {
                 MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                e.Handled = true;
                 return;
             }
             else

@@ -515,7 +515,6 @@ namespace venta_proyecto
             if ( CboBuscarPor.Text == "" )
             {
                 MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                e.Handled = true;
                 return;
             }
             else
