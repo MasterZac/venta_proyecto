@@ -222,6 +222,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 378);
+            this.ControlBox = false;
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.TxtID_cliente);
             this.Controls.Add(this.CmbNombreClienteTelefono);

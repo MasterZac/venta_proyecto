@@ -350,7 +350,15 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            
+            if (CboBuscarPor.Text == "")
+            {
+                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                Consultas();
+            }
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
@@ -484,16 +492,7 @@ namespace venta_proyecto
 
         private void Txtbuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= 32 && e.KeyChar <= 255 && CboBuscarPor.Text == "")
-            {
-                MessageBox.Show("Elige por que tipo de dato quieres realzar la consulta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                e.Handled = true;
-                return;
-            }
-            else
-            {
-                Consultas();
-            }
+           
         }
 
         private void TxtID_KeyPress(object sender, KeyPressEventArgs e)
@@ -535,6 +534,11 @@ namespace venta_proyecto
         private void timer_Tick(object sender, EventArgs e)
         {
             lblstatus2.Text = DateTime.Now.ToString("F");
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
