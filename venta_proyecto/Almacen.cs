@@ -50,7 +50,7 @@ namespace venta_proyecto
             try
             {
                 Conectar();
-                string query = "Select ID From categoria Where Nombre = ('" + CmbCategoria.Text + "'); ";
+                string query = "Select ID From categoria Where Nombre Like ('" + CmbCategoria.Text + "%'); ";
                 cmd = new MySqlCommand(query, cnn);
                 cmd.CommandType = CommandType.Text;
                 rd = cmd.ExecuteReader();
