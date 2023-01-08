@@ -20,8 +20,8 @@ namespace venta_proyecto
         MySqlDataAdapter da;
         public string NombreUsuario { get; set; }
         public string Rol { get; set; }
-        string fecha_entrada;
-        string fecha_salida;
+        public string fecha_entrada;
+        public string fecha_salida;
         public Menu()
         {
             InitializeComponent();
@@ -227,7 +227,7 @@ namespace venta_proyecto
         private void Menu_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = NombreUsuario.ToString();
-            fecha_entrada = Convert.ToString(DateTime.Now.ToString("s"));
+            fecha_entrada = Convert.ToString(DateTime.Now.ToString("G"));
             ConsultarTipoDeUser();
             if (LabelRol.Text == "Vendedor")
             {

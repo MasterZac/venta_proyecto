@@ -25,6 +25,7 @@ namespace venta_proyecto
         {
             InitializeComponent();
         }
+
         public void Conectar()
         {
             cnn.ConnectionString = "Server = localhost; Database = ventahardware; user = root; password = root";
