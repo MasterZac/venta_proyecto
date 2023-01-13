@@ -47,8 +47,13 @@ namespace venta_proyecto
                     string auxiliar = rd[4].ToString();
                     if (auxiliar == "Activo")// si el usuaio existe y esta activo que lo deje entrar
                     {
+
                         Menu x = new Menu();
                         x.NombreUsuario = TxtUsuario.Text;
+                        string aux = Convert.ToString(DateTime.Now.ToString("G"));
+                        bool bandera = true;
+                        x.f_e = aux;
+                        x.bandera = bandera;
                         this.Hide();
                         x.Show();
                     }
