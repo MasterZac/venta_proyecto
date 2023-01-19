@@ -71,6 +71,7 @@
             this.BtnProveedores = new System.Windows.Forms.Button();
             this.BtnCategorias = new System.Windows.Forms.Button();
             this.BtnProductos = new System.Windows.Forms.Button();
+            this.rESPALDOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -230,10 +231,11 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Black;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hISTORIALDELASVENTASToolStripMenuItem});
+            this.hISTORIALDELASVENTASToolStripMenuItem,
+            this.rESPALDOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 105);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(913, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(913, 25);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -241,10 +243,10 @@
             // 
             this.hISTORIALDELASVENTASToolStripMenuItem.Checked = true;
             this.hISTORIALDELASVENTASToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hISTORIALDELASVENTASToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hISTORIALDELASVENTASToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hISTORIALDELASVENTASToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.hISTORIALDELASVENTASToolStripMenuItem.Name = "hISTORIALDELASVENTASToolStripMenuItem";
-            this.hISTORIALDELASVENTASToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.hISTORIALDELASVENTASToolStripMenuItem.Size = new System.Drawing.Size(173, 21);
             this.hISTORIALDELASVENTASToolStripMenuItem.Text = "Ventas, Compras y cortes";
             this.hISTORIALDELASVENTASToolStripMenuItem.Click += new System.EventHandler(this.hISTORIALDELASVENTASToolStripMenuItem_Click);
             // 
@@ -580,6 +582,15 @@
             this.BtnProductos.UseVisualStyleBackColor = true;
             this.BtnProductos.Click += new System.EventHandler(this.BtnProductos_Click);
             // 
+            // rESPALDOSToolStripMenuItem
+            // 
+            this.rESPALDOSToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rESPALDOSToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.rESPALDOSToolStripMenuItem.Name = "rESPALDOSToolStripMenuItem";
+            this.rESPALDOSToolStripMenuItem.Size = new System.Drawing.Size(90, 21);
+            this.rESPALDOSToolStripMenuItem.Text = "RESPALDOS";
+            this.rESPALDOSToolStripMenuItem.Click += new System.EventHandler(this.rESPALDOSToolStripMenuItem_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -670,6 +681,7 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ToolStripMenuItem rESPALDOSToolStripMenuItem;
     }
 }
 

@@ -140,6 +140,12 @@
     <Compile Include="Proveedor.Designer.cs">
       <DependentUpon>Proveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Respaldos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Respaldos.Designer.cs">
+      <DependentUpon>Respaldos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Seccion de Consultas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </Compile>
     <EmbeddedResource Include="Proveedor.resx">
       <DependentUpon>Proveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Respaldos.resx">
+      <DependentUpon>Respaldos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seccion de Consultas.resx">
       <DependentUpon>Seccion de Consultas.cs</DependentUpon>

@@ -378,5 +378,11 @@ namespace venta_proyecto
                 ConsultasCorte();
             }
         }
+
+        private void rESPALDOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Respaldos form = new Respaldos();
+            form.Show();
+        }
     }
 }
