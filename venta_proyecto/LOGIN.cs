@@ -45,14 +45,19 @@ namespace venta_proyecto
                 if (rd.Read())// Si existe el usuario
                 {
                     string auxiliar = rd[4].ToString();
-                    if (auxiliar == "Activo")
+                    if (auxiliar == "Activo")// si el usuaio existe y esta activo que lo deje entrar
                     {
+
                         Menu x = new Menu();
                         x.NombreUsuario = TxtUsuario.Text;
+                        string aux = Convert.ToString(DateTime.Now.ToString("G"));
+                        bool bandera = true;
+                        x.f_e = aux;
+                        x.bandera = bandera;
                         this.Hide();
                         x.Show();
                     }
-                    else
+                    else // si el usuario existe y no esta activo que diga se encuentra inactivo
                     {
                         MessageBox.Show("El usuario se encuentra deshabilitado");
                     }

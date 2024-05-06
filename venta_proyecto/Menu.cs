@@ -20,8 +20,10 @@ namespace venta_proyecto
         MySqlDataAdapter da;
         public string NombreUsuario { get; set; }
         public string Rol { get; set; }
-        string fecha_entrada;
-        string fecha_salida;
+        public static string fecha_entrada;
+        public string fecha_salida;
+        public bool bandera;
+        public string f_e;
         public Menu()
         {
             InitializeComponent();
@@ -227,7 +229,10 @@ namespace venta_proyecto
         private void Menu_Load(object sender, EventArgs e)
         {
             lblstatus1.Text = NombreUsuario.ToString();
-            fecha_entrada = Convert.ToString(DateTime.Now.ToString("s"));
+            if (bandera == true)
+            {
+                fecha_entrada = f_e;
+            }  
             ConsultarTipoDeUser();
             if (LabelRol.Text == "Vendedor")
             {
@@ -244,7 +249,6 @@ namespace venta_proyecto
             {
                 BtnUsuarios.Enabled = false;
             }
-
         }
 
         private void BtnCerrarPrograma_Click(object sender, EventArgs e)
@@ -373,6 +377,12 @@ namespace venta_proyecto
             {
                 ConsultasCorte();
             }
+        }
+
+        private void rESPALDOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Respaldos form = new Respaldos();
+            form.Show();
         }
     }
 }

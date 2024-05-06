@@ -96,7 +96,7 @@ namespace venta_proyecto
                             break;
                         case 17: query = "SELECT producto.Nombre, producto.Precio, proveedor.Telefono, proveedor.Pagina_web FROM producto, proveedor WHERE producto.ID_proveedor = proveedor.ID AND proveedor.Nombre = 'TecnoAUDIO'; ";
                             break;
-                        case 18: query = "SELECT producto.Nombre, detalle_venta.Cantidad FROM producto, cliente, venta, detalle_ventaWHERE detalle_venta.SKU = producto.SKU AND detalle_venta.Num_factura = venta.Numero_factura AND venta.ID_cliente = cliente.ID AND cliente.Nombre = 'Siemens'; ";
+                        case 18: query = "SELECT producto.Nombre, detalle_venta.Cantidad FROM producto, cliente, venta, detalle_venta WHERE detalle_venta.SKU = producto.SKU AND detalle_venta.Num_factura = venta.Numero_factura AND venta.ID_cliente = cliente.ID AND cliente.Nombre = 'Siemens'; ";
                             break;
                         case 19: query = "SELECT cliente.Nombre, venta.Monto_final FROM cliente, venta WHERE venta.ID_cliente = cliente.ID AND venta.Monto_final < 10000; ";
                             break;
